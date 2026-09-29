@@ -1,0 +1,208 @@
+---
+title: "Guide d'animation"
+subtitle: "Pour la formatrice : minutage, matériel, corrigés, plan B"
+---
+
+[Pour la formatrice]{.eyebrow}
+
+Le diaporama ([slides.qmd](slides.qmd), touche `S` pour les notes) contient le discours slide par slide. Ce guide rassemble ce dont tu as besoin **autour** : le minutage d'ensemble, le matériel, les corrigés, les variantes démo/pratique, et quoi faire quand ça coince.
+
+## Minutage
+
+| Horloge | Durée | Séquence | Ce qui se passe |
+|---|---:|---|---|
+| 0:00 | 1 min | Ouverture | Accueil, services ouverts |
+| 0:01 | 8 min | | Film « Le Nouveau » |
+| 0:09 | 2 min | | « Qui s'est reconnu ? » — un mot chacun |
+| 0:11 | 1 min | | Pires noms de fichiers · trois objectifs · cinq portes · le fil rouge |
+| **0:12** | 2 min | **Temps 1** | « Vendredi, mon script fonctionnait » |
+| 0:14 | 4 min | | Vote a/b/c, débat en binôme, revote |
+| 0:18 | 5 min | | L'image (l'album) · Sous le capot (instantané, empreinte) |
+| 0:23 | 2 min | | La chaîne (trois commits de Marie) |
+| 0:25 | 2 min | | À retenir, questions |
+| **0:27** | 2 min | **Temps 2** | `git init`, `git status` : qu'est-ce que je photographie ? |
+| 0:29 | 1 min | | Les quatre phrases de Git traduites |
+| 0:30 | 4 min | | L'image (la table) · les trois zones · `add` fige une version |
+| 0:34 | 5 min | | Simulation papier : Git, c'est toi |
+| 0:39 | 6 min | | **À vous, étape 1** : la première photo |
+| 0:45 | 5 min | | **À vous, étape 2** : le seuil à 10 % |
+| 0:50 | 1 min | | VS Code *Source Control* |
+| 0:51 | 3 min | | Trois pièges provoqués, le message de commit |
+| 0:54 | 1 min | | À retenir |
+| **0:55** | 3 min | **Quiz** | Quatre questions, 45 s chacune |
+| **0:58** | 5 min | **Pause** | Vérifier les dossiers de Marie |
+| **1:03** | 5 min | **Temps 3** | Marie est absente · L'image · Sous le capot (`log`, `show`) |
+| 1:08 | 8 min | | **Enquête en binômes** |
+| 1:16 | 2 min | | Réponses, `git show b0b1445`, « et si c'était *modif* ? » |
+| 1:18 | 3 min | | Deux besoins, deux commandes · `restore` sous le capot |
+| 1:21 | 5 min | | **À vous** : `restore` sur README, puis `--source` *(fusible)* |
+| 1:26 | 2 min | | Hors périmètre · À retenir |
+| **1:28** | 1 min | **Temps 4** | `git status` chez Marie : j'ajoute tout ? |
+| 1:29 | 4 min | | **Tri de cartes** *(fusible)* |
+| 1:33 | 2 min | | Critères, sous le capot, architecture |
+| 1:35 | 1 min | | **À vous** : `.gitignore` |
+| **1:36** | 4 min | **Temps 5** | Service éphémère · L'image · Git ≠ GitLab · `origin`, `push`, `-u` |
+| 1:40 | 10 min | | **À vous** : projet GitLab, `remote add`, `push`, lecture dans GitLab |
+| 1:50 | 2 min | | Pièges · À retenir |
+| **1:52** | 2 min | **Clôture** | Les treize lignes, distribution du mémo |
+| 1:54 | 2 min | | Ticket de sortie |
+| 1:56 | 4 min | | Défi de la semaine · merci |
+
+: {tbl-colwidths="[10,9,14,67]"}
+
+::: {.warning}
+**Deux fusibles** si tu prends du retard :
+
+1. **Temps 4** : saute le tri de cartes, donne directement le `.gitignore` (slide « Écrire un `.gitignore` ») et passe au Temps 5. Gain : 5 minutes.
+2. **Temps 3** : le `git restore --source` passe en démonstration sur ton écran au lieu d'être tapé par tous. Gain : 2 à 3 minutes.
+
+Ne sacrifie jamais le Temps 5 : c'est le seul moment où leur travail sort de leur service.
+:::
+
+## Matériel
+
+- **Trois feuilles A4** titrées *Bureau*, *Table de sélection*, *Album*, et une table où les poser, visible de tous.
+- **Des post-its** (un par fichier de l'étude : `README.md`, `rapport.qmd`, `01_import.R`, `02_nettoyage.R`, `03_analyse.R`, `brouillon_test.R`, `data/…csv`), un stylo, une agrafeuse.
+- **Les 12 cartes de tri**, imprimées et découpées : un jeu par groupe de 2 ou 3 ([materiel/cartes-tri.pdf](materiel/cartes-tri.pdf)).
+- **Le mémo A4**, un par personne ([materiel/memo.pdf](materiel/memo.pdf)).
+- **Les tickets de sortie** : une demi-feuille par personne avec les trois lignes « Une chose que je sais faire / Une chose encore floue / La commande que je taperai demain ».
+- **Le film** : accès YouTube vérifié, ou `video/le-nouveau.mp4` sur le poste (le dossier `video/` est ignoré par Git).
+- **Ton projet `entreprises_defense_marie` déjà poussé** sur le GitLab interne (plan B du Temps 5).
+
+## Simulation papier (Temps 2)
+
+Tu joues Git : tu ne bouges rien de toi-même, tu n'agis que sur commande orale. Tous les post-its commencent sur *Bureau*.
+
+1. « `git status` » → tu lis : « Je vois sept fichiers que je ne suis pas. »
+2. « `git add README.md` » → tu **recopies** le post-it sur *Table de sélection* ; l'original reste sur *Bureau*.
+3. Un participant gribouille le post-it `README.md` resté sur *Bureau*. « `git status` » → « `README.md` est sur la table, et il a changé sur le bureau depuis. »
+4. « `git commit -m "…"` » → tu prends tout ce qui est sur la table, plus la dernière version de ce qui était déjà dans l'album, tu agrafes le tout comme une nouvelle page d'*Album* avec la légende. La table se vide.
+5. « `git commit` » sans rien sur la table → « Rien à photographier. »
+
+## Corrigés
+
+### Le vote du Temps 1
+
+**(b)** une copie complète du projet. Le commit est un instantané complet ; les fichiers inchangés ne sont pas recopiés parce que Git range chaque contenu sous son empreinte ; le diff (a) est calculé à la demande. Si quelqu'un objecte que Git compresse par différences : c'est vrai à l'empaquetage, mais c'est une optimisation de stockage invisible, le modèle reste la photo complète.
+
+### Le quiz éclair
+
+1. **Que contient la photo ?** Tout le projet : la nouvelle version de `02_nettoyage.R`, et l'**ancienne** version de `rapport.qmd` (celle du commit précédent). La modification de `rapport.qmd` reste dans le répertoire de travail.
+2. **La correction est-elle enregistrée ?** Non. `git add` a figé la version d'avant la correction ; `git status` montre le fichier dans les deux listes.
+3. **L'étude est-elle à l'abri sur GitLab ?** Non. `git status` ne parle que du poste ; sans `git push`, GitLab n'a rien, et le service Onyxia peut disparaître.
+4. **Deux commits peuvent-ils avoir la même empreinte ?** En pratique, non : l'empreinte porte sur tout le commit. Mathématiquement, des collisions SHA-1 existent (fabriquées exprès en 2017) ; Git détecte ces attaques et migre vers SHA-256. Par hasard, jamais.
+
+### L'enquête du Temps 3
+
+Les empreintes de Marie, **produites par la version courante de `kit.sh` ; relancer `kit/test_kit.sh` après toute modification** (le test vérifie que les empreintes ci-dessous figurent toujours dans cette page) :
+
+| # | Date (2026) | Auteur | Message | Variante R | Variante Python |
+|---:|---|---|---|---|---|
+| 1 | mar. 1 sept. 09:12 | Marie | Initialise l'étude des entreprises liées à la défense | `81bd623` | `c01700c` |
+| 2 | mer. 2 sept. 10:40 | Marie | Ajoute l'import de l'extrait entreprises_defense_2024 | `3d6a872` | `d6a9b18` |
+| 3 | ven. 4 sept. 15:05 | Marie | Ne garde que les entreprises dont la part de CA défense dépasse 20 % | `af989d8` | `3948311` |
+| 4 | mar. 8 sept. 11:30 | Marie | Ajoute la ventilation par taille d'entreprise (PME, ETI, GE) | `842a418` | `b62bd95` |
+| 5 | jeu. 10 sept. 16:48 | Franck | Corrige le calcul du CA défense (doublons de SIREN) | `456a938` | `3c9fb14` |
+| 6 | ven. 11 sept. 17:20 | Marie | Passe le graphique des effectifs en parts (%) à la demande du chef de bureau | **`155ae9a`** | **`693c70a`** |
+| 7 | lun. 14 sept. 09:05 | Marie | Ajoute la ventilation par secteur d'activité (NAF) | **`b0b1445`** | **`104a65d`** |
+| 8 | mer. 16 sept. 14:10 | Marie | Met à jour le rapport avec les résultats 2024 | `24e5e4a` | `c4a8e6b` |
+
+: {tbl-colwidths="[4,15,8,47,13,13]"}
+
+<details>
+<summary>Empreintes complètes</summary>
+
+```text
+Variante R
+81bd6237873727a79e027bf5c7e1d795b0a038b3  1 Initialise l'étude…
+3d6a8722b4c203c6a1ba346894a8403567db5137  2 Ajoute l'import…
+af989d85593715b68ab33fb55db0b453603e332c  3 Ne garde que…
+842a418dadbc7a3df82204d7eaa546ffcdd55b28  4 Ajoute la ventilation par taille…
+456a938d55720bc818d8dedf6d43d0734287e903  5 Corrige le calcul du CA défense…
+155ae9a6e9d9be8237c6c7b5e152b26f5a022187  6 Passe le graphique… en parts (%)
+b0b1445b986bec6278113229a4c5b64e30c17b89  7 Ajoute la ventilation par secteur (NAF)
+24e5e4acd405c1b7c61ef0953d5e14629a4c5c48  8 Met à jour le rapport…
+
+Variante Python
+c01700c2175660f9babbbb766f109e183be86deb  1 Initialise l'étude…
+d6a9b18c74d177019a5647e504f61163726b8d39  2 Ajoute l'import…
+3948311611c9ca4f71b6847d1c5ae68c26b3e595  3 Ne garde que…
+b62bd9527ef2073eb828adff5167ae73e439e683  4 Ajoute la ventilation par taille…
+3c9fb1483f22a314cb114aecd425d5134d91254e  5 Corrige le calcul du CA défense…
+693c70a1e91dc3e6760af2ea89ba044061f2a63c  6 Passe le graphique… en parts (%)
+104a65db0c1d6e2a8e6e5963e1af65515fbc712e  7 Ajoute la ventilation par secteur (NAF)
+c4a8e6b67bc015a8a0f4108926b29c1cf60ffe4b  8 Met à jour le rapport…
+```
+
+</details>
+
+**Réponses attendues** : le passage en parts, c'est le **commit 6** — Marie, vendredi 11 septembre à 17 h 20, « à la demande du chef de bureau ». Le script cassé, c'est le **commit 7** — lundi 14 septembre, `group_by(secteur)` alors que la colonne `secteur` n'existe pas (seule `naf` existe).
+
+Si R est disponible sur ton service, tu peux montrer l'erreur en direct : `Rscript scripts/03_analyse.R` dans `entreprises_defense_marie/` échoue sur la colonne `secteur` ; après le `git restore --source`, il fonctionne. `kit/test_kit.sh` vérifie ce comportement (échec au commit 8, succès au commit 6) quand R est installé.
+
+Les notes de réunion laissées chez Marie (`notes_reunion_chef_de_bureau.md`) confirment l'histoire, si un binôme les ouvre : le chef de bureau a demandé les parts, et la ventilation NAF était « à voir ».
+
+### Le tri de cartes du Temps 4
+
+| Carte | Pile | Pourquoi |
+|---|---|---|
+| `scripts/02_nettoyage.R` | à versionner | Du code, du texte, le cœur de l'étude |
+| `rapport.qmd` | à versionner | La source du rapport, du texte |
+| `README.md` | à versionner | La documentation |
+| `.gitignore` | à versionner | Il se partage avec l'équipe |
+| `data/entreprises_defense_2024.csv` (extrait synthétique) | **discutable** | Petit, texte, non confidentiel : versionnable. Mais la règle générale reste : les données hors de Git |
+| `data/bitd_2024.parquet` (600 Mo) | à ignorer | Binaire, volumineux, sa place est sur S3 |
+| `rapport.html` | à ignorer | Régénérable par `quarto render` |
+| `figures/effectifs_par_taille.png` | **discutable** | Régénérable par `03_analyse.R` : à ignorer, sauf s'il s'agit d'une pièce livrée à une date donnée |
+| `.Rhistory` | à ignorer | Propre à chaque poste, sans valeur pour l'équipe |
+| `.Renviron` (contient un jeton) | **jamais** | Secret : un jeton commité reste dans l'historique ; le révoquer aussitôt |
+| `donnees_entreprises_confidentiel.xlsx` | **jamais** | Données individuelles d'entreprises : secret statistique |
+| `notes_reunion_chef_de_bureau.md` | **discutable** | Du texte utile, mais nominatif et interne : pas dans le dépôt de l'étude |
+
+: {tbl-colwidths="[34,14,52]"}
+
+## Chaque « À vous » en deux versions
+
+| Moment | Version pratique (par défaut) | Version démo (si le groupe décroche ou si le temps manque) |
+|---|---|---|
+| Temps 2, étape 1 | Binômes pilote/copilote, prédiction avant chaque `git status` | Tu tapes, la salle prédit à voix haute |
+| Temps 2, étape 2 | Les binômes échangent les rôles, même protocole | Tu modifies le seuil en partageant ton écran |
+| Temps 2, pièges | Chacun provoque les trois pièges | Tu les provoques, ils lisent la sortie avec toi |
+| Temps 3, enquête | Binômes, 8 min, aide graduée | Tu cherches en direct, ils te guident |
+| Temps 3, `restore` | Tout le monde : `restore README.md` puis `--source` | `restore README.md` pour tous, `--source` en démo *(fusible)* |
+| Temps 4, tri | Groupes de 2 ou 3, cartes papier | Tri collectif à main levée, carte par carte *(ou fusible : `.gitignore` fourni)* |
+| Temps 4, `.gitignore` | Chacun crée le fichier dans VS Code | Tu le crées, ils le copient depuis le guide |
+| Temps 5, push | Chacun crée son projet et pousse | Tu pousses ton projet ; ceux qui bloquent suivent sur ton écran |
+
+**Démo facultative (2 min maximum, Temps 3, jamais sur les slides)** : si quelqu'un veut *voir* tout le projet tel qu'il était vendredi, `git switch --detach 155ae9a`, on regarde les fichiers dans VS Code, puis `git switch main` pour revenir. Ne le fais pas taper.
+
+## Les messages de Git à ne pas craindre
+
+| Ce qu'on voit | Ce que ça veut dire | Quoi faire |
+|---|---|---|
+| Un éditeur plein écran, des `~` sur la gauche | `git commit` sans `-m` : Git demande le message dans l'éditeur | `Échap`, puis `:q!`, puis `Entrée` ; recommencer avec `-m "…"` |
+| `:` ou `(END)` en bas de l'écran après `git log` ou `git show` | Le lecteur de texte de Git (la sortie dépasse l'écran) | Flèches pour défiler, `q` pour quitter |
+| `no changes added to commit` | Commit sans `add` | `git add <fichier>`, puis `git commit` |
+| `nothing added to commit but untracked files present` | Rien n'est sélectionné ; il reste des fichiers non suivis | Normal s'ils sont volontairement laissés dehors |
+| `fatal: not a git repository` | On n'est pas dans le bon dossier | `cd ~/atelier-git/entreprises_defense` (ou `…_marie`) |
+| `hint: Using 'master' as the name for the initial branch` | Le kit n'a pas été lancé avant `git init` | Pousser avec `git push -u origin master`, ou relancer le kit sur un service neuf |
+| `! [rejected] … (fetch first)` | Projet GitLab créé avec un README | Supprimer et recréer le projet sans README |
+| Une demande de *Username* / *Password* au push | Jeton absent ou expiré | Vérifier *Mon compte* sur Onyxia, relancer un service ; sinon plan B |
+
+: {tbl-colwidths="[32,34,34]"}
+
+## Plan B
+
+- **Onyxia indisponible** (panne, services qui ne démarrent pas) : tout l'atelier bascule sur le [bac à sable](bac-a-sable.qmd), dans le navigateur. Les trois exercices couvrent le geste (Temps 2), `add` qui fige une version, et le retour à la dernière photo (Temps 3). Le Temps 4 se fait sur papier, le Temps 5 en démonstration sur ton écran.
+- **Le push échoue** pour une partie de la salle : montre ton projet `entreprises_defense_marie` déjà poussé sur le GitLab interne (historique, un commit, son diff, le README) ; les personnes concernées suivent sur ton écran et referont le push chez elles (défi de la semaine).
+- **Pas de YouTube dans la salle** : `video/le-nouveau.mp4` sur ton poste.
+- **Service recréé le jour J** : `bash kit.sh --force` (le kit est idempotent : mêmes dossiers, mêmes empreintes).
+
+## D'où viennent les sorties affichées
+
+Toutes les sorties des slides et du guide ont été produites en exécutant réellement les commandes sur le kit (Git 2.43, identité fictive « Camille », dates fixées pour la reproductibilité). Deux exceptions, signalées :
+
+- la sortie de `git push` a été obtenue avec un dépôt distant local ; seule l'adresse a été remplacée par celle de GitLab (`{{< var gitlab_url >}}/camille/…`) ;
+- la slide « Et si le message avait été *modif* ? » montre un historique fictif, fabriqué pour l'exemple, ce que tu dis à voix haute.
+
+Les empreintes des commits des participants (Temps 2, 4 et 5) dépendent de leur nom et de l'heure : elles diffèrent d'un poste à l'autre. Celles de Marie sont identiques partout.
