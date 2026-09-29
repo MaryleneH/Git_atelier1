@@ -37,19 +37,19 @@ format:
   #text(size: 8pt, weight: "bold", tracking: 1.2pt, fill: rgb("#0b5952"))[GIT VOUS PARLE EN ANGLAIS]
   #v(1mm)
   #grid(columns: (auto, 1fr), column-gutter: 10pt, row-gutter: 6pt,
-    raw("nothing to commit, working tree clean"), [Rien à photographier : tout est dans la dernière photo],
+    raw("nothing to commit, working tree clean"), [Rien à photographier : tout est dans la dernière photo],
     raw("Untracked files"), [Fichiers que Git ne suit pas encore],
     raw("Changes not staged for commit"), [Modifié, mais pas encore choisi pour la photo],
-    raw("Changes to be committed"), [Choisi : entrera dans la prochaine photo],
+    raw("Changes to be committed"), [Choisi : entrera dans la prochaine photo],
   )
 ]
 #v(2mm)
 #block(fill: rgb("#fdf3e3"), inset: 9pt, radius: 5pt, width: 100%, stroke: (left: 3pt + rgb("#f59e0b")))[
   #text(size: 8pt, weight: "bold", tracking: 1.2pt, fill: rgb("#b45309"))[★ À RETENIR]
   #v(1mm)
-  Regarder, choisir, enregistrer. · #raw("git status") ne casse jamais rien. · Avant de bidouiller : commit. · Git est fait pour le texte, pas pour les données. · #raw("commit") enregistre chez moi, #raw("push") rend visible chez nous.
+  Regarder, choisir, enregistrer. · #raw("git status") ne casse jamais rien. · Avant de bidouiller : commit. · Git est fait pour le texte, pas pour les données. · #raw("commit") enregistre chez moi, #raw("push") rend visible chez nous.
 ]
 #v(1fr)
-#align(center)[#text(size: 8pt, fill: rgb("#8a8377"))[Éditeur ouvert par erreur : Échap, puis :q!, puis Entrée · Écran bloqué sur « : » : touche q]]
+#align(center)[#text(size: 8pt, fill: rgb("#8a8377"))[Éditeur ouvert par erreur : Échap, puis :q!, puis Entrée · Écran bloqué sur « : » : touche q]]
 #align(center)[#text(size: 8pt, fill: rgb("#0b5952"))[#link("{{< var site_url >}}")]]
 ```

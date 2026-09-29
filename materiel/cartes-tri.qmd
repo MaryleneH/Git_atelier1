@@ -13,12 +13,12 @@ format:
 ---
 
 ```{=typst}
-// 12 cartes à découper le long des pointillés : un jeu par groupe de 2 ou 3.
-// Trois piles : à versionner · à ignorer · jamais.
+// 12 cartes à découper le long des pointillés : un jeu par groupe de 2 ou 3.
+// Trois piles : à versionner · à ignorer · jamais.
 #set text(lang: "fr", fill: rgb("#211d18"), hyphenate: false)
 #set page(numbering: none)
 
-// Les noms longs peuvent se couper après « / » et « _ »
+// Les noms longs peuvent se couper après « / » et « _ »
 #let coupe(nom) = nom.replace("/", "/\u{200b}").replace("_", "_\u{200b}")
 
 #let carte(fichier, detail) = box(

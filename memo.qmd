@@ -1,8 +1,8 @@
 ---
-title: "Mémo : problème → commande"
+title: "Mémo : problème → commande"
 toc: false
 ---
 
 {{< include _memo-tableau.qmd >}}
 
-[Version imprimable (A4) : [materiel/memo.pdf](materiel/memo.pdf)]{.eyebrow}
+[Version imprimable (A4) : [materiel/memo.pdf](materiel/memo.pdf)]{.eyebrow}
