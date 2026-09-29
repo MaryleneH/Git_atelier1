@@ -1,0 +1,108 @@
+---
+title: "Bac à sable"
+subtitle: "S'entraîner dans le navigateur, sans rien installer"
+filters:
+  - git-sandbox
+---
+
+Trois exercices sur la même histoire que l'atelier : l'étude `entreprises_defense`. Tout se passe dans cette page : rien n'est installé, rien n'est envoyé nulle part. Le schéma sous chaque terminal montre en direct les trois zones (répertoire de travail, zone de sélection, dépôt).
+
+::: {.concept}
+Les fichiers du bac à sable sont **simplifiés** (une ou deux lignes chacun) : ce qui compte ici, c'est le geste, pas le code R. Pour modifier un fichier, on utilise `echo "…" > fichier`, qui remplace tout son contenu.
+:::
+
+## 1. Le geste
+
+```git-sandbox
+id: le-geste
+title: "Exercice 1 · Regarder, choisir, enregistrer"
+prompt: "~/entreprises_defense $"
+intro: |
+  Le dossier de l'étude est là, mais Git ne le suit pas encore.
+  Commencez par {y}git init{/}, puis regardez avec {y}git status{/}.
+  Tapez {y}help{/} pour la liste des commandes.
+hints: [git init, git status, git add README.md scripts/ rapport.qmd, 'git commit -m "Initialise le suivi de l''étude entreprises_defense"', 'echo "seuil_dependance <- 0.10" > scripts/02_nettoyage.R', git diff, 'git commit -m "Abaisse le seuil de dépendance défense à 10 %"', git log --oneline]
+seed: |
+  echo "# Entreprises liées à la défense" > README.md
+  mkdir scripts
+  echo "seuil_dependance <- 0.20" > scripts/02_nettoyage.R
+  echo "title: Les entreprises liées à la défense en 2024" > rapport.qmd
+  echo "x <- read.csv('data.csv')" > brouillon_test.R
+tasks:
+  - text: Transformez le dossier en dépôt (`git init`)
+    when: repo
+  - text: Faites une première photo avec `README.md`, les scripts et le rapport, sans le brouillon
+    when: commits >= 1
+  - text: Passez le seuil à `0.10`, regardez le diff, et faites une deuxième photo
+    when: commits >= 2
+done-note: "**Regarder, choisir, enregistrer.** Et le brouillon est resté dehors : tout ne mérite pas la photo."
+```
+
+## 2. `add` fige une version
+
+```git-sandbox
+id: add-fige
+title: "Exercice 2 · Modifier après add"
+prompt: "~/entreprises_defense $"
+intro: |
+  L'étude a déjà deux photos. Modifiez le script, sélectionnez-le,
+  puis modifiez-le encore une fois AVANT de faire le commit.
+  Observez {y}git status{/} à chaque étape.
+hints: ['echo "seuil_dependance <- 0.10" > scripts/02_nettoyage.R', git add scripts/02_nettoyage.R, 'echo "seuil_dependance <- 0.15" > scripts/02_nettoyage.R', git status, git diff, 'git commit -m "Abaisse le seuil de dépendance défense à 10 %"', git log --oneline]
+seed: |
+  git init
+  echo "# Entreprises liées à la défense" > README.md
+  git add README.md
+  git commit -m "Initialise l'étude des entreprises liées à la défense"
+  mkdir scripts
+  echo "seuil_dependance <- 0.20" > scripts/02_nettoyage.R
+  git add scripts/02_nettoyage.R
+  git commit -m "Ne garde que les entreprises dont la part de CA défense dépasse 20 %"
+tasks:
+  - text: Modifiez le seuil et sélectionnez le fichier (`git add`)
+    when: staged
+  - text: Modifiez-le encore, et constatez avec `git status` qu'il est dans les deux listes
+    js: c.status.staged.some(s => s.file === 'scripts/02_nettoyage.R') && c.status.modified.includes('scripts/02_nettoyage.R') && c.history.some(h => /git\s+status/.test(h))
+  - text: Faites le commit, puis vérifiez que la dernière modification attend toujours
+    when: commits >= 3 and not clean
+done-note: "`git add` a figé **une version** du fichier : la modification faite après le `add` n'est pas dans la photo. Un nouveau `git add` l'y aurait mise."
+```
+
+## 3. Revenir
+
+```git-sandbox
+id: revenir
+title: "Exercice 3 · Feuilleter l'album et revenir"
+prompt: "~/entreprises_defense $"
+intro: |
+  Trois photos dans l'album. Feuilletez-le avec {y}git log --oneline{/}.
+  Puis cassez le script, constatez le changement avec {y}git diff{/},
+  et remettez-le exactement comme dans la dernière photo.
+hints: [git log --oneline, 'echo "group_by(secteur)" > scripts/03_analyse.R', git status, git diff, 'echo "count(taille)" > scripts/03_analyse.R', git status]
+seed: |
+  git init
+  echo "# Entreprises liées à la défense" > README.md
+  git add README.md
+  git commit -m "Initialise l'étude des entreprises liées à la défense"
+  mkdir scripts
+  echo "seuil_dependance <- 0.20" > scripts/02_nettoyage.R
+  git add scripts/02_nettoyage.R
+  git commit -m "Ne garde que les entreprises dont la part de CA défense dépasse 20 %"
+  echo "count(taille)" > scripts/03_analyse.R
+  git add scripts/03_analyse.R
+  git commit -m "Ajoute la ventilation par taille d'entreprise (PME, ETI, GE)"
+tasks:
+  - text: Feuilletez l'album
+    when: ran /git\s+log/
+  - text: Modifiez `scripts/03_analyse.R` et regardez le diff
+    when: ran /git\s+diff/ and not clean
+  - text: Remettez le fichier comme dans la dernière photo, jusqu'à retrouver un dépôt propre
+    when: ran /git\s+diff/ and clean and file scripts/03_analyse.R contains "count(taille)"
+done-note: "Ici, vous avez remis la ligne à la main. Sur Onyxia, Git le fait pour vous : `git restore scripts/03_analyse.R` (Temps 3 de l'atelier). Le bac à sable ne connaît pas encore `git restore`."
+```
+
+::: {.remember}
+Un exercice raté ? Le bouton **Undo** (ou la commande `undo`) annule la dernière commande, **Reset** remet l'exercice à zéro. Ce sont des facilités du bac à sable, pas des commandes Git.
+:::
+
+[Bac à sable : extension [quarto-git-sandbox](https://github.com/ryjohnson09/quarto-git-sandbox) de Ryan Johnson (licence MIT).]{.eyebrow}
