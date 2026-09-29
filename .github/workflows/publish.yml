@@ -1,0 +1,46 @@
+name: Publier le site sur GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Le déploiement pousse le site rendu sur la branche gh-pages.
+permissions:
+  contents: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  publier:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+
+      # quarto publish gh-pages suppose que la branche existe déjà.
+      - name: Créer la branche gh-pages si elle n'existe pas
+        run: |
+          if ! git ls-remote --exit-code --heads origin gh-pages > /dev/null; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git switch --orphan gh-pages
+            git commit --allow-empty -m "Initialise la branche de publication gh-pages"
+            git push origin gh-pages
+            git switch "$GITHUB_REF_NAME"
+          fi
+
+      # Rien n'est exécuté (execute: enabled: false) : ni R ni Python à installer.
+      - name: Installer Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: 1.7.32
+
+      - name: Rendre et publier sur gh-pages
+        uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
