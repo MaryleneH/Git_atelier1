@@ -1,0 +1,157 @@
+---
+title: "Avant l'atelier"
+subtitle: "Vingt minutes de préparation, à faire la semaine précédente"
+engine: markdown
+---
+
+[Pour les participants · étapes 1 à 5]{.eyebrow}
+
+Ces cinq étapes garantissent que, le jour de l'atelier, tout le monde peut taper sa première commande dès la première minute. Faites-les dans l'ordre ; si l'une bloque, écrivez à la formatrice avant l'atelier.
+
+## 1. Renseigner votre compte Onyxia
+
+Sur [{{< var onyxia_url >}}]({{< var onyxia_url >}}), ouvrez **Mon compte**, onglet **Git** (ou **Services externes**, selon la version) :
+
+- votre **nom** et votre **adresse email** : ils signeront chacun de vos commits ;
+- un **jeton d'accès personnel GitLab**, créé sur [{{< var gitlab_url >}}]({{< var gitlab_url >}}) dans *Préférences → Jetons d'accès*, avec la portée **`write_repository`**.
+
+::: {.placeholder-capture}
+Capture à venir : l'onglet *Git* de *Mon compte* sur Onyxia.
+:::
+
+::: {.warning}
+Le jeton vaut mot de passe. Il se colle **uniquement** dans *Mon compte* sur Onyxia : jamais dans un fichier, jamais dans un script, jamais dans un message. Onyxia le transmet lui-même à vos services.
+:::
+
+## 2. Lancer un service VS Code
+
+Dans le catalogue Onyxia, lancez un service **VS Code** en version **R** ou **Python**, selon votre langage habituel. Ouvrez-le, puis ouvrez le terminal intégré : menu **Terminal → Nouveau terminal**.
+
+::: {.placeholder-capture}
+Capture à venir : le catalogue Onyxia, puis le terminal intégré de VS Code.
+:::
+
+## 3. Vérifier Git
+
+Dans le terminal, tapez :
+
+```bash
+git --version
+git config --global --list
+```
+
+La première commande affiche la version de Git. La seconde doit afficher, entre autres, votre nom et votre email (`user.name=…` et `user.email=…`), transmis par Onyxia.
+
+::: {.concept}
+Si `user.name` ou `user.email` manquent, vérifiez l'étape 1 et relancez un service. Le kit de l'étape 4 vous indiquera aussi comment les définir à la main.
+:::
+
+## 4. Créer le kit d'exercices
+
+Le kit crée deux dossiers d'exercice dans `~/atelier-git` : l'étude `entreprises_defense` (sans historique) et l'étude de Marie (avec son historique). Votre service n'a pas forcément accès à internet : on copie donc le script depuis cette page.
+
+::: {.try}
+1. Dans VS Code, créez un nouveau fichier (**Fichier → Nouveau fichier texte**), et enregistrez-le sous le nom **`kit.sh`** dans votre dossier personnel.
+2. Dépliez le script ci-dessous, cliquez sur l'icône **copier** (en haut à droite du bloc), et collez tout dans `kit.sh`. Enregistrez.
+3. Dans le terminal :
+
+```bash
+bash kit.sh
+```
+
+Si vous travaillez en Python : `bash kit.sh --python`.
+:::
+
+<details>
+<summary>Afficher le script <code>kit.sh</code> (environ 600 lignes)</summary>
+
+`````bash
+{{< include kit/kit.sh >}}
+`````
+
+</details>
+
+Si votre service a accès à internet, vous pouvez aussi télécharger le fichier directement :
+
+```bash
+curl -O {{< var site_url >}}kit/kit.sh
+bash kit.sh
+```
+
+Le kit se termine ainsi. Les sept premiers caractères de chaque ligne de l'historique de Marie (les empreintes) sont **les mêmes chez tout le monde** :
+
+```text
+Kit prêt (variante R).
+
+  /home/onyxia/atelier-git/entreprises_defense
+      l'étude, sans historique : c'est vous qui ferez git init
+  /home/onyxia/atelier-git/entreprises_defense_marie
+      l'étude de Marie, avec son historique :
+
+      24e5e4a Met à jour le rapport avec les résultats 2024
+      b0b1445 Ajoute la ventilation par secteur d'activité (NAF)
+      155ae9a Passe le graphique des effectifs en parts (%) à la demande du chef de bureau
+      456a938 Corrige le calcul du CA défense (doublons de SIREN)
+      842a418 Ajoute la ventilation par taille d'entreprise (PME, ETI, GE)
+      af989d8 Ne garde que les entreprises dont la part de CA défense dépasse 20 %
+      3d6a872 Ajoute l'import de l'extrait entreprises_defense_2024
+      81bd623 Initialise l'étude des entreprises liées à la défense
+
+Pour commencer : cd /home/onyxia/atelier-git/entreprises_defense
+```
+
+[Variante Python : les empreintes sont différentes, mais tout aussi identiques d'un poste à l'autre.]{.eyebrow}
+
+::: {.warning}
+**Le jour de l'atelier**, si votre service a été supprimé ou recréé depuis, relancez le kit (en recopiant `kit.sh` si besoin) avec l'option `--force` :
+
+```bash
+bash kit.sh --force
+```
+
+Sans `--force`, le kit refuse d'écraser des dossiers existants.
+:::
+
+## 5. Cinq minutes de bac à sable, et un mail
+
+- Faites le premier exercice du [bac à sable](bac-a-sable.qmd) : il tourne dans le navigateur, sans Onyxia.
+- Envoyez à la formatrice, par mail, **votre pire nom de fichier** (réel, anonymisé si besoin). Les meilleurs ouvriront l'atelier.
+
+---
+
+[Pour la formatrice]{.eyebrow}
+
+## Le mail à envoyer à J-3
+
+::: {.mail}
+**Objet :** Atelier Git du {{< var atelier_date >}} — 20 minutes de préparation
+
+Bonjour à toutes et à tous,
+
+L'atelier « Je regarde, je choisis, j'enregistre » a lieu le {{< var atelier_date >}}. Pour que nous puissions commencer directement par la pratique, merci de prendre vingt minutes d'ici là pour préparer votre poste :
+
+{{< var site_url >}}prerequis.html
+
+Les cinq étapes : renseigner votre compte Onyxia (nom, email, jeton GitLab), lancer un service VS Code, vérifier Git, créer le kit d'exercices, et faire cinq minutes de bac à sable.
+
+Et une petite demande : répondez à ce mail avec **votre pire nom de fichier**, celui qui vous fait sourire (ou grincer des dents). Ils ouvriront l'atelier, anonymement.
+
+Si une étape bloque, écrivez-moi : mieux vaut régler cela avant que pendant.
+
+À très vite,
+:::
+
+## La checklist J-7
+
+::: {.checklist}
+- [ ] **Test complet sur le GitLab interne** : jeton créé → *Mon compte* Onyxia → service VS Code neuf → `bash kit.sh` → `git push` d'un projet de test. Sans invite de mot de passe.
+- [ ] **Branche par défaut** des nouveaux projets GitLab : `main` (sinon, adapter la slide « Envoyer sur GitLab »).
+- [ ] **Groupe GitLab de l'équipe** : existe-t-il ? Les participants peuvent-ils y créer des projets, ou le feront-ils dans leur espace personnel ?
+- [ ] **Visibilité** : les projets *privés* et *internes* sont-ils autorisés ? Laquelle recommander ?
+- [ ] **Case « Initialiser le dépôt avec un README »** : cochée ou non par défaut sur cette instance ?
+- [ ] **Site joignable** depuis les postes de la salle : {{< var site_url >}}
+- [ ] **Film** : YouTube accessible dans la salle ? Sinon, copier `video/le-nouveau.mp4` sur le poste de présentation.
+- [ ] **Plan B** : pousser `entreprises_defense_marie` sur ton GitLab, pour le montrer si un push échoue.
+- [ ] **Kit** : `bash kit/test_kit.sh` vert, et empreintes identiques à celles du [guide formateur](formateur.qmd).
+- [ ] **Impression** : [mémo A4](materiel/memo.pdf) (un par personne), [cartes de tri](materiel/cartes-tri.pdf) (un jeu par groupe de 2 ou 3), tickets de sortie.
+:::
