@@ -1,0 +1,55 @@
+---
+title: "Mémo · problème → commande"
+format:
+  typst:
+    papersize: a4
+    margin:
+      x: 16mm
+      y: 14mm
+    fontsize: 10.5pt
+    mainfont: "Public Sans"
+    font-paths: ["assets/fonts"]
+    keep-typ: false
+    include-in-header:
+      - text: |
+          #set text(lang: "fr", fill: rgb("#211d18"))
+          #set page(numbering: none)
+          #show heading: set text(font: "Fraunces", fill: rgb("#211d18"))
+          #show raw: set text(font: "JetBrains Mono", size: 9.5pt, fill: rgb("#0b5952"))
+          #set table(
+            stroke: (x, y) => if y == 0 { (bottom: 1.2pt + rgb("#211d18")) } else { (bottom: 0.5pt + rgb("#e6e1d6")) },
+            inset: (x: 6pt, y: 6.5pt),
+          )
+          #show table.cell.where(y: 0): set text(weight: "bold", fill: rgb("#575046"))
+---
+
+```{=typst}
+#v(-6mm)
+#text(size: 8pt, weight: "bold", tracking: 1.5pt, fill: rgb("#0f766e"))[ATELIER 1 · JE REGARDE, JE CHOISIS, J'ENREGISTRE]
+#v(-2mm)
+```
+
+{{< include ../_memo-tableau.qmd >}}
+
+```{=typst}
+#v(3mm)
+#block(fill: rgb("#e4f2f0"), inset: 9pt, radius: 5pt, width: 100%, stroke: (left: 3pt + rgb("#0f766e")))[
+  #text(size: 8pt, weight: "bold", tracking: 1.2pt, fill: rgb("#0b5952"))[GIT VOUS PARLE EN ANGLAIS]
+  #v(1mm)
+  #grid(columns: (auto, 1fr), column-gutter: 10pt, row-gutter: 6pt,
+    raw("nothing to commit, working tree clean"), [Rien à photographier : tout est dans la dernière photo],
+    raw("Untracked files"), [Fichiers que Git ne suit pas encore],
+    raw("Changes not staged for commit"), [Modifié, mais pas encore choisi pour la photo],
+    raw("Changes to be committed"), [Choisi : entrera dans la prochaine photo],
+  )
+]
+#v(2mm)
+#block(fill: rgb("#fdf3e3"), inset: 9pt, radius: 5pt, width: 100%, stroke: (left: 3pt + rgb("#f59e0b")))[
+  #text(size: 8pt, weight: "bold", tracking: 1.2pt, fill: rgb("#b45309"))[★ À RETENIR]
+  #v(1mm)
+  Regarder, choisir, enregistrer. · #raw("git status") ne casse jamais rien. · Avant de bidouiller : commit. · Git est fait pour le texte, pas pour les données. · #raw("commit") enregistre chez moi, #raw("push") rend visible chez nous.
+]
+#v(1fr)
+#align(center)[#text(size: 8pt, fill: rgb("#8a8377"))[Éditeur ouvert par erreur : Échap, puis :q!, puis Entrée · Écran bloqué sur « : » : touche q]]
+#align(center)[#text(size: 8pt, fill: rgb("#0b5952"))[#link("{{< var site_url >}}")]]
+```
