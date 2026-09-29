@@ -970,6 +970,8 @@ af989d8 modif
 81bd623 modif
 ```
 
+[Historique imaginaire : le même dépôt, si Marie n'avait écrit que « modif ».]{.discret}
+
 ::: {.notes}
 **⏱ 1:17 → 1:18 (1 min)**
 
