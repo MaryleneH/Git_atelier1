@@ -155,32 +155,44 @@ $icon-gear: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'
   }
 
   // Sorties : ce que Git répond (fond nuit, comme le terminal du site)
-  pre.sortie,
-  div.sortie pre,
-  .sortie {
+  div.sourceCode:has(> pre.sortie) {
+    background: $night;
+    border: none;
+    border-left: 5px solid $night-line;
+  }
+
+  pre.sortie {
     background: $night;
     border-radius: 0.5rem;
     border: none;
 
-    code {
+    code,
+    code span {
       background: transparent;
       border: none;
       color: $night-ink-2;
-      font-size: 0.6em;
-      line-height: 1.45;
+    }
+
+    code {
+      font-size: 0.82em;
+      line-height: 1.38;
       padding: 0.7em 1em;
-      max-height: 560px;
+      max-height: 640px;
+      overflow: auto;
       white-space: pre;
     }
-  }
 
-  div.sourceCode.sortie {
-    border-left: 5px solid $night-line;
-  }
+    .code-copy-button {
+      display: none;
+    }
 
-  .sortie .vert { color: $term-green; }
-  .sortie .rouge { color: $term-red; }
-  .sortie .jaune { color: $term-yellow; }
+    // Couleurs du vrai terminal (posées par slides.html)
+    code span.t-vert { color: $term-green; }
+    code span.t-rouge { color: $term-red; }
+    code span.t-jaune { color: $term-yellow; }
+    code span.t-cmd { color: $night-ink; font-weight: 600; }
+    code span.t-meta { color: #aca6c2; }
+  }
 
   // Tableaux sobres
   table {
@@ -336,19 +348,23 @@ $icon-gear: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'
     color: $violet;
   }
 
-  // À retenir : une phrase, centrée, grande
+  // À retenir : une phrase, centrée, grande. Le titre « À retenir »
+  // ne s'affiche que sous forme de badge.
   &.retenir {
     text-align: center;
+    padding-top: 150px;
 
     > h2 {
-      font-size: 1em;
+      font-size: 0;
+      margin: 0 0 40px;
       text-align: center;
 
       &::before {
         @extend %badge;
         content: "★ À retenir";
         display: table;
-        margin: 0 auto 1.2em;
+        margin: 0 auto;
+        font-size: 24px;
         background: $amber-soft;
         color: $amber;
       }
@@ -356,12 +372,12 @@ $icon-gear: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'
 
     p {
       font-family: $presentation-heading-font;
-      font-size: 1.5em;
+      font-size: 1.6em;
       font-weight: 600;
-      line-height: 1.3;
+      line-height: 1.25;
       text-align: center;
-      max-width: 22ch;
-      margin: 0.4em auto;
+      max-width: 30ch;
+      margin: 0.35em auto;
       text-wrap: balance;
     }
 
@@ -451,7 +467,7 @@ $icon-gear: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'
 }
 
 // Choix d'un vote : (a) (b) (c)
-.reveal .choix {
+.reveal .choix ul {
   list-style: none;
   padding-left: 0;
   margin-left: 0;
@@ -478,9 +494,10 @@ $icon-gear: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'
   border: 2px solid $line;
   border-radius: 0.8rem;
   box-shadow: 0 2px 6px rgba(33, 29, 24, 0.05), 0 10px 30px rgba(33, 29, 24, 0.08);
-  padding: 0.5em 0.8em;
-  width: 9.6em;
-  font-size: 0.62em;
+  padding: 0.6em 0.9em;
+  width: 13.5em;
+  min-height: 11.5em;
+  font-size: 0.6em;
   line-height: 1.35;
 
   .empreinte {
@@ -583,7 +600,6 @@ $icon-gear: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'
     font-size: 2.4em;
     font-weight: 700;
     line-height: 1.08;
-    max-width: 18ch;
   }
 
   .subtitle {
@@ -595,5 +611,69 @@ $icon-gear: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'
   .quarto-title-author-name,
   .date {
     color: $ink-faint;
+  }
+}
+
+.reveal .quarto-title-block .quarto-title-affiliation,
+.reveal .quarto-title-block .institute {
+  color: $ink-faint;
+  font-size: 0.8em;
+}
+
+// Une empreinte complète, affichée en grand
+.reveal .empreinte-longue {
+  display: inline-block;
+  font-family: $font-family-monospace;
+  font-size: 0.9em;
+  font-weight: 600;
+  color: $amber;
+  background: $night;
+  border-radius: 0.5rem;
+  padding: 0.4em 0.8em;
+  margin: 0.2em 0 0.6em;
+  letter-spacing: 0.02em;
+}
+
+// Sortie longue (git show complet) : plus petite, sans ascenseur
+.reveal .slides section.sortie-longue pre.sortie code {
+  font-size: 0.64em;
+  max-height: none;
+}
+
+// Le mémo des treize lignes tient sur une slide
+.reveal .slides section.memo-slide table {
+  font-size: 0.62em;
+
+  td {
+    padding: 0.18em 0.6em;
+  }
+
+  code {
+    font-size: 0.92em;
+  }
+}
+
+// Les cartes du tri, lisibles de loin
+.reveal .slides section .fichier {
+  font-size: 0.66em;
+  margin: 0.25em 0.2em;
+}
+
+// La pause : grande et centrée
+.reveal .slides section.pause {
+  text-align: center;
+  padding-top: 200px;
+
+  h2 {
+    font-size: 2.6em;
+  }
+
+  .grand {
+    font-size: 1.6em;
+  }
+
+  .reprise {
+    font-weight: 700;
+    color: $teal-deep;
   }
 }
