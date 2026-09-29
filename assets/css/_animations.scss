@@ -1,0 +1,148 @@
+// ============================================================
+// Système de mouvement
+// Règle : chaque animation raconte quelque chose (un fichier
+// change d'état, un commit rejoint l'historique). Jamais de
+// mouvement décoratif gratuit.
+// Tout est désactivable via prefers-reduced-motion.
+// ============================================================
+
+// --- Apparition au scroll -------------------------------------
+// animations.js pose .is-visible quand l'élément entre à l'écran.
+[data-animate] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity var(--gsd-dur-slow) var(--gsd-ease),
+              transform var(--gsd-dur-slow) var(--gsd-ease);
+
+  &.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+[data-animate="fade"] {
+  transform: none;
+}
+
+[data-animate="left"] {
+  transform: translateX(-26px);
+}
+
+[data-animate="right"] {
+  transform: translateX(26px);
+}
+
+// Apparition en cascade des enfants directs
+[data-animate="stagger"] {
+  opacity: 1;
+  transform: none;
+
+  > * {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity var(--gsd-dur-slow) var(--gsd-ease),
+                transform var(--gsd-dur-slow) var(--gsd-ease);
+  }
+
+  @for $i from 1 through 12 {
+    > :nth-child(#{$i}) {
+      transition-delay: #{($i - 1) * 90}ms;
+    }
+  }
+
+  &.is-visible > * {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+// La frise Git se construit commit après commit
+.git-timeline[data-animate="timeline"] {
+  opacity: 1;
+  transform: none;
+
+  &::before {
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 1100ms var(--gsd-ease);
+  }
+
+  .tl-commit {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity var(--gsd-dur-slow) var(--gsd-ease),
+                transform var(--gsd-dur-slow) var(--gsd-ease);
+  }
+
+  @for $i from 1 through 8 {
+    .tl-commit:nth-child(#{$i}) {
+      transition-delay: #{$i * 180}ms;
+    }
+  }
+
+  &.is-visible {
+    &::before { transform: scaleY(1); }
+
+    .tl-commit {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+// Le jalon (tag) se révèle en dernier, avec un léger rebond
+.git-timeline[data-animate="timeline"] .tl-commit.tl-tag::before {
+  transition: transform var(--gsd-dur) var(--gsd-ease-snap) 150ms,
+              background var(--gsd-dur) var(--gsd-ease);
+}
+
+// --- Pulsation discrète d'un élément à remarquer ---------------
+@keyframes gsd-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(15, 118, 110, 0.35); }
+  60% { box-shadow: 0 0 0 9px rgba(15, 118, 110, 0); }
+}
+
+.pulse-once.is-visible {
+  animation: gsd-pulse 1.6s var(--gsd-ease) 400ms 2;
+}
+
+// --- Sans JavaScript : tout est visible ------------------------
+// animations.js pose .gsd-js sur <html>. Sans cette classe,
+// aucun état initial masqué ne s'applique.
+html:not(.gsd-js) {
+  [data-animate], [data-animate] > *,
+  .git-timeline[data-animate="timeline"] .tl-commit {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .git-timeline[data-animate="timeline"]::before {
+    transform: none !important;
+  }
+}
+
+// --- Mouvement réduit : le contenu prime -----------------------
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  [data-animate], [data-animate] > *,
+  .git-timeline[data-animate="timeline"] .tl-commit,
+  .chaos-scene .chaos-files .file-chip {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .git-timeline[data-animate="timeline"]::before {
+    transform: none !important;
+  }
+
+  // Le chaos de fichiers reste lisible : état final affiché
+  .chaos-scene .chaos-files .file-chip:not(:first-child) {
+    opacity: 0.4 !important;
+  }
+}

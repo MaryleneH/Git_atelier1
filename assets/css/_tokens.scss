@@ -1,0 +1,70 @@
+// ============================================================
+// Tokens — variables CSS exposées au runtime (JS + composants)
+// ============================================================
+
+:root {
+  // Couleurs
+  --gsd-paper: #fbfaf7;
+  --gsd-paper-soft: #f4f1ea;
+  --gsd-surface: #ffffff;
+  --gsd-ink: #211d18;
+  --gsd-ink-soft: #575046;
+  --gsd-ink-faint: #8a8377;
+  --gsd-line: #e6e1d6;
+
+  --gsd-teal: #0f766e;
+  --gsd-teal-deep: #0b5952;
+  --gsd-teal-soft: #e4f2f0;
+  --gsd-amber: #b45309;
+  --gsd-amber-bright: #f59e0b;
+  --gsd-amber-soft: #fdf3e3;
+  --gsd-coral: #b3372e;
+  --gsd-coral-soft: #fbeeec;
+  --gsd-violet: #5b4a8a;
+  --gsd-violet-soft: #efecf7;
+
+  --gsd-night: #1a1723;
+  --gsd-night-soft: #262231;
+  --gsd-night-line: #3a3448;
+  // Échelle de texte sur fond nuit — 3 niveaux, tous AA sur --gsd-night :
+  //   ink   (principal)  : commandes, fichiers, résultats clés  ~14.2:1
+  //   ink-2 (secondaire) : sortie standard, contexte de diff    ~10.4:1
+  //   muted (métadonnées): @@, commentaires, titre du terminal   ~7.5:1
+  --gsd-night-ink: #e8e5f0;
+  --gsd-night-ink-2: #c9c4da;
+  --gsd-night-muted: #aca6c2;
+  --gsd-term-green: #7ee2b8;
+  --gsd-term-yellow: #f5d76e;
+  --gsd-term-red: #ff9d8f;
+  --gsd-term-cyan: #8fd4f0;
+
+  // Espacements (rythme vertical éditorial)
+  --gsd-space-1: 0.375rem;
+  --gsd-space-2: 0.75rem;
+  --gsd-space-3: 1.25rem;
+  --gsd-space-4: 2rem;
+  --gsd-space-5: 3.25rem;
+  --gsd-space-6: 5rem;
+
+  // Rayons
+  --gsd-radius-sm: 0.45rem;
+  --gsd-radius: 0.8rem;
+  --gsd-radius-lg: 1.15rem;
+
+  // Ombres — douces, jamais dures
+  --gsd-shadow-sm: 0 1px 2px rgba(33, 29, 24, 0.05), 0 2px 8px rgba(33, 29, 24, 0.05);
+  --gsd-shadow: 0 2px 6px rgba(33, 29, 24, 0.05), 0 10px 30px rgba(33, 29, 24, 0.08);
+  --gsd-shadow-lg: 0 4px 12px rgba(33, 29, 24, 0.07), 0 24px 60px rgba(33, 29, 24, 0.12);
+
+  // Mouvements
+  --gsd-ease: cubic-bezier(0.22, 1, 0.36, 1);      // sortie douce, très "premium"
+  --gsd-ease-snap: cubic-bezier(0.34, 1.4, 0.64, 1); // léger rebond pour les pastilles
+  --gsd-dur-fast: 180ms;
+  --gsd-dur: 420ms;
+  --gsd-dur-slow: 700ms;
+
+  // Typo
+  --gsd-font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --gsd-font-body: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  --gsd-font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}

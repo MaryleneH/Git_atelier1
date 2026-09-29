@@ -1,0 +1,13 @@
+// ============================================================
+// Atelier 1 — ajustements propres à ce site
+// Les partiels repris de « Git sans douleur » restent intacts ;
+// tout ce qui est spécifique à l'atelier vit ici.
+// ============================================================
+
+// Avec Quarto 1.7, le logo SVG de la navbar s'écrase (hauteur
+// nulle) si on ne lui donne qu'une hauteur maximale.
+.navbar .navbar-logo {
+  height: 34px;
+  max-height: 34px;
+  width: auto;
+}

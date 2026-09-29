@@ -1,0 +1,264 @@
+// ============================================================
+// Ruban narratif de la marge droite (accueil)
+// Un vrai petit historique Git traité en constellation,
+// convention git log (récent en haut) : six commits sur main,
+// une branche analyse-par-sexe fusionnée, un tag livraison-v1
+// accroché à son commit, main pointant la tête. L'animation
+// raconte l'histoire dans l'ordre de création : la racine en
+// bas, main grandit, la branche diverge puis fusionne, le tag
+// et la tête arrivent en dernier.
+// Occupe la colonne d'espace libre à droite du contenu
+// (layout ancré à gauche) : figure/fond — le héro reste la
+// figure, le ruban est la scénographie.
+// Injecté par home-graph.js sur grand desktop uniquement.
+// ============================================================
+
+.home-ribbon {
+  // La colonne d'espace libre à droite du contenu. Géométrie calée
+  // sur --gsd-fullwidth (_layout.scss) : contenu 375 + 810 = 1185px,
+  // + 8px de respiration → le ruban commence à 1193px (puis 1283px
+  // au-delà de 1512px, quand la colonne passe à 900px). La
+  // respiration est volontairement mince : chaque pixel de colonne
+  // sert la lisibilité des messages du graphe à 1366px.
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 1193px;
+  right: 0;
+  z-index: 1;              // sous la navbar (fixe, z ≥ 1030)
+  overflow: hidden;
+  pointer-events: none;
+
+  // Le ruban semble continuer au-delà de l'écran
+  -webkit-mask-image: linear-gradient(180deg,
+    transparent 0%, #000 11%, #000 86%, transparent 100%);
+  mask-image: linear-gradient(180deg,
+    transparent 0%, #000 11%, #000 86%, transparent 100%);
+
+  // Poussière d'étoiles ambiante : relie le contenu au rail
+  // sur les très grands écrans, imperceptible sur les petits.
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle 1.5px at 12% 22%, rgba(15, 118, 110, 0.16) 98%, transparent),
+      radial-gradient(circle 1px   at 28% 47%, rgba(15, 118, 110, 0.11) 98%, transparent),
+      radial-gradient(circle 1.5px at 18% 68%, rgba(15, 118, 110, 0.13) 98%, transparent),
+      radial-gradient(circle 1px   at 38% 15%, rgba(180, 83, 9, 0.12) 98%, transparent),
+      radial-gradient(circle 1px   at 8%  85%, rgba(15, 118, 110, 0.10) 98%, transparent),
+      radial-gradient(circle 1.5px at 34% 80%, rgba(15, 118, 110, 0.09) 98%, transparent);
+    background-repeat: no-repeat;
+  }
+
+  // Fondu d'entrée très mince côté contenu : le canvas (172px) tient
+  // entièrement dans la colonne dès 1366px, rien de signifiant n'est
+  // recouvert.
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 6px;
+    background: linear-gradient(90deg, var(--gsd-paper), transparent);
+  }
+
+  // Le graphe : ancré à GAUCHE, largeur fluide plafonnée. À 1366px la
+  // colonne fait 173px → le canvas de 172px se rend à l'échelle 1:1 ;
+  // quand la colonne s'élargit, le SVG grandit d'un bloc jusqu'à
+  // 208px (échelle ~1.21 : les messages de 13px se rendent ~15.7px)
+  // puis dérive doucement vers le centre de la colonne. La hauteur
+  // suit le ratio du viewBox — le débordement bas est masqué par le
+  // conteneur.
+  svg {
+    position: absolute;
+    top: 0;
+    left: clamp(0px, calc((100% - 208px) * 0.35), 130px);
+    width: min(100%, 208px);
+    height: auto;
+  }
+
+  // --- Lignes -------------------------------------------------
+  .rb-path {
+    fill: none;
+    stroke: var(--gsd-teal);
+    stroke-linecap: round;
+  }
+
+  .rb-main   { stroke-width: 1.5;  opacity: 0.18; }
+  .rb-branch { stroke-width: 1.25; opacity: 0.15; }
+
+  // --- Nœuds ---------------------------------------------------
+  .rb-node {
+    fill: var(--gsd-paper);
+    stroke: var(--gsd-teal);
+    stroke-width: 1.8;
+    opacity: 0.55;
+  }
+
+  .rb-dim { opacity: 0.32; }
+  .rb-node-branch { opacity: 0.38; stroke-width: 1.6; }
+
+  // Le merge : la branche rejoint l'histoire, le nœud s'affirme
+  .rb-merge { opacity: 0.66; }
+
+  // Le commit mis en avant (celui du tag) : un cran au-dessus
+  .rb-focus { opacity: 0.7; stroke-width: 2; }
+
+  // --- Constellation ---------------------------------------------
+  .rb-halos {
+    filter: blur(2px);
+
+    circle {
+      fill: var(--gsd-teal);
+      opacity: 0.055;
+    }
+
+    .rb-halo-amber {
+      fill: var(--gsd-amber-bright);
+      opacity: 0.09;
+    }
+  }
+
+  .rb-stars circle {
+    fill: var(--gsd-teal);
+    opacity: var(--rb-o, 0.2);
+  }
+
+  // --- Tag (losange accroché à son commit) -------------------------
+  .rb-tag rect {
+    fill: var(--gsd-amber-soft);
+    stroke: var(--gsd-amber-bright);
+    stroke-width: 1.4;
+    opacity: 0.6;
+  }
+
+  // --- Messages de commit et décorations ---------------------------
+  // Trois niveaux de lecture, tous réellement lisibles à l'écran :
+  // 1. main / analyse-par-sexe / livraison-v1 / message mis en avant ;
+  // 2. les autres messages de commit ;
+  // 3. lignes, halos, étoiles (décor, jamais du texte pédagogique).
+  .rb-step {
+    font-family: var(--gsd-font-body);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    fill: var(--gsd-ink-soft);
+    opacity: 0.72;
+  }
+
+  // Le message mis en avant (commit tagué) : à peine plus affirmé
+  .rb-step-focus {
+    font-weight: 700;
+    fill: var(--gsd-ink);
+    opacity: 0.8;
+  }
+
+  .rb-git {
+    font-family: var(--gsd-font-mono);
+    font-size: 11.5px;
+    fill: var(--gsd-teal-deep);
+    opacity: 0.6;
+  }
+
+  // Le tag en amber : même encre que son losange
+  .rb-tag-text { fill: var(--gsd-amber); opacity: 0.72; }
+
+  // main : le pointeur de branche, un cran plus présent
+  .rb-ref {
+    font-family: var(--gsd-font-mono);
+    font-size: 11.5px;
+    font-weight: 600;
+    fill: var(--gsd-teal-deep);
+    opacity: 0.72;
+  }
+
+  // Nom de la branche secondaire, le long de son rail
+  .rb-branch-name {
+    font-family: var(--gsd-font-mono);
+    font-size: 10.5px;
+    fill: var(--gsd-teal-deep);
+    opacity: 0.45;
+  }
+
+  // --- Révélation (une fois, puis stable) ----------------------------
+  // L'ordre de création des commits, raconté de bas en haut :
+  // la racine apparaît, main se dessine jusqu'au point de
+  // divergence, la branche naît et porte ses deux commits, la
+  // fusion s'affirme, main continue, le tag puis la tête (et son
+  // pointeur main) arrivent en dernier. Chaque message apparaît
+  // avec son commit.
+  .rb-path {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: rb-draw 900ms var(--gsd-ease) 150ms both;
+  }
+
+  .rb-branch { animation-delay: 1000ms; animation-duration: 700ms; }
+  .rb-main-2 { animation-delay: 1800ms; animation-duration: 500ms; }
+
+  .rb-node {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: rb-pop 500ms var(--gsd-ease-snap) var(--rb-d, 0.4s) backwards;
+  }
+
+  .rb-halos { animation: rb-fade 1100ms var(--gsd-ease) 900ms backwards; }
+  .rb-stars { animation: rb-fade 1100ms var(--gsd-ease) 1300ms backwards; }
+  &::before { animation: rb-fade 1400ms var(--gsd-ease) 1500ms backwards; }
+
+  .rb-tag,
+  .rb-branch-name,
+  .rb-steps > g {
+    animation: rb-fade 700ms var(--gsd-ease) var(--rb-d, 1.8s) backwards;
+  }
+}
+
+@keyframes rb-draw {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes rb-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.35);
+  }
+}
+
+@keyframes rb-fade {
+  from { opacity: 0; }
+}
+
+// --- Responsive -----------------------------------------------------
+// La colonne s'élargissant à 1512px, le ruban recule d'autant.
+@media (min-width: 1512px) {
+  .home-ribbon { left: 1283px; }
+}
+
+// En dessous de 1340 px, la colonne droite est trop étroite :
+// le ruban n'existe pas (le JS ne l'injecte pas non plus).
+@media (max-width: 1339.98px) {
+  .home-ribbon { display: none; }
+}
+
+// --- Mouvement réduit : constellation statique, complète ------------
+@media (prefers-reduced-motion: reduce) {
+  .home-ribbon {
+    .rb-path {
+      animation: none;
+      stroke-dashoffset: 0;
+    }
+
+    .rb-node,
+    .rb-halos,
+    .rb-stars,
+    .rb-tag,
+    .rb-branch-name,
+    .rb-steps > g,
+    &::before {
+      animation: none;
+    }
+  }
+}
