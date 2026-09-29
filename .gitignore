@@ -1,0 +1,20 @@
+# Sortie de rendu Quarto
+/_site/
+/.quarto/
+/_freeze/
+*.html.md
+
+# Vidéo du film d'ouverture : copie locale, jamais versionnée
+video/
+*.mp4
+
+# Fichiers temporaires et d'IDE
+*~
+.DS_Store
+Thumbs.db
+.Rhistory
+.RData
+.Rproj.user/
+__pycache__/
+.vscode/
+.idea/
