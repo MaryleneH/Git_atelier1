@@ -11,3 +11,67 @@
   max-height: 34px;
   width: auto;
 }
+
+// Capture d'écran à venir : un cadre en pointillés, bien visible
+.placeholder-capture {
+  border: 2px dashed var(--gsd-ink-faint);
+  border-radius: var(--gsd-radius);
+  background: var(--gsd-paper-soft);
+  color: var(--gsd-ink-faint);
+  font-size: 0.9rem;
+  text-align: center;
+  padding: var(--gsd-space-4) var(--gsd-space-3);
+  margin: var(--gsd-space-3) 0;
+
+  p { margin: 0 auto; }
+}
+
+// Modèle de mail : une feuille de papier
+.mail {
+  background: var(--gsd-surface);
+  border: 1px solid var(--gsd-line);
+  border-radius: var(--gsd-radius);
+  box-shadow: var(--gsd-shadow-sm);
+  padding: var(--gsd-space-3) var(--gsd-space-4);
+  margin: var(--gsd-space-3) 0;
+}
+
+// Checklist : cases à cocher sur fond clair
+.checklist {
+  background: var(--gsd-surface);
+  border: 1.5px solid var(--gsd-ink);
+  box-shadow: 4px 4px 0 var(--gsd-ink);
+  border-radius: var(--gsd-radius);
+  padding: var(--gsd-space-3) var(--gsd-space-4);
+  margin: var(--gsd-space-3) 0;
+
+  ul { list-style: none; padding-left: 0; margin: 0; }
+  li { margin: 0.45rem 0; }
+}
+
+// Solution repliée
+details {
+  margin: var(--gsd-space-3) 0;
+
+  > summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--gsd-teal-deep);
+  }
+}
+
+// Blocs terminal : le composant a son propre bouton « Copier »,
+// on masque celui de Quarto pour n'en garder qu'un.
+.terminal-demo .code-copy-button {
+  display: none;
+}
+
+// Blocs de texte brut (arborescences, sorties sans terminal)
+pre.text:not(.sourceCode),
+div.sourceCode > pre.sourceCode.text {
+  background: var(--gsd-paper-soft);
+  border: 1px solid var(--gsd-line);
+  border-radius: var(--gsd-radius-sm);
+  padding: var(--gsd-space-2) var(--gsd-space-3);
+  font-size: 0.82rem;
+}
