@@ -42,7 +42,7 @@ quarto preview          # aperçu en direct
 quarto render           # rendu complet dans _site/
 ```
 
-Les PDF de `materiel/` sont produits par Typst, fourni avec Quarto.
+Les PDF de `materiel/` (mémo A4, cartes de tri) sont produits par Typst, fourni avec Quarto, avec les polices de l'identité rangées dans `assets/fonts/` (instances statiques de Fraunces, Public Sans et JetBrains Mono, licence OFL).
 
 ## Vérifier le kit d'exercices
 
@@ -50,7 +50,9 @@ Les PDF de `materiel/` sont produits par Typst, fourni avec Quarto.
 bash kit/test_kit.sh
 ```
 
-Le test lance `kit.sh` plusieurs fois, en R puis en Python, et vérifie que l'historique de Marie a toujours les mêmes empreintes. Ces empreintes sont recopiées dans `formateur.qmd` : **après toute modification de `kit.sh`, relancez le test et mettez à jour `formateur.qmd`**.
+Le test lance `kit.sh` plusieurs fois, en R puis en Python, et vérifie que l'historique de Marie a toujours les mêmes empreintes, que le dossier vierge n'a pas de `.git`, et que ces empreintes figurent bien dans `formateur.qmd`. Si R (avec readr, dplyr, ggplot2) ou Python (avec pandas, matplotlib) est installé, il vérifie aussi que `03_analyse` échoue au dernier commit de Marie et fonctionne au commit 6.
+
+**Après toute modification de `kit.sh`, relancez le test et reportez les nouvelles empreintes dans `formateur.qmd`** (et dans les slides, le guide et la page de préparation, qui citent celles de Marie).
 
 ## Publier sur GitHub Pages
 
@@ -69,4 +71,5 @@ Les commits de ce dépôt suivent la règle enseignée dans l'atelier : de petit
 ## Crédits
 
 - Identité visuelle : cours « Git sans douleur — Jour 1 ».
+- Polices : [Fraunces](https://github.com/undercasetype/Fraunces), [Public Sans](https://github.com/uswds/public-sans), [JetBrains Mono](https://github.com/JetBrains/JetBrainsMono), licence SIL OFL 1.1 (textes dans `assets/fonts/`).
 - Bac à sable : extension [quarto-git-sandbox](https://github.com/ryjohnson09/quarto-git-sandbox) de Ryan Johnson, licence MIT (copie dans `_extensions/git-sandbox/`).
