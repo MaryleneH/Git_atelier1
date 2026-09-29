@@ -1,0 +1,29 @@
+# ============================================================
+# Variables de l'atelier — le seul fichier à modifier avant
+# l'atelier. Chaque valeur est reprise partout via
+# {{< var nom >}} (pages, slides, supports imprimables).
+# ============================================================
+
+# Adresse du GitLab interne (sans barre finale)
+gitlab_url: "https://gitlab.exemple.fr"
+
+# Adresse de l'instance Onyxia interne (sans barre finale)
+onyxia_url: "https://onyxia.exemple.fr"
+
+# Film d'ouverture « Le Nouveau » (URL YouTube, forme « watch?v= » ou « youtu.be »)
+film_url: "https://www.youtube.com/watch?v=5xRJVeW23C4"
+
+# Nom de l'organisme, tel qu'il s'affiche dans les phrases
+organisme: "le bureau des études économiques"
+
+# Date et horaire de l'atelier, tels qu'ils s'affichent
+atelier_date: "date à préciser"
+
+# Adresse publique du site (GitHub Pages), avec la barre finale.
+# L'ancre &site_url permet à Quarto de réutiliser cette même valeur
+# comme adresse du site (sitemap, liens canoniques) : ne la saisir qu'ici.
+site_url: &site_url "https://maryleneh.github.io/Git_atelier1/"
+
+# --- Ne pas modifier : reprise automatique de site_url -------
+website:
+  site-url: *site_url

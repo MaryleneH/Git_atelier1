@@ -1,0 +1,55 @@
+project:
+  type: website
+  output-dir: _site
+  resources:
+    - assets/js/
+    - assets/img/
+
+lang: fr
+
+# _variables.yml porte aussi l'adresse du site (website.site-url) :
+# il est fusionné ici pour que cette adresse n'existe qu'à un endroit.
+metadata-files:
+  - _variables.yml
+
+execute:
+  enabled: false
+
+website:
+  title: "Atelier 1 · Je regarde, je choisis, j'enregistre"
+  description: "Premier atelier Git/GitLab pour statisticiens et data scientists : retrouver n'importe quelle version de son étude."
+  favicon: assets/img/favicon.svg
+  page-navigation: false
+  back-to-top-navigation: false
+  bread-crumbs: false
+
+  navbar:
+    logo: assets/img/logo.svg
+    logo-alt: "Git sans douleur — accueil de l'atelier 1"
+    title: false
+    pinned: true
+    left:
+      - href: index.qmd
+        text: Accueil
+
+  page-footer:
+    left: "Git sans douleur — Atelier 1 · Je regarde, je choisis, j'enregistre"
+    right: "Construit avec [Quarto](https://quarto.org)"
+
+format:
+  html:
+    theme:
+      light: [assets/css/theme.scss]
+    highlight-style: github
+    toc: true
+    toc-title: "Sur cette page"
+    toc-depth: 2
+    smooth-scroll: true
+    code-copy: true
+    link-external-newwindow: true
+    include-after-body: assets/partials/scripts.html
+    grid:
+      sidebar-width: 290px
+      body-width: 860px
+      margin-width: 240px
+      gutter-width: 2.5rem

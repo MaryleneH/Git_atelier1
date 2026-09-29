@@ -1,0 +1,44 @@
+---
+pagetitle: "Atelier 1 · Je regarde, je choisis, j'enregistre — Git sans douleur"
+toc: false
+---
+
+```{=html}
+<section class="home-hero">
+  <span class="home-hero__eyebrow">Atelier Git &amp; GitLab · Atelier 1 · 2 h</span>
+  <h1>Je regarde, je choisis, <em>j'enregistre</em></h1>
+  <p class="home-hero__lede">
+    Retrouver n'importe quelle version de son étude — et savoir, pour chacune,
+    qui l'a faite, quand, et pourquoi.
+  </p>
+</section>
+```
+
+[Atelier proposé par {{< var organisme >}} · {{< var atelier_date >}}]{.eyebrow}
+
+Vous travaillez en R ou en Python, dans VS Code, sur Onyxia. Pendant deux heures, nous suivons une seule étude — `entreprises_defense`, entièrement fictive — et nous apprenons à en photographier chaque état, à retrouver la version de vendredi, puis à la partager sur GitLab.
+
+## Ce soir, vous saurez {.unnumbered}
+
+- **Photographier** l'état exact de votre étude, avec le pourquoi.
+- **Retrouver** la version de vendredi.
+- **Partager** votre travail sur GitLab.
+
+::: {.remember}
+Une seule idée à garder en tête : un commit est une **photo complète** de votre étude, accompagnée d'un **message** et d'un **lien vers la photo précédente**. Tout le reste en découle.
+:::
+
+## Le programme {#programme .unnumbered}
+
+| Séquence | Durée | Ce que l'on fait |
+|---|---:|---|
+| Ouverture | 12 min | Le film « Le Nouveau », vos pires noms de fichiers, le fil rouge |
+| Temps 1 — Une version, c'est quoi ? | 15 min | La photo de l'album, et ce qu'il y a vraiment dans un commit |
+| Temps 2 — Le geste | 28 min | `git status`, `git add`, `git commit` : regarder, choisir, enregistrer |
+| Quiz éclair et pause | 8 min | Quatre questions de raisonnement, puis cinq minutes de pause |
+| Temps 3 — Vendredi, ça marchait | 25 min | Enquêter dans l'historique de Marie, revenir à une version |
+| Temps 4 — Ce qui a sa place dans le dépôt | 8 min | Trier les fichiers, écrire un `.gitignore` |
+| Temps 5 — Partager sur GitLab | 16 min | Créer un projet, `git push`, lire l'historique dans GitLab |
+| Clôture | 8 min | Le mémo, le ticket de sortie, le défi de la semaine |
+
+: {tbl-colwidths="[36,12,52]"}
