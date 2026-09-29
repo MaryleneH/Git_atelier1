@@ -4,6 +4,7 @@ project:
   resources:
     - assets/js/
     - assets/img/
+    - kit/kit.sh
 
 lang: fr
 
