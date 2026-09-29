@@ -25,15 +25,15 @@ Vous travaillez en R ou en Python, dans VS Code, sur Onyxia. Pendant deux heures
 - **Partager** votre travail sur GitLab.
 
 ::: {.remember}
-Une seule idée à garder en tête : un commit est une **photo complète** de votre étude, accompagnée d'un **message** et d'un **lien vers la photo précédente**. Tout le reste en découle.
+Une seule idée à garder en tête : un commit est une **photo complète** de votre étude, accompagnée d'un **message** et d'un **lien vers la photo précédente**. Tout le reste en découle.
 :::
 
 ## Le programme {#programme .unnumbered}
 
 | Séquence | Durée | Ce que l'on fait |
 |---|---:|---|
-| Ouverture | 12 min | Le film « Le Nouveau », vos pires noms de fichiers, le fil rouge |
-| Temps 1 — Une version, c'est quoi ? | 15 min | La photo de l'album, et ce qu'il y a vraiment dans un commit |
+| Ouverture | 12 min | Le film « Le Nouveau », vos pires noms de fichiers, le fil rouge |
+| Temps 1 — Une version, c'est quoi ? | 15 min | La photo de l'album, et ce qu'il y a vraiment dans un commit |
 | Temps 2 — Le geste | 28 min | `git status`, `git add`, `git commit` : regarder, choisir, enregistrer |
 | Quiz éclair et pause | 8 min | Quatre questions de raisonnement, puis cinq minutes de pause |
 | Temps 3 — Vendredi, ça marchait | 25 min | Enquêter dans l'historique de Marie, revenir à une version |
@@ -45,7 +45,7 @@ Une seule idée à garder en tête : un commit est une **photo complète** de vo
 
 ## Avant l'atelier {.unnumbered}
 
-Vingt minutes, la semaine précédente : renseigner votre compte Onyxia, lancer un service VS Code, vérifier Git, créer le kit d'exercices, et faire cinq minutes de bac à sable. Tout est détaillé dans **[Avant l'atelier](prerequis.qmd)**.
+Vingt minutes, la semaine précédente : renseigner votre compte Onyxia, lancer un service VS Code, vérifier Git, créer le kit d'exercices, et faire cinq minutes de bac à sable. Tout est détaillé dans **[Avant l'atelier](prerequis.qmd)**.
 
 ## Les supports {.unnumbered}
 
@@ -55,7 +55,7 @@ Vingt minutes, la semaine précédente : renseigner votre compte Onyxia, lancer 
     <span class="day-outline__num">01</span>
     <span>
       <span class="day-outline__title">Avant l'atelier</span>
-      <span class="day-outline__desc">Onyxia, VS Code, le kit d'exercices : vingt minutes de préparation.</span>
+      <span class="day-outline__desc">Onyxia, VS Code, le kit d'exercices : vingt minutes de préparation.</span>
     </span>
     <span class="day-outline__go" aria-hidden="true">→</span>
   </a>

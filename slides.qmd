@@ -22,8 +22,8 @@ format:
     preview-links: false
     include-after-body: assets/partials/slides.html
 toc: false
-# Notes formateur : touche S pour les afficher.
-# Gabarits de slide : {.probleme} {.limage} {.capot} {.avous}
+# Notes formateur : touche S pour les afficher.
+# Gabarits de slide : {.probleme} {.limage} {.capot} {.avous}
 # {.piege} {.retenir} {.vote} {.quiz} {.demo}, et # Titre {.intercalaire}
 ---
 
@@ -36,31 +36,31 @@ toc: false
 ::: {.notes}
 **⏱ 0:00 → 0:01 (1 min)** — Accueil, sur la slide de titre.
 
-Tu accueilles, tu vérifies que chacun a son service VS Code ouvert sur Onyxia (le pré-travail). Pas de tour de table ici : il vient après le film. Dis simplement : « Deux heures, une seule étude, et à la fin vous saurez retrouver n'importe quelle version de votre travail. On commence par un film. »
+Tu accueilles, tu vérifies que chacun a son service VS Code ouvert sur Onyxia (le pré-travail). Pas de tour de table ici : il vient après le film. Dis simplement : « Deux heures, une seule étude, et à la fin vous saurez retrouver n'importe quelle version de votre travail. On commence par un film. »
 
-**⏱ 0:01 → 0:09 (8 min)** — Le film « Le Nouveau ».
+**⏱ 0:01 → 0:09 (8 min)** — Le film « Le Nouveau ».
 
-Lance la vidéo, et tais-toi : pas de commentaire pendant le film.
+Lance la vidéo, et tais-toi : pas de commentaire pendant le film.
 
-Si la salle n'a pas accès à YouTube : le fichier local `video/le-nouveau.mp4` (dossier ignoré par Git, à copier sur ton poste avant l'atelier). Ouvre-le dans le lecteur vidéo du poste, en plein écran.
+Si la salle n'a pas accès à YouTube : le fichier local `video/le-nouveau.mp4` (dossier ignoré par Git, à copier sur ton poste avant l'atelier). Ouvre-le dans le lecteur vidéo du poste, en plein écran.
 
-**Transition :** « Qui s'est reconnu ? »
+**Transition :** « Qui s'est reconnu ? »
 :::
 
-## Qui s'est reconnu ? {.vote}
+## Qui s'est reconnu ? {.vote}
 
 ::: {.grand}
-Dans quelle scène ?
+Dans quelle scène ?
 :::
 
 ::: {.notes}
 **⏱ 0:09 → 0:11 (2 min)** — Tour de table express.
 
-Un mot par personne, pas plus. Tu ne commentes pas, tu notes au tableau les scènes citées : elles te serviront de crochets pendant l'atelier (« vous vous souvenez de la scène où… »).
+Un mot par personne, pas plus. Tu ne commentes pas, tu notes au tableau les scènes citées : elles te serviront de crochets pendant l'atelier (« vous vous souvenez de la scène où… »).
 
-Si personne ne se lance : commence par toi, avec une vraie histoire courte.
+Si personne ne se lance : commence par toi, avec une vraie histoire courte.
 
-**Transition :** « Et vos fichiers, ils s'appellent comment ? »
+**Transition :** « Et vos fichiers, ils s'appellent comment ? »
 :::
 
 ## Vos pires noms de fichiers {.probleme}
@@ -78,9 +78,9 @@ Si personne ne se lance : commence par toi, avec une vraie histoire courte.
 
 À compléter avant l'atelier avec les noms envoyés par les participants (étape 5 du pré-travail). Garde ces cinq exemples si tu en reçois peu.
 
-Fais-les apparaître un par un (flèche droite) et laisse rire. Pas d'explication : l'image se suffit.
+Fais-les apparaître un par un (flèche droite) et laisse rire. Pas d'explication : l'image se suffit.
 
-**Transition :** « Ce soir, on remplace tout ça par une seule chose. »
+**Transition :** « Ce soir, on remplace tout ça par une seule chose. »
 :::
 
 ## Ce soir, vous saurez
@@ -94,26 +94,26 @@ Fais-les apparaître un par un (flèche droite) et laisse rire. Pas d'explicatio
 ::: {.notes}
 **⏱ 0:11:30 → 0:12 (30 s)**
 
-Trois objectifs, et seulement trois. Tu peux les annoncer comme un contrat : « À 18 h, chacun de vous aura fait ces trois choses sur son propre poste. »
+Trois objectifs, et seulement trois. Tu peux les annoncer comme un contrat : « À 18 h, chacun de vous aura fait ces trois choses sur son propre poste. »
 
-**Transition :** « Il y a plusieurs façons d'y arriver. »
+**Transition :** « Il y a plusieurs façons d'y arriver. »
 :::
 
 ## Cinq portes d'entrée
 
-Cet atelier ne suppose pas que chacun apprend « à sa façon » : il ouvre plusieurs portes vers la même idée — **un récit, un geste, un schéma, une preuve, un échange**. Prenez celle qui vous parle, et repassez par les autres.
+Cet atelier ne suppose pas que chacun apprend « à sa façon » : il ouvre plusieurs portes vers la même idée — **un récit, un geste, un schéma, une preuve, un échange**. Prenez celle qui vous parle, et repassez par les autres.
 
 ::: {.notes}
 **⏱ 0:12 (15 s)** — Lis le texte, sans le paraphraser.
 
-Référence pour toi : les « portes d'entrée » (*entry points*) de Howard Gardner, *The Disciplined Mind* (1999) — aborder un même concept par plusieurs chemins (narratif, logique, expérientiel, esthétique, interpersonnel). Ici : le film et Marie (récit), la simulation sur papier (geste), les schémas des trois zones (schéma), « Sous le capot » (preuve), les binômes (échange).
+Référence pour toi : les « portes d'entrée » (*entry points*) de Howard Gardner, *The Disciplined Mind* (1999) — aborder un même concept par plusieurs chemins (narratif, logique, expérientiel, esthétique, interpersonnel). Ici : le film et Marie (récit), la simulation sur papier (geste), les schémas des trois zones (schéma), « Sous le capot » (preuve), les binômes (échange).
 
-Ne présente jamais cela comme des « styles d'apprentissage » ou des « intelligences multiples » à diagnostiquer : l'hypothèse des styles d'apprentissage n'est pas soutenue par la recherche, et Gardner lui-même s'en démarque. L'idée est l'inverse : **tout le monde passe par toutes les portes**.
+Ne présente jamais cela comme des « styles d'apprentissage » ou des « intelligences multiples » à diagnostiquer : l'hypothèse des styles d'apprentissage n'est pas soutenue par la recherche, et Gardner lui-même s'en démarque. L'idée est l'inverse : **tout le monde passe par toutes les portes**.
 
-**Transition :** « Et pour passer ces portes, nous suivrons une seule étude. »
+**Transition :** « Et pour passer ces portes, nous suivrons une seule étude. »
 :::
 
-## Le fil rouge : l'étude `entreprises_defense`
+## Le fil rouge : l'étude `entreprises_defense`
 
 ```{.text .sortie}
 entreprises_defense/
@@ -133,27 +133,27 @@ entreprises_defense/
 ::: {.notes}
 **⏱ 0:12 (15 s)** — Fin de l'ouverture.
 
-Présente Marie et Franck : on les retrouvera dans l'historique. L'étude porte sur les entreprises liées à la défense, mais **tout est synthétique** : 40 entreprises inventées, SIREN commençant par 000.
+Présente Marie et Franck : on les retrouvera dans l'historique. L'étude porte sur les entreprises liées à la défense, mais **tout est synthétique** : 40 entreprises inventées, SIREN commençant par 000.
 
-Variante Python : les scripts sont en `.py` (kit lancé avec `bash kit.sh --python`). Les commandes Git sont identiques.
+Variante Python : les scripts sont en `.py` (kit lancé avec `bash kit.sh --python`). Les commandes Git sont identiques.
 
-**Transition :** « Premier temps : une version, c'est quoi exactement ? »
+**Transition :** « Premier temps : une version, c'est quoi exactement ? »
 :::
 
-# Une version, c'est quoi ? {.intercalaire}
+# Une version, c'est quoi ? {.intercalaire}
 
 [Temps 1 · 15 min]{.eyebrow}
 
 ::: {.notes}
-**⏱ 0:12 → 0:27** — Temps 1 : 15 minutes.
+**⏱ 0:12 → 0:27** — Temps 1 : 15 minutes.
 
-Objectif : que chacun sache ce qu'il y a dans un commit, avant de taper la moindre commande.
+Objectif : que chacun sache ce qu'il y a dans un commit, avant de taper la moindre commande.
 :::
 
-## « Vendredi, mon script fonctionnait. » {.probleme}
+## « Vendredi, mon script fonctionnait. » {.probleme}
 
 ::: {.fragment}
-Ce qu'il faudrait :
+Ce qu'il faudrait :
 
 - l'**état exact** de l'étude, vendredi
 - savoir **ce qui a changé**, **par qui**, et **pourquoi**
@@ -162,11 +162,11 @@ Ce qu'il faudrait :
 ::: {.notes}
 **⏱ 0:12 → 0:14 (2 min)**
 
-Laisse la phrase seule à l'écran quelques secondes. Demande : « Qu'est-ce qu'il vous faudrait, là, tout de suite ? » Recueille deux ou trois réponses, puis fais apparaître le fragment.
+Laisse la phrase seule à l'écran quelques secondes. Demande : « Qu'est-ce qu'il vous faudrait, là, tout de suite ? » Recueille deux ou trois réponses, puis fais apparaître le fragment.
 
-Insiste sur le « pourquoi » : un état exact sans explication ne suffit pas pour reprendre le travail de quelqu'un.
+Insiste sur le « pourquoi » : un état exact sans explication ne suffit pas pour reprendre le travail de quelqu'un.
 
-**Transition :** « Git fait exactement cela. Mais qu'enregistre-t-il, au juste ? Votez. »
+**Transition :** « Git fait exactement cela. Mais qu'enregistre-t-il, au juste ? Votez. »
 :::
 
 ## À chaque commit, Git enregistre… {.vote}
@@ -178,87 +178,87 @@ Insiste sur le « pourquoi » : un état exact sans explication ne suffit pas po
 :::
 
 ::: {.fragment .reponse}
-**Réponse : (b)** — une photo complète du projet.
+**Réponse : (b)** — une photo complète du projet.
 :::
 
 ::: {.notes}
 **⏱ 0:14 → 0:18 (4 min)** — Vote en *peer instruction*.
 
 1. Vote à main levée, sans discussion (compte les mains pour a, b, c).
-2. « Convainquez votre voisin » : 1 minute en binôme.
+2. « Convainquez votre voisin » : 1 minute en binôme.
 3. Revote.
-4. Seulement alors : fragment de la réponse.
+4. Seulement alors : fragment de la réponse.
 
-La plupart votent (a) ou (c) : c'est normal, c'est intuitif. Ne corrige pas tout de suite : la slide « Sous le capot » s'en charge.
+La plupart votent (a) ou (c) : c'est normal, c'est intuitif. Ne corrige pas tout de suite : la slide « Sous le capot » s'en charge.
 
-Si un participant averti objecte que Git compresse ses données : c'est vrai, lors de l'empaquetage Git stocke certains contenus par différences, mais c'est une optimisation de stockage, invisible. Le modèle, lui, reste la photo complète.
+Si un participant averti objecte que Git compresse ses données : c'est vrai, lors de l'empaquetage Git stocke certains contenus par différences, mais c'est une optimisation de stockage, invisible. Le modèle, lui, reste la photo complète.
 
-**Transition :** « Une photo complète. Une image va nous aider. »
+**Transition :** « Une photo complète. Une image va nous aider. »
 :::
 
 ## La photo de l'album {.limage}
 
 ::: {.grand}
-Chaque commit est une **photo** de toute l'étude, **collée dans un album**, avec une **légende** au dos : qui, quand, pourquoi.
+Chaque commit est une **photo** de toute l'étude, **collée dans un album**, avec une **légende** au dos : qui, quand, pourquoi.
 :::
 
 ::: {.fragment}
-On ne découpe pas la photo : on photographie **tout**, à chaque fois.
+On ne découpe pas la photo : on photographie **tout**, à chaque fois.
 :::
 
 ::: {.notes}
 **⏱ 0:18 → 0:19 (1 min)** — L'image.
 
-C'est l'image de « Git sans douleur » : l'album de photos. On la garde tout l'atelier. Chaque photo montre toute l'étude, pas un morceau ; la légende au dos, c'est le message de commit.
+C'est l'image de « Git sans douleur » : l'album de photos. On la garde tout l'atelier. Chaque photo montre toute l'étude, pas un morceau ; la légende au dos, c'est le message de commit.
 
-Les limites de l'image, dis-les tout de suite : un album papier grossirait à chaque photo. Git, lui, ne recopie pas ce qui n'a pas changé. C'est l'objet de la slide suivante.
+Les limites de l'image, dis-les tout de suite : un album papier grossirait à chaque photo. Git, lui, ne recopie pas ce qui n'a pas changé. C'est l'objet de la slide suivante.
 
-**Transition :** « Regardons ce qu'il y a vraiment sous le capot. »
+**Transition :** « Regardons ce qu'il y a vraiment sous le capot. »
 :::
 
 ## Un commit, vraiment {.capot}
 
-Un commit contient :
+Un commit contient :
 
 - l'**instantané complet** de l'arborescence du projet (pas un diff)
 - l'**auteur**, la **date**, le **message**
 - un **lien vers le commit parent**
 
 ::: {.fragment}
-Les fichiers inchangés ne sont pas recopiés : Git retrouve un contenu identique par son empreinte.
+Les fichiers inchangés ne sont pas recopiés : Git retrouve un contenu identique par son empreinte.
 
-Le diff n'est pas stocké : il est **calculé à la demande**, en comparant deux photos.
+Le diff n'est pas stocké : il est **calculé à la demande**, en comparant deux photos.
 :::
 
 ::: {.notes}
 **⏱ 0:19 → 0:21 (2 min)**
 
-C'est la vraie explication qui corrige le vote : Git enregistre bien un instantané complet. S'il ne recopie pas les fichiers inchangés, c'est parce qu'il range chaque contenu sous son empreinte : un contenu identique a la même empreinte, il est stocké une seule fois, et plusieurs photos y renvoient.
+C'est la vraie explication qui corrige le vote : Git enregistre bien un instantané complet. S'il ne recopie pas les fichiers inchangés, c'est parce qu'il range chaque contenu sous son empreinte : un contenu identique a la même empreinte, il est stocké une seule fois, et plusieurs photos y renvoient.
 
-Le diff (a) est donc une vue, calculée à la volée entre deux photos ; (c) décrit ce que Git *stocke de neuf*, pas ce que le commit *contient*.
+Le diff (a) est donc une vue, calculée à la volée entre deux photos ; (c) décrit ce que Git *stocke de neuf*, pas ce que le commit *contient*.
 
-**Transition :** « Et cette empreinte, parlons-en. »
+**Transition :** « Et cette empreinte, parlons-en. »
 :::
 
 ## L'empreinte {.capot}
 
 [155ae9a6e9d9be8237c6c7b5e152b26f5a022187]{.empreinte-longue}
 
-- calculée (SHA-1) sur **tout** le commit : photo, auteur, date, message, parent
+- calculée (SHA-1) sur **tout** le commit : photo, auteur, date, message, parent
 - un seul caractère change → une tout autre empreinte
-- donc **un commit ne se modifie pas** : on en crée un nouveau
+- donc **un commit ne se modifie pas** : on en crée un nouveau
 
 ::: {.notes}
 **⏱ 0:21 → 0:23 (2 min)**
 
-L'empreinte est un résumé de 40 caractères hexadécimaux, calculé sur tout le contenu du commit. Deux conséquences :
+L'empreinte est un résumé de 40 caractères hexadécimaux, calculé sur tout le contenu du commit. Deux conséquences :
 
-1. **Unicité** : deux commits différents ont des empreintes différentes (en pratique, toujours — voir le quiz).
-2. **Intégrité** : on ne peut pas modifier un commit sans changer son empreinte. Et comme chaque commit contient l'empreinte de son parent, modifier un vieux commit changerait toutes les empreintes suivantes. L'historique est scellé.
+1. **Unicité** : deux commits différents ont des empreintes différentes (en pratique, toujours — voir le quiz).
+2. **Intégrité** : on ne peut pas modifier un commit sans changer son empreinte. Et comme chaque commit contient l'empreinte de son parent, modifier un vieux commit changerait toutes les empreintes suivantes. L'historique est scellé.
 
-Cette empreinte-là (`155ae9a…`) est un vrai commit de Marie : on la retrouvera au Temps 3.
+Cette empreinte-là (`155ae9a…`) est un vrai commit de Marie : on la retrouvera au Temps 3.
 
-**Transition :** « Mettons les photos bout à bout. »
+**Transition :** « Mettons les photos bout à bout. »
 :::
 
 ## La chaîne {auto-animate="true"}
@@ -268,14 +268,14 @@ Cette empreinte-là (`155ae9a…`) est un vrai commit de Marie : on la retrouver
 [81bd623]{.empreinte}
 [Initialise l'étude des entreprises liées à la défense]{.message}
 [Marie · mar. 1 sept., 09:12]{.meta}
-[parent : aucun]{.parent}
+[parent : aucun]{.parent}
 :::
 :::
 
 ::: {.notes}
 **⏱ 0:23 → 0:25 (2 min pour les trois étapes)**
 
-Premier commit de Marie : pas de parent, c'est le début de l'album.
+Premier commit de Marie : pas de parent, c'est le début de l'album.
 :::
 
 ## La chaîne {auto-animate="true"}
@@ -285,7 +285,7 @@ Premier commit de Marie : pas de parent, c'est le début de l'album.
 [81bd623]{.empreinte}
 [Initialise l'étude des entreprises liées à la défense]{.message}
 [Marie · mar. 1 sept., 09:12]{.meta}
-[parent : aucun]{.parent}
+[parent : aucun]{.parent}
 :::
 
 [←]{.fleche data-id="f1"}
@@ -294,12 +294,12 @@ Premier commit de Marie : pas de parent, c'est le début de l'album.
 [3d6a872]{.empreinte}
 [Ajoute l'import de l'extrait entreprises_defense_2024]{.message}
 [Marie · mer. 2 sept., 10:40]{.meta}
-[parent : 81bd623]{.parent}
+[parent : 81bd623]{.parent}
 :::
 :::
 
 ::: {.notes}
-Le deuxième commit connaît son parent. La flèche va **vers le passé** : chaque commit pointe vers celui d'avant, jamais l'inverse.
+Le deuxième commit connaît son parent. La flèche va **vers le passé** : chaque commit pointe vers celui d'avant, jamais l'inverse.
 :::
 
 ## La chaîne {auto-animate="true"}
@@ -309,7 +309,7 @@ Le deuxième commit connaît son parent. La flèche va **vers le passé** : chaq
 [81bd623]{.empreinte}
 [Initialise l'étude des entreprises liées à la défense]{.message}
 [Marie · mar. 1 sept., 09:12]{.meta}
-[parent : aucun]{.parent}
+[parent : aucun]{.parent}
 :::
 
 [←]{.fleche data-id="f1"}
@@ -318,25 +318,25 @@ Le deuxième commit connaît son parent. La flèche va **vers le passé** : chaq
 [3d6a872]{.empreinte}
 [Ajoute l'import de l'extrait entreprises_defense_2024]{.message}
 [Marie · mer. 2 sept., 10:40]{.meta}
-[parent : 81bd623]{.parent}
+[parent : 81bd623]{.parent}
 :::
 
 [←]{.fleche data-id="f2"}
 
 ::: {.carte-commit .recente data-id="c3"}
 [af989d8]{.empreinte}
-[Ne garde que les entreprises dont la part de CA défense dépasse 20 %]{.message}
+[Ne garde que les entreprises dont la part de CA défense dépasse 20 %]{.message}
 [Marie · ven. 4 sept., 15:05]{.meta}
-[parent : 3d6a872]{.parent}
+[parent : 3d6a872]{.parent}
 :::
 :::
 
 ::: {.notes}
-Trois commits, trois photos, une chaîne. C'est cela, un historique : pas une liste de dates, une **chaîne de photos reliées**, chacune avec sa légende.
+Trois commits, trois photos, une chaîne. C'est cela, un historique : pas une liste de dates, une **chaîne de photos reliées**, chacune avec sa légende.
 
-Ce sont les trois premiers vrais commits du dossier de Marie : les participants retrouveront exactement ces empreintes sur leur poste au Temps 3.
+Ce sont les trois premiers vrais commits du dossier de Marie : les participants retrouveront exactement ces empreintes sur leur poste au Temps 3.
 
-**Transition :** « Une phrase à garder. »
+**Transition :** « Une phrase à garder. »
 :::
 
 ## À retenir {.retenir}
@@ -348,7 +348,7 @@ Un commit = une photo complète + un message + un lien vers la précédente.
 
 Fais répéter la phrase par un participant, avec ses mots. Laisse deux minutes pour les questions.
 
-**Transition :** « Maintenant, le geste. On passe au terminal. »
+**Transition :** « Maintenant, le geste. On passe au terminal. »
 :::
 
 # Le geste {.intercalaire}
@@ -356,14 +356,14 @@ Fais répéter la phrase par un participant, avec ses mots. Laisse deux minutes 
 [Temps 2 · 28 min]{.eyebrow}
 
 ::: {.notes}
-**⏱ 0:27 → 0:55** — Temps 2 : 28 minutes. Le cœur de l'atelier.
+**⏱ 0:27 → 0:55** — Temps 2 : 28 minutes. Le cœur de l'atelier.
 
-Chacun doit avoir le terminal intégré de VS Code ouvert (*Terminal → Nouveau terminal*) et être placé dans le dossier de l'étude :
+Chacun doit avoir le terminal intégré de VS Code ouvert (*Terminal → Nouveau terminal*) et être placé dans le dossier de l'étude :
 
 `cd ~/atelier-git/entreprises_defense`
 :::
 
-## Qu'est-ce que je photographie ? {.probleme}
+## Qu'est-ce que je photographie ? {.probleme}
 
 ```{.text .sortie}
 $ git init
@@ -390,34 +390,34 @@ nothing added to commit but untracked files present (use "git add" to track)
 
 Tu fais la démonstration sur ton écran (tu la referas avec eux juste après). `git init` crée le dossier caché `.git/` : c'est l'album, vide pour l'instant.
 
-`git status` liste tout ce que Git voit mais ne suit pas encore. Pose la question du titre : « Qu'est-ce qui mérite la photo ? Tout ? Le brouillon aussi ? Les données ? »
+`git status` liste tout ce que Git voit mais ne suit pas encore. Pose la question du titre : « Qu'est-ce qui mérite la photo ? Tout ? Le brouillon aussi ? Les données ? »
 
-Ne tranche pas encore : on y revient à l'étape 1 et au Temps 4.
+Ne tranche pas encore : on y revient à l'étape 1 et au Temps 4.
 
-**Transition :** « Au passage : Git vous parle en anglais. Quatre phrases suffisent. »
+**Transition :** « Au passage : Git vous parle en anglais. Quatre phrases suffisent. »
 :::
 
 ## Git vous parle en anglais
 
 | Git dit… | … et cela veut dire |
 |---|---|
-| `nothing to commit, working tree clean` | Rien à photographier : tout est déjà dans la dernière photo |
+| `nothing to commit, working tree clean` | Rien à photographier : tout est déjà dans la dernière photo |
 | `Untracked files` | Fichiers que Git ne suit pas encore |
 | `Changes not staged for commit` | Modifié, mais pas encore choisi pour la photo |
-| `Changes to be committed` | Choisi : entrera dans la prochaine photo |
+| `Changes to be committed` | Choisi : entrera dans la prochaine photo |
 
 ::: {.notes}
 **⏱ 0:29 → 0:30 (1 min)**
 
-Les services Onyxia affichent Git en anglais. Ces quatre phrases couvrent 90 % de ce qu'ils liront ce soir. La même traduction est dans le guide participant (`atelier.qmd`).
+Les services Onyxia affichent Git en anglais. Ces quatre phrases couvrent 90 % de ce qu'ils liront ce soir. La même traduction est dans le guide participant (`atelier.qmd`).
 
-**Transition :** « Avant l'album, il y a une étape. »
+**Transition :** « Avant l'album, il y a une étape. »
 :::
 
 ## La table de sélection {.limage}
 
 ::: {.grand}
-Avant de coller des photos dans l'album, on les **pose sur une table** : on choisit lesquelles entrent, on en retire, on en ajoute.
+Avant de coller des photos dans l'album, on les **pose sur une table** : on choisit lesquelles entrent, on en retire, on en ajoute.
 :::
 
 ::: {.fragment}
@@ -427,9 +427,9 @@ Puis, d'un geste, on colle **toute la sélection** dans l'album.
 ::: {.notes}
 **⏱ 0:30 → 0:31 (1 min)** — L'image.
 
-La table de sélection, c'est l'étape intermédiaire : on prépare la prochaine photo avant de la prendre. On peut y mettre `02_nettoyage.R` et laisser `brouillon_test.R` de côté.
+La table de sélection, c'est l'étape intermédiaire : on prépare la prochaine photo avant de la prendre. On peut y mettre `02_nettoyage.R` et laisser `brouillon_test.R` de côté.
 
-**Transition :** « Sous le capot, cette table existe vraiment. »
+**Transition :** « Sous le capot, cette table existe vraiment. »
 :::
 
 ## Trois zones {.capot}
@@ -441,15 +441,15 @@ Répertoire de travail · zone de sélection (index) · dépôt (`.git/`)
 ::: {.notes}
 **⏱ 0:31 → 0:33 (2 min)**
 
-Trois zones, trois endroits réels :
+Trois zones, trois endroits réels :
 
-- le **répertoire de travail** : vos fichiers, ceux que vous éditez dans VS Code ;
-- la **zone de sélection** : ce qui entrera dans la prochaine photo (c'est le seul moment où tu prononces le mot technique qui figure entre parenthèses sur la slide ; ensuite, dis toujours « zone de sélection ») ;
+- le **répertoire de travail** : vos fichiers, ceux que vous éditez dans VS Code ;
+- la **zone de sélection** : ce qui entrera dans la prochaine photo (c'est le seul moment où tu prononces le mot technique qui figure entre parenthèses sur la slide ; ensuite, dis toujours « zone de sélection ») ;
 - le **dépôt**, le dossier caché `.git/` : l'album.
 
 `add` fait passer de la première à la deuxième, `commit` de la deuxième à la troisième, `restore` fait le chemin inverse (on le verra au Temps 3).
 
-**Transition :** « Et un détail qui change tout sur `add`. »
+**Transition :** « Et un détail qui change tout sur `add`. »
 :::
 
 ## `git add` fige une version {.capot}
@@ -457,7 +457,7 @@ Trois zones, trois endroits réels :
 `git add` copie le **contenu du fichier à cet instant** dans la mémoire de Git, et l'inscrit dans la sélection.
 
 ::: {.fragment}
-Vous modifiez le fichier après ? La sélection garde **l'ancienne version**.
+Vous modifiez le fichier après ? La sélection garde **l'ancienne version**.
 
 → il faut refaire `git add`, et `git status` montre le fichier **dans les deux listes**.
 :::
@@ -465,36 +465,36 @@ Vous modifiez le fichier après ? La sélection garde **l'ancienne version**.
 ::: {.notes}
 **⏱ 0:33 → 0:34 (1 min)**
 
-`git add` ne sélectionne pas « un fichier » : il sélectionne **une version** d'un fichier. C'est la source d'un des pièges de tout à l'heure, et de la question 2 du quiz.
+`git add` ne sélectionne pas « un fichier » : il sélectionne **une version** d'un fichier. C'est la source d'un des pièges de tout à l'heure, et de la question 2 du quiz.
 
-**Transition :** « On le fait d'abord avec les mains. »
+**Transition :** « On le fait d'abord avec les mains. »
 :::
 
-## Simulation : Git, c'est moi
+## Simulation : Git, c'est moi
 
-Trois feuilles : **Bureau** · **Table de sélection** · **Album**
+Trois feuilles : **Bureau** · **Table de sélection** · **Album**
 
-Des post-its : les fichiers de l'étude
+Des post-its : les fichiers de l'étude
 
 ::: {.notes}
 **⏱ 0:34 → 0:39 (5 min)** — Simulation sur papier.
 
-**Matériel :** trois feuilles A4 posées sur une table, bien visibles, titrées *Bureau*, *Table de sélection*, *Album*. Un post-it par fichier : `README.md`, `rapport.qmd`, `01_import.R`, `02_nettoyage.R`, `03_analyse.R`, `brouillon_test.R`, `data/…csv`. Un stylo.
+**Matériel :** trois feuilles A4 posées sur une table, bien visibles, titrées *Bureau*, *Table de sélection*, *Album*. Un post-it par fichier : `README.md`, `rapport.qmd`, `01_import.R`, `02_nettoyage.R`, `03_analyse.R`, `brouillon_test.R`, `data/…csv`. Un stylo.
 
-**Déroulé :** tous les post-its sont sur *Bureau*. Tu joues Git : tu ne bouges rien de toi-même, tu n'agis que sur commande. Les participants donnent les commandes à voix haute.
+**Déroulé :** tous les post-its sont sur *Bureau*. Tu joues Git : tu ne bouges rien de toi-même, tu n'agis que sur commande. Les participants donnent les commandes à voix haute.
 
-1. « `git status` » → tu lis à voix haute : « Je vois 7 fichiers que je ne suis pas. »
-2. « `git add README.md` » → tu **recopies** le post-it (tu en fais un double) sur *Table de sélection*. L'original reste sur *Bureau* : c'est une copie, pas un déplacement.
-3. Un participant modifie `README.md` sur *Bureau* (il gribouille le post-it original). « `git status` » → « `README.md` est sur la table, et il a changé sur le bureau depuis. » Montre les deux versions différentes.
-4. « `git commit -m "…"` » → tu prends **tout** ce qui est sur la table, plus la dernière version de tout ce qui était déjà dans l'album, et tu l'agrafes comme une nouvelle page d'*Album*, avec la légende. La table se vide.
-5. « `git commit` » sans rien sur la table → « Rien à photographier. »
+1. « `git status` » → tu lis à voix haute : « Je vois 7 fichiers que je ne suis pas. »
+2. « `git add README.md` » → tu **recopies** le post-it (tu en fais un double) sur *Table de sélection*. L'original reste sur *Bureau* : c'est une copie, pas un déplacement.
+3. Un participant modifie `README.md` sur *Bureau* (il gribouille le post-it original). « `git status` » → « `README.md` est sur la table, et il a changé sur le bureau depuis. » Montre les deux versions différentes.
+4. « `git commit -m "…"` » → tu prends **tout** ce qui est sur la table, plus la dernière version de tout ce qui était déjà dans l'album, et tu l'agrafes comme une nouvelle page d'*Album*, avec la légende. La table se vide.
+5. « `git commit` » sans rien sur la table → « Rien à photographier. »
 
-**Ce que ça montre :** add copie, commit prend toute la sélection, une page d'album est complète.
+**Ce que ça montre :** add copie, commit prend toute la sélection, une page d'album est complète.
 
-**Transition :** « Maintenant, pour de vrai. En binômes. »
+**Transition :** « Maintenant, pour de vrai. En binômes. »
 :::
 
-## Étape 1 : la première photo {.avous}
+## Étape 1 : la première photo {.avous}
 
 ```bash
 git init
@@ -505,25 +505,25 @@ git commit -m "Initialise le suivi de l'étude entreprises_defense"
 git status
 ```
 
-[Binômes : un pilote au clavier, un copilote. **Avant chaque `git status`, le copilote prédit la réponse.**]{.discret}
+[Binômes : un pilote au clavier, un copilote. **Avant chaque `git status`, le copilote prédit la réponse.**]{.discret}
 
 ::: {.notes}
 **⏱ 0:39 → 0:45 (6 min)**
 
-Rappelle le dossier : `cd ~/atelier-git/entreprises_defense`.
+Rappelle le dossier : `cd ~/atelier-git/entreprises_defense`.
 
-Binômes pilote/copilote : le pilote tape, le copilote prédit à voix haute ce que `git status` va répondre, **avant** que le pilote appuie sur Entrée. La prédiction est le vrai exercice.
+Binômes pilote/copilote : le pilote tape, le copilote prédit à voix haute ce que `git status` va répondre, **avant** que le pilote appuie sur Entrée. La prédiction est le vrai exercice.
 
-Le CSV et le brouillon restent dehors : **tout ne mérite pas la photo**. Fais-le remarquer au deuxième `git status`.
+Le CSV et le brouillon restent dehors : **tout ne mérite pas la photo**. Fais-le remarquer au deuxième `git status`.
 
-Version démo (si le groupe décroche) : tu tapes toi-même, ils prédisent collectivement.
+Version démo (si le groupe décroche) : tu tapes toi-même, ils prédisent collectivement.
 
-Si l'éditeur de texte s'ouvre (quelqu'un a oublié `-m`) : `Échap`, puis `:q!`, puis `Entrée`, et on recommence avec `-m`.
+Si l'éditeur de texte s'ouvre (quelqu'un a oublié `-m`) : `Échap`, puis `:q!`, puis `Entrée`, et on recommence avec `-m`.
 
-**Transition :** slide suivante, les sorties attendues.
+**Transition :** slide suivante, les sorties attendues.
 :::
 
-## Étape 1 : ce que vous devez voir
+## Étape 1 : ce que vous devez voir
 
 ```{.text .sortie}
 $ git status
@@ -549,19 +549,19 @@ $ git commit -m "Initialise le suivi de l'étude entreprises_defense"
  5 files changed, 114 insertions(+)
 ```
 
-[Votre empreinte sera différente : elle dépend de votre nom et de l'heure.]{.discret}
+[Votre empreinte sera différente : elle dépend de votre nom et de l'heure.]{.discret}
 
 ::: {.notes}
-Fais constater les deux listes : *Changes to be committed* (la sélection) et *Untracked files* (ce qui reste dehors).
+Fais constater les deux listes : *Changes to be committed* (la sélection) et *Untracked files* (ce qui reste dehors).
 
-Question à poser : « Pourquoi votre empreinte est-elle différente de la mienne ? » → parce que l'auteur et la date font partie de ce qui est résumé par l'empreinte (Temps 1).
+Question à poser : « Pourquoi votre empreinte est-elle différente de la mienne ? » → parce que l'auteur et la date font partie de ce qui est résumé par l'empreinte (Temps 1).
 
-Le `(root-commit)` signale le premier commit : pas de parent.
+Le `(root-commit)` signale le premier commit : pas de parent.
 :::
 
-## Étape 2 : changer le seuil {.avous}
+## Étape 2 : changer le seuil {.avous}
 
-Dans `scripts/02_nettoyage.R`, passez `seuil_dependance` de `0.20` à `0.10`, enregistrez, puis :
+Dans `scripts/02_nettoyage.R`, passez `seuil_dependance` de `0.20` à `0.10`, enregistrez, puis :
 
 ```bash
 git status
@@ -577,16 +577,16 @@ git log --oneline
 ::: {.notes}
 **⏱ 0:45 → 0:50 (5 min)**
 
-Les binômes échangent : le copilote devient pilote. Toujours la prédiction avant chaque commande.
+Les binômes échangent : le copilote devient pilote. Toujours la prédiction avant chaque commande.
 
-Point clé : après le `git add`, `git diff` n'affiche plus rien (tout ce qui a changé est dans la sélection) et `git diff --staged` montre ce qui entrera dans la photo. Si un binôme est en avance : faites-lui taper `git diff` juste après le `git add` et expliquer pourquoi c'est vide.
+Point clé : après le `git add`, `git diff` n'affiche plus rien (tout ce qui a changé est dans la sélection) et `git diff --staged` montre ce qui entrera dans la photo. Si un binôme est en avance : faites-lui taper `git diff` juste après le `git add` et expliquer pourquoi c'est vide.
 
-Variante Python : la ligne est `seuil_dependance = 0.20` dans `scripts/02_nettoyage.py`.
+Variante Python : la ligne est `seuil_dependance = 0.20` dans `scripts/02_nettoyage.py`.
 
-Version démo : tu fais la modification en partageant ton écran, ils prédisent.
+Version démo : tu fais la modification en partageant ton écran, ils prédisent.
 :::
 
-## Étape 2 : ce que vous devez voir
+## Étape 2 : ce que vous devez voir
 
 ```{.text .sortie}
 $ git diff
@@ -610,29 +610,29 @@ ce80dfb Initialise le suivi de l'étude entreprises_defense
 ```
 
 ::: {.notes}
-Lecture du diff : la ligne `-` (en rouge dans le terminal) est l'ancienne version, la ligne `+` (en vert) la nouvelle. Les lignes autour sont du contexte. Les quatre premières lignes sont des en-têtes : qu'ils les ignorent.
+Lecture du diff : la ligne `-` (en rouge dans le terminal) est l'ancienne version, la ligne `+` (en vert) la nouvelle. Les lignes autour sont du contexte. Les quatre premières lignes sont des en-têtes : qu'ils les ignorent.
 
-Dans `git log --oneline`, `(HEAD -> main)` veut dire « vous êtes ici » : le dernier commit de votre branche.
+Dans `git log --oneline`, `(HEAD -> main)` veut dire « vous êtes ici » : le dernier commit de votre branche.
 
-**Transition :** « Tout ça, VS Code sait aussi le faire avec des cases à cocher. »
+**Transition :** « Tout ça, VS Code sait aussi le faire avec des cases à cocher. »
 :::
 
 ## La même chose, avec des cases à cocher
 
-![](assets/img/vscode-source-control.svg){fig-alt="Schéma du panneau Source Control de VS Code : la liste Staged Changes correspond à la zone de sélection, la liste Changes au répertoire de travail, le bouton plus à git add." width="1300"}
+![](assets/img/vscode-source-control.svg){fig-alt="Schéma du panneau Source Control de VS Code : la liste Staged Changes correspond à la zone de sélection, la liste Changes au répertoire de travail, le bouton plus à git add." width="1300"}
 
 ::: {.notes}
 **⏱ 0:50 → 0:51 (1 min)**
 
 Ouvre le panneau *Source Control* de VS Code (icône de branche dans la barre de gauche, ou `Ctrl+Maj+G`) sur ton écran, en vrai.
 
-- Les deux listes sont les deux zones : *Changes* = modifié mais pas choisi ; *Staged Changes* = la sélection.
+- Les deux listes sont les deux zones : *Changes* = modifié mais pas choisi ; *Staged Changes* = la sélection.
 - Le `+` à côté d'un fichier = `git add`.
 - Un clic sur un fichier = le diff, côte à côte.
 
-Message clair : c'est pratique, mais **la commande reste la référence**. En cas de doute, `git status` dans le terminal dit la vérité, et c'est ce que tu sauras lire quand l'interface change.
+Message clair : c'est pratique, mais **la commande reste la référence**. En cas de doute, `git status` dans le terminal dit la vérité, et c'est ce que tu sauras lire quand l'interface change.
 
-Le schéma est un placeholder : tu peux le remplacer par une capture de ton VS Code sur Onyxia.
+Le schéma est un placeholder : tu peux le remplacer par une capture de ton VS Code sur Onyxia.
 :::
 
 ## Commit sans `add` {.piege}
@@ -653,12 +653,12 @@ Untracked files:
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
-Rien n'a été photographié : **rien n'était sur la table**.
+Rien n'a été photographié : **rien n'était sur la table**.
 
 ::: {.notes}
 **⏱ 0:51 → 0:54 (3 min pour les trois pièges)** — Pièges provoqués volontairement.
 
-Demande-leur de le provoquer : modifier `README.md`, puis `git commit -m "…"` sans `add`. Git refuse poliment et explique. Faites lire la dernière ligne ensemble.
+Demande-leur de le provoquer : modifier `README.md`, puis `git commit -m "…"` sans `add`. Git refuse poliment et explique. Faites lire la dernière ligne ensemble.
 
 Avec rien de modifié du tout, Git répondrait `nothing to commit` : même leçon, la table est vide.
 :::
@@ -678,17 +678,17 @@ Changes not staged for commit:
 	modified:   README.md
 ```
 
-`README.md` est **dans les deux listes** : une version choisie, une version plus récente.
+`README.md` est **dans les deux listes** : une version choisie, une version plus récente.
 
 ::: {.notes}
-Provoque-le : `git add README.md`, puis une nouvelle ligne dans `README.md`, puis `git status`.
+Provoque-le : `git add README.md`, puis une nouvelle ligne dans `README.md`, puis `git status`.
 
-C'est la preuve que `add` fige une version. Deux sorties possibles :
+C'est la preuve que `add` fige une version. Deux sorties possibles :
 
-- refaire `git add README.md` pour choisir la version la plus récente ;
+- refaire `git add README.md` pour choisir la version la plus récente ;
 - `git restore --staged README.md` (Git le suggère lui-même, deuxième ligne) pour retirer le fichier de la sélection.
 
-Laisse-les nettoyer : `git restore --staged README.md` puis `git restore README.md` (on reverra `restore` au Temps 3 ; ici, dis juste qu'on remet le fichier comme dans la dernière photo).
+Laisse-les nettoyer : `git restore --staged README.md` puis `git restore README.md` (on reverra `restore` au Temps 3 ; ici, dis juste qu'on remet le fichier comme dans la dernière photo).
 :::
 
 ## Le message de commit {.piege}
@@ -714,13 +714,13 @@ Laisse-les nettoyer : `git restore --staged README.md` puis `git restore README.
 Écrit **du point de vue de l'étude**, **à l'impératif**, pour la personne qui lira dans **trois mois**.
 
 ::: {.notes}
-Un message décrit l'**intention**, pas le geste : « Abaisse le seuil… » dit ce que le commit change dans l'étude et, en creux, pourquoi on le lira. « modif » ne dit rien : dans trois mois, personne ne saura.
+Un message décrit l'**intention**, pas le geste : « Abaisse le seuil… » dit ce que le commit change dans l'étude et, en creux, pourquoi on le lira. « modif » ne dit rien : dans trois mois, personne ne saura.
 
-L'impératif se lit comme la suite de « Ce commit… » : « Ce commit abaisse le seuil de dépendance défense à 10 % ».
+L'impératif se lit comme la suite de « Ce commit… » : « Ce commit abaisse le seuil de dépendance défense à 10 % ».
 
-Ce dépôt de supports suit lui-même cette règle : tu peux leur montrer son historique sur GitHub.
+Ce dépôt de supports suit lui-même cette règle : tu peux leur montrer son historique sur GitHub.
 
-On le reverra au Temps 3 : « Et si le message avait été *modif* ? »
+On le reverra au Temps 3 : « Et si le message avait été *modif* ? »
 :::
 
 ## À retenir {.retenir}
@@ -732,16 +732,16 @@ Regarder, choisir, enregistrer.
 ::: {.notes}
 **⏱ 0:54 → 0:55 (1 min)** — Fin du Temps 2.
 
-`git status` ne modifie rien : on peut (on doit) le taper sans arrêt. C'est la réponse à toute hésitation.
+`git status` ne modifie rien : on peut (on doit) le taper sans arrêt. C'est la réponse à toute hésitation.
 
-**Transition :** « Quatre questions éclair, et c'est la pause. »
+**Transition :** « Quatre questions éclair, et c'est la pause. »
 :::
 
 ## Question 1 {.quiz}
 
 Vous avez modifié `02_nettoyage.R` **et** `rapport.qmd`, tapé `git add scripts/02_nettoyage.R`, puis `git commit`.
 
-**Que contient la photo ?**
+**Que contient la photo ?**
 
 ::: {.fragment .reponse}
 **Tout le projet**, avec la nouvelle version de `02_nettoyage.R`… et l'**ancienne** version de `rapport.qmd`, celle de la photo précédente. La modification de `rapport.qmd` attend toujours sur le bureau.
@@ -752,47 +752,47 @@ Vous avez modifié `02_nettoyage.R` **et** `rapport.qmd`, tapé `git add scripts
 
 Laisse 15 secondes de réflexion, demande une réponse à voix haute, puis le fragment.
 
-Piège de la question : croire que la photo ne contient « que » `02_nettoyage.R`. Non : une photo est toujours complète (Temps 1) ; ce qui n'a pas été choisi y figure dans sa dernière version photographiée.
+Piège de la question : croire que la photo ne contient « que » `02_nettoyage.R`. Non : une photo est toujours complète (Temps 1) ; ce qui n'a pas été choisi y figure dans sa dernière version photographiée.
 :::
 
 ## Question 2 {.quiz}
 
 Vous faites `git add`, vous corrigez encore une ligne, puis `git commit`.
 
-**La correction est-elle enregistrée ?**
+**La correction est-elle enregistrée ?**
 
 ::: {.fragment .reponse}
-**Non.** `git add` a figé la version d'avant la correction. La correction reste sur le bureau : `git status` la montre encore dans *Changes not staged for commit*.
+**Non.** `git add` a figé la version d'avant la correction. La correction reste sur le bureau : `git status` la montre encore dans *Changes not staged for commit*.
 :::
 
 ::: {.notes}
-C'est le piège « modifier après add », vu il y a cinq minutes. Si la salle hésite, retourne un instant à la slide des trois zones.
+C'est le piège « modifier après add », vu il y a cinq minutes. Si la salle hésite, retourne un instant à la slide des trois zones.
 :::
 
 ## Question 3 {.quiz}
 
 `git status` affiche `nothing to commit, working tree clean`.
 
-**Votre étude est-elle à l'abri sur GitLab ?**
+**Votre étude est-elle à l'abri sur GitLab ?**
 
 ::: {.fragment .reponse}
-**Non.** `git status` ne parle que de votre poste : tout est photographié *ici*. Tant que vous n'avez pas fait `git push`, GitLab n'a rien. Et votre service Onyxia peut disparaître.
+**Non.** `git status` ne parle que de votre poste : tout est photographié *ici*. Tant que vous n'avez pas fait `git push`, GitLab n'a rien. Et votre service Onyxia peut disparaître.
 :::
 
 ::: {.notes}
-Cette question prépare le Temps 5. Fais le lien : « Photographié ne veut pas dire partagé, ni sauvegardé ailleurs. »
+Cette question prépare le Temps 5. Fais le lien : « Photographié ne veut pas dire partagé, ni sauvegardé ailleurs. »
 :::
 
 ## Question 4 {.quiz}
 
-**Deux commits différents peuvent-ils avoir la même empreinte ?**
+**Deux commits différents peuvent-ils avoir la même empreinte ?**
 
 ::: {.fragment .reponse}
 **En pratique, non.** L'empreinte est calculée sur tout le commit — contenu, auteur, date, message, parent. Changer un seul caractère donne une tout autre empreinte.
 :::
 
 ::: {.notes}
-Nuance pour les curieux : mathématiquement, deux contenus différents *peuvent* avoir la même empreinte SHA-1 (il y a plus de contenus possibles que d'empreintes), et des chercheurs en ont fabriqué exprès en 2017. Git détecte ce type d'attaque et migre progressivement vers SHA-256. Mais par hasard, dans vos études : jamais. C'est ce qui permet de désigner un commit par son empreinte, et même par ses 7 premiers caractères (Temps 3).
+Nuance pour les curieux : mathématiquement, deux contenus différents *peuvent* avoir la même empreinte SHA-1 (il y a plus de contenus possibles que d'empreintes), et des chercheurs en ont fabriqué exprès en 2017. Git détecte ce type d'attaque et migre progressivement vers SHA-256. Mais par hasard, dans vos études : jamais. C'est ce qui permet de désigner un commit par son empreinte, et même par ses 7 premiers caractères (Temps 3).
 :::
 
 ## Pause {.pause}
@@ -806,7 +806,7 @@ Reprise à [dans 5 minutes]{.reprise}
 
 L'heure de reprise s'affiche automatiquement (heure d'arrivée sur cette slide + 5 minutes).
 
-Pendant la pause : vérifie que chacun a bien le dossier `~/atelier-git/entreprises_defense_marie` (créé par le kit). Sinon, fais relancer `bash kit.sh --force` pendant la pause.
+Pendant la pause : vérifie que chacun a bien le dossier `~/atelier-git/entreprises_defense_marie` (créé par le kit). Sinon, fais relancer `bash kit.sh --force` pendant la pause.
 :::
 
 # Vendredi, ça marchait {.intercalaire}
@@ -814,9 +814,9 @@ Pendant la pause : vérifie que chacun a bien le dossier `~/atelier-git/entrepri
 [Temps 3 · 25 min]{.eyebrow}
 
 ::: {.notes}
-**⏱ 1:03 → 1:28** — Temps 3 : 25 minutes.
+**⏱ 1:03 → 1:28** — Temps 3 : 25 minutes.
 
-On change de dossier : tout le monde passe dans l'étude de Marie.
+On change de dossier : tout le monde passe dans l'étude de Marie.
 
 `cd ~/atelier-git/entreprises_defense_marie`
 :::
@@ -824,7 +824,7 @@ On change de dossier : tout le monde passe dans l'étude de Marie.
 ## Marie est absente {.probleme}
 
 ::: {.grand}
-Le graphique est passé en **pourcentages** : personne ne sait pourquoi.
+Le graphique est passé en **pourcentages** : personne ne sait pourquoi.
 
 Et depuis lundi, `03_analyse.R` **ne tourne plus**.
 :::
@@ -834,11 +834,11 @@ Et depuis lundi, `03_analyse.R` **ne tourne plus**.
 ::: {.notes}
 **⏱ 1:03 → 1:05 (2 min)**
 
-Raconte la scène : Marie est en congé, le chef de bureau veut la note pour jeudi, Franck ouvre le dossier. Le graphique n'est plus le même, et le script plante.
+Raconte la scène : Marie est en congé, le chef de bureau veut la note pour jeudi, Franck ouvre le dossier. Le graphique n'est plus le même, et le script plante.
 
-Si R est disponible sur ton service, montre l'erreur en vrai : `Rscript scripts/03_analyse.R` s'arrête sur la colonne `secteur` introuvable. Sinon, raconte-le.
+Si R est disponible sur ton service, montre l'erreur en vrai : `Rscript scripts/03_analyse.R` s'arrête sur la colonne `secteur` introuvable. Sinon, raconte-le.
 
-**Transition :** « Heureusement, Marie a tenu un album. »
+**Transition :** « Heureusement, Marie a tenu un album. »
 :::
 
 ## Feuilleter l'album {.limage}
@@ -850,32 +850,32 @@ On ouvre l'album à la dernière page, et on **remonte les pages** une à une, e
 ::: {.notes}
 **⏱ 1:05 → 1:06 (1 min)** — L'image.
 
-Feuilleter l'album : on part de la dernière photo et on remonte. On lit la légende de chaque photo ; quand une légende nous intéresse, on regarde la photo de près et on la compare à la précédente.
+Feuilleter l'album : on part de la dernière photo et on remonte. On lit la légende de chaque photo ; quand une légende nous intéresse, on regarde la photo de près et on la compare à la précédente.
 
-**Transition :** « Sous le capot, c'est exactement la chaîne du Temps 1. »
+**Transition :** « Sous le capot, c'est exactement la chaîne du Temps 1. »
 :::
 
 ## Remonter la chaîne {.capot}
 
-- `git log` part de **« où je suis »** — le dernier commit de la branche courante — et remonte la chaîne des parents
+- `git log` part de **« où je suis »** — le dernier commit de la branche courante — et remonte la chaîne des parents
 - `git show <empreinte>` affiche la légende (auteur, date, message) et le **diff avec le parent**, calculé à la volée
-- **7 caractères** de l'empreinte suffisent : ils sont uniques dans le dépôt
+- **7 caractères** de l'empreinte suffisent : ils sont uniques dans le dépôt
 
 ::: {.notes}
 **⏱ 1:06 → 1:08 (2 min)**
 
-`git log` ne lit pas une liste : il part du dernier commit (affiché `HEAD -> main`, « vous êtes ici ») et suit les liens vers les parents, de photo en photo, jusqu'au premier commit.
+`git log` ne lit pas une liste : il part du dernier commit (affiché `HEAD -> main`, « vous êtes ici ») et suit les liens vers les parents, de photo en photo, jusqu'au premier commit.
 
-`git show` compare une photo à sa photo parente : le diff n'est stocké nulle part, il est recalculé (Temps 1).
+`git show` compare une photo à sa photo parente : le diff n'est stocké nulle part, il est recalculé (Temps 1).
 
-Les 7 caractères : Git accepte n'importe quel début d'empreinte tant qu'il est unique dans le dépôt. Dans un très gros dépôt, Git en affiche parfois 8 ou 9.
+Les 7 caractères : Git accepte n'importe quel début d'empreinte tant qu'il est unique dans le dépôt. Dans un très gros dépôt, Git en affiche parfois 8 ou 9.
 
-**Transition :** « À vous d'enquêter. »
+**Transition :** « À vous d'enquêter. »
 :::
 
 ## L'enquête {.avous}
 
-1. Trouvez le commit qui a fait passer le graphique **en parts** : qui, quand, pourquoi ?
+1. Trouvez le commit qui a fait passer le graphique **en parts** : qui, quand, pourquoi ?
 2. Puis celui qui a **cassé** le script.
 
 ```bash
@@ -886,16 +886,16 @@ git show <empreinte>
 ::: {.notes}
 **⏱ 1:08 → 1:16 (8 min)** — Enquête en binômes.
 
-Laisse chercher. Les empreintes sont identiques sur tous les postes (le kit fixe dates et auteurs) : tout le monde peut comparer ses réponses.
+Laisse chercher. Les empreintes sont identiques sur tous les postes (le kit fixe dates et auteurs) : tout le monde peut comparer ses réponses.
 
 Si `git show` affiche `:` en bas de l'écran ou `(END)` : c'est le lecteur de texte de Git. Flèches pour défiler, `q` pour quitter.
 
-Aide graduée : 1) « Lisez les messages » ; 2) « Lequel parle de pourcentages ? de NAF ? » ; 3) « Tapez `git show` suivi des 7 caractères. »
+Aide graduée : 1) « Lisez les messages » ; 2) « Lequel parle de pourcentages ? de NAF ? » ; 3) « Tapez `git show` suivi des 7 caractères. »
 
-Corrigé : dans `formateur.qmd`.
+Corrigé : dans `formateur.qmd`.
 :::
 
-## L'enquête : les réponses
+## L'enquête : les réponses
 
 ```{.text .sortie}
 $ git log --oneline
@@ -910,11 +910,11 @@ af989d8 Ne garde que les entreprises dont la part de CA défense dépasse 20 %
 ```
 
 ::: {.fragment .reponse}
-**`155ae9a`** — Marie, vendredi 11 septembre, 17 h 20 : « à la demande du chef de bureau ».
+**`155ae9a`** — Marie, vendredi 11 septembre, 17 h 20 : « à la demande du chef de bureau ».
 :::
 
 ::: {.fragment .reponse}
-**`b0b1445`** — lundi 14 septembre : `group_by(secteur)`… mais la colonne `secteur` **n'existe pas**.
+**`b0b1445`** — lundi 14 septembre : `group_by(secteur)`… mais la colonne `secteur` **n'existe pas**.
 :::
 
 ::: {.notes}
@@ -922,7 +922,7 @@ af989d8 Ne garde que les entreprises dont la part de CA défense dépasse 20 %
 
 Fais donner les réponses par les binômes avant d'afficher les fragments. Montre ensuite `git show b0b1445` sur ton écran (slide suivante).
 
-Le commit 6 (`155ae9a`) est la version « de vendredi » : le script fonctionne. Le commit 7 (`b0b1445`), lundi, le casse.
+Le commit 6 (`155ae9a`) est la version « de vendredi » : le script fonctionne. Le commit 7 (`b0b1445`), lundi, le casse.
 :::
 
 ## Le commit qui casse {.sortie-longue}
@@ -954,10 +954,10 @@ index 7e2325b..086502d 100644
 ```
 
 ::: {.notes}
-Cinq lignes ajoutées (les `+`), aucune retirée. La colonne `secteur` n'existe pas dans le CSV : il n'y a que `naf`. Marie voulait sans doute dériver un secteur à partir du code NAF, et ne l'a pas fait.
+Cinq lignes ajoutées (les `+`), aucune retirée. La colonne `secteur` n'existe pas dans le CSV : il n'y a que `naf`. Marie voulait sans doute dériver un secteur à partir du code NAF, et ne l'a pas fait.
 :::
 
-## Et si le message avait été *modif* ? {.probleme}
+## Et si le message avait été *modif* ? {.probleme}
 
 ```{.text .sortie}
 24e5e4a (HEAD -> main) modif
@@ -973,12 +973,12 @@ af989d8 modif
 ::: {.notes}
 **⏱ 1:17 → 1:18 (1 min)**
 
-Cette sortie est **fabriquée** pour l'exemple : c'est ce qu'on lirait si Marie n'avait écrit que « modif ». Dis-le.
+Cette sortie est **fabriquée** pour l'exemple : c'est ce qu'on lirait si Marie n'avait écrit que « modif ». Dis-le.
 
-Question : « Combien de temps pour trouver le commit du chef de bureau ? » → il faudrait ouvrir les huit commits un par un. Le message est la seule chose qui vous parle, à vous, dans trois mois.
+Question : « Combien de temps pour trouver le commit du chef de bureau ? » → il faudrait ouvrir les huit commits un par un. Le message est la seule chose qui vous parle, à vous, dans trois mois.
 :::
 
-## Revenir : deux besoins, deux commandes
+## Revenir : deux besoins, deux commandes
 
 **J'ai modifié un fichier, je regrette, rien n'est commité**
 
@@ -995,16 +995,16 @@ git restore --source=155ae9a scripts/03_analyse.R
 ::: {.notes}
 **⏱ 1:18 → 1:20 (2 min)**
 
-Deux situations différentes :
+Deux situations différentes :
 
-1. On a bidouillé, on veut revenir à la dernière photo : `git restore <fichier>`.
-2. On veut une version plus ancienne, précise, d'un fichier : `--source=<empreinte>` dit à Git dans quelle photo aller la chercher.
+1. On a bidouillé, on veut revenir à la dernière photo : `git restore <fichier>`.
+2. On veut une version plus ancienne, précise, d'un fichier : `--source=<empreinte>` dit à Git dans quelle photo aller la chercher.
 
-Ensuite, on vérifie (`git status`, `git diff`) et on enregistre ce retour par un **nouveau commit**, qui explique le pourquoi :
+Ensuite, on vérifie (`git status`, `git diff`) et on enregistre ce retour par un **nouveau commit**, qui explique le pourquoi :
 
 `git commit -m "Revient au script d'analyse de vendredi (la ventilation NAF cassait le script)"`
 
-**L'historique reste intact** : le commit de lundi est toujours là, on ne réécrit pas le passé, on ajoute une page qui le corrige.
+**L'historique reste intact** : le commit de lundi est toujours là, on ne réécrit pas le passé, on ajoute une page qui le corrige.
 :::
 
 ## `restore`, vraiment {.capot}
@@ -1012,22 +1012,22 @@ Ensuite, on vérifie (`git status`, `git diff`) et on enregistre ce retour par u
 Par défaut, `git restore <fichier>` reprend la version de la **zone de sélection** — et si rien n'y est, celle du **dernier commit**.
 
 ::: {.fragment}
-C'est **destructif** pour tout ce qui n'a pas été confié à Git : la modification effacée ne se retrouve nulle part.
+C'est **destructif** pour tout ce qui n'a pas été confié à Git : la modification effacée ne se retrouve nulle part.
 :::
 
 ::: {.notes}
 **⏱ 1:20 → 1:21 (1 min)**
 
-Reviens au schéma des trois zones si besoin : `restore` est la flèche du retour, du dépôt (ou de la sélection) vers le répertoire de travail.
+Reviens au schéma des trois zones si besoin : `restore` est la flèche du retour, du dépôt (ou de la sélection) vers le répertoire de travail.
 
-Ce qui n'a jamais été ni `add` ni `commit` n'existe pas pour Git : `restore` l'écrase sans corbeille.
+Ce qui n'a jamais été ni `add` ni `commit` n'existe pas pour Git : `restore` l'écrase sans corbeille.
 
-**Transition :** « Faites-en l'expérience. »
+**Transition :** « Faites-en l'expérience. »
 :::
 
-## Revenir : la dernière photo {.avous}
+## Revenir : la dernière photo {.avous}
 
-Modifiez une ligne de `README.md`, enregistrez, puis :
+Modifiez une ligne de `README.md`, enregistrez, puis :
 
 ```bash
 git status
@@ -1036,16 +1036,16 @@ git status
 ```
 
 ::: {.fragment}
-Regardez `README.md` dans VS Code : votre modification a **disparu**.
+Regardez `README.md` dans VS Code : votre modification a **disparu**.
 :::
 
 ::: {.notes}
 **⏱ 1:21 → 1:23 (2 min)** — Tout le monde.
 
-Ils modifient `README.md` dans VS Code, tapent les trois commandes, et constatent dans l'éditeur que la modification est perdue. C'est l'expérience à vivre : `restore` n'a pas de corbeille.
+Ils modifient `README.md` dans VS Code, tapent les trois commandes, et constatent dans l'éditeur que la modification est perdue. C'est l'expérience à vivre : `restore` n'a pas de corbeille.
 :::
 
-## Revenir : la version de vendredi {.avous}
+## Revenir : la version de vendredi {.avous}
 
 ```bash
 git restore --source=155ae9a scripts/03_analyse.R
@@ -1055,44 +1055,44 @@ git add scripts/03_analyse.R
 git commit -m "Revient au script d'analyse de vendredi (la ventilation NAF cassait le script)"
 ```
 
-[Variante Python : `scripts/03_analyse.py`, et le commit de vendredi est `693c70a`.]{.discret}
+[Variante Python : `scripts/03_analyse.py`, et le commit de vendredi est `693c70a`.]{.discret}
 
 ::: {.notes}
 **⏱ 1:23 → 1:26 (3 min)**
 
-**Version pratique** : ils tapent les cinq commandes. Le `git diff` doit montrer les cinq lignes de la ventilation NAF en `-`.
+**Version pratique** : ils tapent les cinq commandes. Le `git diff` doit montrer les cinq lignes de la ventilation NAF en `-`.
 
-Variante Python : le fichier est `scripts/03_analyse.py` et les empreintes sont différentes (voir `formateur.qmd`) ; le commit de vendredi y est `693c70a`.
+Variante Python : le fichier est `scripts/03_analyse.py` et les empreintes sont différentes (voir `formateur.qmd`) ; le commit de vendredi y est `693c70a`.
 
-**Version démo (fusible, si le temps manque)** : tu la fais sur ton écran, ils suivent et prédisent le `git status`.
+**Version démo (fusible, si le temps manque)** : tu la fais sur ton écran, ils suivent et prédisent le `git status`.
 
-**Hors atelier, pour toi seulement** : si un participant demande « et si je veux *voir* tout le projet tel qu'il était vendredi ? », démo de 2 min maximum : `git switch --detach 155ae9a`, on regarde les fichiers, puis `git switch main` pour revenir. Ne le mets pas sur les slides et ne le fais pas taper.
+**Hors atelier, pour toi seulement** : si un participant demande « et si je veux *voir* tout le projet tel qu'il était vendredi ? », démo de 2 min maximum : `git switch --detach 155ae9a`, on regarde les fichiers, puis `git switch main` pour revenir. Ne le mets pas sur les slides et ne le fais pas taper.
 :::
 
 ## Ce que l'on ne verra pas ce soir
 
-Vous croiserez sur internet d'autres commandes pour « revenir en arrière ».
+Vous croiserez sur internet d'autres commandes pour « revenir en arrière ».
 
-Ce soir, une seule : **`restore`**.
+Ce soir, une seule : **`restore`**.
 
 ::: {.notes}
 **⏱ 1:26 (30 s)**
 
-Hors périmètre, à dire explicitement : `git reset --hard` (qui efface sans filet) et `git checkout` (qui fait trop de choses différentes selon ses arguments). Elles ne sont pas sur la slide exprès : on ne montre pas ce qu'on ne veut pas voir taper.
+Hors périmètre, à dire explicitement : `git reset --hard` (qui efface sans filet) et `git checkout` (qui fait trop de choses différentes selon ses arguments). Elles ne sont pas sur la slide exprès : on ne montre pas ce qu'on ne veut pas voir taper.
 :::
 
 ## À retenir {.retenir}
 
 Git ne peut retrouver que ce qu'on lui a confié.
 
-Avant de bidouiller : commit.
+Avant de bidouiller : commit.
 
 ::: {.notes}
 **⏱ 1:26 → 1:28 (2 min)** — Fin du Temps 3.
 
-Le réflexe à emporter : avant de tenter quelque chose de risqué dans un script, faire un commit. On peut alors tout essayer.
+Le réflexe à emporter : avant de tenter quelque chose de risqué dans un script, faire un commit. On peut alors tout essayer.
 
-**Transition :** « Chez Marie, `git status` liste des fichiers qu'on n'a jamais regardés. »
+**Transition :** « Chez Marie, `git status` liste des fichiers qu'on n'a jamais regardés. »
 :::
 
 # Ce qui a sa place dans le dépôt {.intercalaire}
@@ -1100,12 +1100,12 @@ Le réflexe à emporter : avant de tenter quelque chose de risqué dans un scrip
 [Temps 4 · 8 min]{.eyebrow}
 
 ::: {.notes}
-**⏱ 1:28 → 1:36** — Temps 4 : 8 minutes.
+**⏱ 1:28 → 1:36** — Temps 4 : 8 minutes.
 
-**Fusible** : si tu es en retard, saute le tri de cartes, donne directement le `.gitignore` (slide « À vous ») et passe au Temps 5.
+**Fusible** : si tu es en retard, saute le tri de cartes, donne directement le `.gitignore` (slide « À vous ») et passe au Temps 5.
 :::
 
-## J'ajoute tout ? {.probleme}
+## J'ajoute tout ? {.probleme}
 
 ```{.text .sortie}
 $ git status
@@ -1126,35 +1126,35 @@ nothing added to commit but untracked files present (use "git add" to track)
 ::: {.notes}
 **⏱ 1:28 → 1:29 (1 min)**
 
-Dans le dossier de Marie. Pose la question du titre, laisse répondre, ne tranche pas : c'est l'objet du tri.
+Dans le dossier de Marie. Pose la question du titre, laisse répondre, ne tranche pas : c'est l'objet du tri.
 :::
 
 ## Tri de cartes {.avous}
 
-Trois piles : **à versionner** · **à ignorer** · **jamais**
+Trois piles : **à versionner** · **à ignorer** · **jamais**
 
 [scripts/02_nettoyage.R]{.fichier} [rapport.qmd]{.fichier} [README.md]{.fichier} [.gitignore]{.fichier} [data/entreprises_defense_2024.csv]{.fichier} [data/bitd_2024.parquet]{.fichier} [rapport.html]{.fichier} [figures/effectifs_par_taille.png]{.fichier} [.Rhistory]{.fichier} [.Renviron]{.fichier} [donnees_entreprises_confidentiel.xlsx]{.fichier} [notes_reunion_chef_de_bureau.md]{.fichier}
 
 ::: {.notes}
 **⏱ 1:29 → 1:33 (4 min)** — Groupes de 2 ou 3, les 12 cartes imprimées (`materiel/cartes-tri.pdf`).
 
-Les cartes portent des précisions : le CSV est un extrait synthétique de 40 lignes ; le parquet fait 600 Mo (le fichier du kit ne fait que 2 Mo) ; `.Renviron` contient un jeton ; le xlsx contient des données individuelles d'entreprises.
+Les cartes portent des précisions : le CSV est un extrait synthétique de 40 lignes ; le parquet fait 600 Mo (le fichier du kit ne fait que 2 Mo) ; `.Renviron` contient un jeton ; le xlsx contient des données individuelles d'entreprises.
 
-**Débrief** (slide suivante) : fais émerger les critères à partir des désaccords, pas avant. Trois cartes sont volontairement discutables :
+**Débrief** (slide suivante) : fais émerger les critères à partir des désaccords, pas avant. Trois cartes sont volontairement discutables :
 
-- le **CSV synthétique** : petit, texte, non confidentiel → versionnable ; mais en règle générale, les données restent hors de Git ;
-- le **PNG** : régénérable par `03_analyse.R` → à ignorer ; sauf s'il est une pièce officielle livrée à un instant donné ;
-- les **notes de réunion** : du texte, utile… mais nominatif et interne → pas dans le dépôt de l'étude.
+- le **CSV synthétique** : petit, texte, non confidentiel → versionnable ; mais en règle générale, les données restent hors de Git ;
+- le **PNG** : régénérable par `03_analyse.R` → à ignorer ; sauf s'il est une pièce officielle livrée à un instant donné ;
+- les **notes de réunion** : du texte, utile… mais nominatif et interne → pas dans le dépôt de l'étude.
 
 Corrigé détaillé dans `formateur.qmd`.
 :::
 
 ## Les critères
 
-- **Texte ou binaire ?**
-- **Régénérable ou non ?**
-- **Secret ?** un jeton, un mot de passe
-- **Secret statistique ?** des données individuelles d'entreprises
+- **Texte ou binaire ?**
+- **Régénérable ou non ?**
+- **Secret ?** un jeton, un mot de passe
+- **Secret statistique ?** des données individuelles d'entreprises
 
 ::: {.notes}
 **⏱ 1:33 → 1:34 (1 min)**
@@ -1164,7 +1164,7 @@ Corrigé détaillé dans `formateur.qmd`.
 
 ## Ce que Git garde {.capot}
 
-- **chaque version** de chaque fichier suivi, **pour toujours** : un binaire de 600 Mo modifié dix fois, ce sont dix copies
+- **chaque version** de chaque fichier suivi, **pour toujours** : un binaire de 600 Mo modifié dix fois, ce sont dix copies
 - sur un binaire, **pas de diff lisible**
 - un secret commité **reste dans l'historique**, même après suppression du fichier
 - les données individuelles d'entreprises relèvent du **secret statistique**
@@ -1172,28 +1172,28 @@ Corrigé détaillé dans `formateur.qmd`.
 ::: {.notes}
 **⏱ 1:34 (45 s)**
 
-Le lien avec le Temps 1 : Git ne recopie pas un contenu identique, mais un fichier modifié est un nouveau contenu. Dix versions d'un parquet de 600 Mo = dix contenus différents à garder, pour toujours, et à télécharger par chaque collègue.
+Le lien avec le Temps 1 : Git ne recopie pas un contenu identique, mais un fichier modifié est un nouveau contenu. Dix versions d'un parquet de 600 Mo = dix contenus différents à garder, pour toujours, et à télécharger par chaque collègue.
 
-Le jeton : supprimer `.Renviron` dans un commit suivant ne sert à rien, il reste dans les photos précédentes. Si cela arrive : **révoquer le jeton immédiatement** dans GitLab, puis en créer un autre.
+Le jeton : supprimer `.Renviron` dans un commit suivant ne sert à rien, il reste dans les photos précédentes. Si cela arrive : **révoquer le jeton immédiatement** dans GitLab, puis en créer un autre.
 :::
 
-## Où range-t-on quoi ? {.capot}
+## Où range-t-on quoi ? {.capot}
 
 ![](assets/img/architecture.svg){fig-alt="Le code et la documentation dans Git, les données sur S3 au format Parquet lues par leur chemin, les sorties régénérées par les scripts." width="1250"}
 
-<details><summary>Pour aller plus loin</summary>`.gitignore` n'agit pas sur un fichier **déjà suivi** : il faut d'abord le retirer du suivi.</details>
+<details><summary>Pour aller plus loin</summary>`.gitignore` n'agit pas sur un fichier **déjà suivi** : il faut d'abord le retirer du suivi.</details>
 
 ::: {.notes}
 **⏱ 1:34 → 1:35 (45 s)**
 
-L'architecture cible : le code et la documentation dans Git ; les données sur le stockage S3 d'Onyxia, en Parquet, référencées par leur chemin dans les scripts ; les sorties régénérées à la demande.
+L'architecture cible : le code et la documentation dans Git ; les données sur le stockage S3 d'Onyxia, en Parquet, référencées par leur chemin dans les scripts ; les sorties régénérées à la demande.
 
-« Pour aller plus loin » (à déplier si quelqu'un demande) : pour sortir un fichier déjà suivi, on le retire du suivi sans le supprimer du disque. C'est hors programme ce soir ; la commande est dans la documentation de Git (`git rm --cached`).
+« Pour aller plus loin » (à déplier si quelqu'un demande) : pour sortir un fichier déjà suivi, on le retire du suivi sans le supprimer du disque. C'est hors programme ce soir ; la commande est dans la documentation de Git (`git rm --cached`).
 :::
 
 ## Écrire un `.gitignore` {.avous}
 
-Dans `entreprises_defense/`, créez un fichier `.gitignore` contenant :
+Dans `entreprises_defense/`, créez un fichier `.gitignore` contenant :
 
 ```bash
 data/
@@ -1203,7 +1203,7 @@ data/
 figures/
 ```
 
-Puis :
+Puis :
 
 ```bash
 git status
@@ -1214,13 +1214,13 @@ git commit -m "Ignore les données, les sorties et les fichiers d'environnement"
 ::: {.notes}
 **⏱ 1:35 → 1:36 (1 min)**
 
-On revient dans **son** dossier : `cd ~/atelier-git/entreprises_defense`.
+On revient dans **son** dossier : `cd ~/atelier-git/entreprises_defense`.
 
-Faites taper `git status` **avant** de créer le fichier (on voit `data/`), puis **après** : `data/` a disparu de la liste, `.gitignore` y apparaît. Le brouillon reste : on ne l'a pas ignoré, il reste simplement non suivi (on peut en discuter).
+Faites taper `git status` **avant** de créer le fichier (on voit `data/`), puis **après** : `data/` a disparu de la liste, `.gitignore` y apparaît. Le brouillon reste : on ne l'a pas ignoré, il reste simplement non suivi (on peut en discuter).
 
-Dans VS Code : *Fichier → Nouveau fichier*, enregistrer sous `.gitignore` à la racine du dossier (le point au début compte).
+Dans VS Code : *Fichier → Nouveau fichier*, enregistrer sous `.gitignore` à la racine du dossier (le point au début compte).
 
-Sortie attendue du `git status` après : `.gitignore` et `brouillon_test.R` dans *Untracked files*.
+Sortie attendue du `git status` après : `.gitignore` et `brouillon_test.R` dans *Untracked files*.
 :::
 
 ## À retenir {.retenir}
@@ -1232,7 +1232,7 @@ Pas pour les données.
 ::: {.notes}
 **⏱ 1:36** — Fin du Temps 4.
 
-**Transition :** « Tout ce qu'on a photographié ce soir est sur votre service Onyxia. Et s'il disparaît ? »
+**Transition :** « Tout ce qu'on a photographié ce soir est sur votre service Onyxia. Et s'il disparaît ? »
 :::
 
 # Partager sur GitLab {.intercalaire}
@@ -1240,15 +1240,15 @@ Pas pour les données.
 [Temps 5 · 16 min]{.eyebrow}
 
 ::: {.notes}
-**⏱ 1:36 → 1:52** — Temps 5 : 16 minutes.
+**⏱ 1:36 → 1:52** — Temps 5 : 16 minutes.
 
 Chacun reste dans `~/atelier-git/entreprises_defense`.
 :::
 
-## Et si le service disparaît ? {.probleme}
+## Et si le service disparaît ? {.probleme}
 
 ::: {.grand}
-Votre service Onyxia est **éphémère** : si vous le supprimez, `entreprises_defense/` disparaît **avec ses photos**.
+Votre service Onyxia est **éphémère** : si vous le supprimez, `entreprises_defense/` disparaît **avec ses photos**.
 
 Et Franck ne voit rien.
 :::
@@ -1256,7 +1256,7 @@ Et Franck ne voit rien.
 ::: {.notes}
 **⏱ 1:36 → 1:37 (1 min)**
 
-Le dossier `.git/` est dans le service : l'album disparaît avec lui. C'est la réponse complète à la question 3 du quiz.
+Le dossier `.git/` est dans le service : l'album disparaît avec lui. C'est la réponse complète à la question 3 du quiz.
 :::
 
 ## L'exemplaire déposé au bureau {.limage}
@@ -1268,38 +1268,38 @@ L'album reste chez vous. GitLab, c'est **l'exemplaire déposé au bureau**, que 
 ::: {.notes}
 **⏱ 1:37 (30 s)** — L'image.
 
-Limite de l'image, à dire tout de suite : ce n'est pas une photocopie figée. Les deux albums se mettent à jour : on y ajoute des pages avec `push` (et on récupérera celles des autres à l'atelier 2).
+Limite de l'image, à dire tout de suite : ce n'est pas une photocopie figée. Les deux albums se mettent à jour : on y ajoute des pages avec `push` (et on récupérera celles des autres à l'atelier 2).
 :::
 
 ## Git ≠ GitLab {.capot}
 
-![](assets/img/local-gitlab.svg){fig-alt="Le dépôt dans le service Onyxia et sa copie sur GitLab, avec les mêmes commits et les mêmes empreintes ; git push envoie les commits manquants." width="1250"}
+![](assets/img/local-gitlab.svg){fig-alt="Le dépôt dans le service Onyxia et sa copie sur GitLab, avec les mêmes commits et les mêmes empreintes ; git push envoie les commits manquants." width="1250"}
 
 GitLab héberge **une copie du dépôt** — mêmes commits, mêmes empreintes — plus une **interface web**.
 
 ::: {.notes}
 **⏱ 1:37 → 1:39 (2 min)**
 
-Git est l'outil, sur votre poste. GitLab est un service qui héberge des dépôts Git et ajoute une interface web : l'historique, les diffs, le README affiché proprement ; plus tard, les *merge requests* et les *issues* (atelier 2).
+Git est l'outil, sur votre poste. GitLab est un service qui héberge des dépôts Git et ajoute une interface web : l'historique, les diffs, le README affiché proprement ; plus tard, les *merge requests* et les *issues* (atelier 2).
 
-Les empreintes sont les mêmes des deux côtés : c'est la même chaîne de photos.
+Les empreintes sont les mêmes des deux côtés : c'est la même chaîne de photos.
 :::
 
 ## `origin`, `push`, `-u` {.capot}
 
-- **`origin`** : un surnom local pour l'adresse du dépôt distant
+- **`origin`** : un surnom local pour l'adresse du dépôt distant
 - **`git push`** envoie les commits que GitLab n'a pas encore — et ne change **rien** chez vous
 - **`-u`** mémorise le lien entre votre branche `main` et celle de GitLab
-- le **jeton** : votre identité auprès de GitLab, injecté par Onyxia
+- le **jeton** : votre identité auprès de GitLab, injecté par Onyxia
 
 ::: {.notes}
 **⏱ 1:39 → 1:40 (1 min)**
 
-`origin` n'est qu'un nom : on pourrait l'appeler autrement, c'est la convention.
+`origin` n'est qu'un nom : on pourrait l'appeler autrement, c'est la convention.
 
-`-u` ne sert qu'au premier push : ensuite, `git push` tout court suffit, et `git status` dira si vous êtes à jour avec GitLab (`Your branch is up to date with 'origin/main'`).
+`-u` ne sert qu'au premier push : ensuite, `git push` tout court suffit, et `git status` dira si vous êtes à jour avec GitLab (`Your branch is up to date with 'origin/main'`).
 
-Le jeton : Onyxia l'a placé dans votre service depuis *Mon compte* (pré-travail). C'est pour cela que `git push` ne demande pas de mot de passe.
+Le jeton : Onyxia l'a placé dans votre service depuis *Mon compte* (pré-travail). C'est pour cela que `git push` ne demande pas de mot de passe.
 :::
 
 ## Créer le projet dans GitLab {.avous}
@@ -1307,18 +1307,18 @@ Le jeton : Onyxia l'a placé dans votre service depuis *Mon compte* (pré-travai
 Dans [{{< var gitlab_url >}}]({{< var gitlab_url >}}) :
 
 1. **Nouveau projet** → **Créer un projet vide**
-2. Nom : `entreprises-defense-<prénom>` · visibilité **privée** ou **interne**
-3. **Décochez « Initialiser le dépôt avec un README »**
+2. Nom : `entreprises-defense-<prénom>` · visibilité **privée** ou **interne**
+3. **Décochez « Initialiser le dépôt avec un README »**
 4. Copiez le bloc **Push an existing folder**
 
 ::: {.notes}
 **⏱ 1:40 → 1:44 (4 min)**
 
-Fais-le en même temps qu'eux, sur ton écran. Insiste lourdement sur la case README : si elle est cochée, le premier push sera refusé (piège suivant).
+Fais-le en même temps qu'eux, sur ton écran. Insiste lourdement sur la case README : si elle est cochée, le premier push sera refusé (piège suivant).
 
-Selon la version de GitLab, les libellés peuvent être en anglais : *New project → Create blank project*, *Initialize repository with a README*.
+Selon la version de GitLab, les libellés peuvent être en anglais : *New project → Create blank project*, *Initialize repository with a README*.
 
-Le bloc *Push an existing folder* contient d'autres commandes (`git init`, `git switch`…) : on n'en garde que l'URL et les deux commandes de la slide suivante.
+Le bloc *Push an existing folder* contient d'autres commandes (`git init`, `git switch`…) : on n'en garde que l'URL et les deux commandes de la slide suivante.
 :::
 
 ## Envoyer sur GitLab {.avous}
@@ -1342,21 +1342,21 @@ To {{< var gitlab_url >}}/camille/entreprises-defense-camille.git
 branch 'main' set up to track 'origin/main'.
 ```
 
-Rafraîchissez GitLab : l'historique, un commit, son diff, le README.
+Rafraîchissez GitLab : l'historique, un commit, son diff, le README.
 
 ::: {.notes}
 **⏱ 1:44 → 1:50 (6 min)**
 
-L'URL exacte est dans le bloc copié à l'étape précédente : qu'ils la collent plutôt que de la taper.
+L'URL exacte est dans le bloc copié à l'étape précédente : qu'ils la collent plutôt que de la taper.
 
-Puis dans GitLab : rafraîchir la page du projet ; ouvrir *Code → Commits* (ou *Repository → Commits*) ; cliquer sur un commit ; lire son diff ; revenir à l'accueil du projet pour voir le README mis en forme. Faites comparer les empreintes : ce sont les mêmes que dans `git log --oneline`.
+Puis dans GitLab : rafraîchir la page du projet ; ouvrir *Code → Commits* (ou *Repository → Commits*) ; cliquer sur un commit ; lire son diff ; revenir à l'accueil du projet pour voir le README mis en forme. Faites comparer les empreintes : ce sont les mêmes que dans `git log --oneline`.
 
 Les nombres d'objets varient selon ce que chacun a commité.
 :::
 
 ## Trois pièges {.piege}
 
-- **Projet créé avec un README** → premier push refusé : on **recrée le projet**, sans README
+- **Projet créé avec un README** → premier push refusé : on **recrée le projet**, sans README
 - **`master` au lieu de `main`** → réglé par le kit
 - **Jeton absent ou expiré** → le push demande un mot de passe ou échoue
 
@@ -1368,9 +1368,9 @@ error: failed to push some refs to '{{< var gitlab_url >}}/camille/entreprises-d
 ::: {.notes}
 **⏱ 1:50 → 1:51 (1 min)**
 
-1. **README initialisé** : GitLab a un commit que vous n'avez pas, Git refuse (sortie ci-dessus, extrait). On ne dépanne pas ce soir (cela demande `git pull`, atelier 2) : on supprime le projet GitLab, on le recrée sans README avec le même nom, et on relance `git push -u origin main` : l'adresse n'a pas changé.
-2. **`master`/`main`** : le kit a posé `init.defaultBranch=main`. Si quelqu'un a lancé `git init` avant le kit, sa branche s'appelle `master` : `git push -u origin master` fonctionne aussi.
-3. **Jeton** : vérifier *Mon compte* sur Onyxia, recréer le service. **Plan B** : tu montres à l'écran ton projet `entreprises_defense_marie` déjà poussé sur le GitLab interne (préparé à J-7), et la personne suit sur ton écran.
+1. **README initialisé** : GitLab a un commit que vous n'avez pas, Git refuse (sortie ci-dessus, extrait). On ne dépanne pas ce soir (cela demande `git pull`, atelier 2) : on supprime le projet GitLab, on le recrée sans README avec le même nom, et on relance `git push -u origin main` : l'adresse n'a pas changé.
+2. **`master`/`main`** : le kit a posé `init.defaultBranch=main`. Si quelqu'un a lancé `git init` avant le kit, sa branche s'appelle `master` : `git push -u origin master` fonctionne aussi.
+3. **Jeton** : vérifier *Mon compte* sur Onyxia, recréer le service. **Plan B** : tu montres à l'écran ton projet `entreprises_defense_marie` déjà poussé sur le GitLab interne (préparé à J-7), et la personne suit sur ton écran.
 :::
 
 ## À retenir {.retenir}
@@ -1382,15 +1382,15 @@ error: failed to push some refs to '{{< var gitlab_url >}}/camille/entreprises-d
 ::: {.notes}
 **⏱ 1:51 → 1:52** — Fin du Temps 5.
 
-**Transition :** « Récapitulons. Treize lignes. »
+**Transition :** « Récapitulons. Treize lignes. »
 :::
 
-# Et maintenant ? {.intercalaire}
+# Et maintenant ? {.intercalaire}
 
 [Clôture · 8 min]{.eyebrow}
 
 ::: {.notes}
-**⏱ 1:52 → 2:00** — Clôture : 8 minutes.
+**⏱ 1:52 → 2:00** — Clôture : 8 minutes.
 :::
 
 ## Problème → commande {.memo-slide}
@@ -1400,12 +1400,12 @@ error: failed to push some refs to '{{< var gitlab_url >}}/camille/entreprises-d
 ::: {.notes}
 **⏱ 1:52 → 1:54 (2 min)**
 
-Le mémo imprimé (`materiel/memo.pdf`) est distribué maintenant. Parcours le tableau de haut en bas : chaque ligne est un moment de la soirée. Le même tableau est en ligne (`memo.qmd`).
+Le mémo imprimé (`materiel/memo.pdf`) est distribué maintenant. Parcours le tableau de haut en bas : chaque ligne est un moment de la soirée. Le même tableau est en ligne (`memo.qmd`).
 :::
 
 ## Ticket de sortie
 
-Sur un papier, trois lignes :
+Sur un papier, trois lignes :
 
 1. Une chose que je **sais faire**
 2. Une chose **encore floue**
@@ -1414,17 +1414,17 @@ Sur un papier, trois lignes :
 ::: {.notes}
 **⏱ 1:54 → 1:56 (2 min)** — Papier, anonyme, ramassé à la sortie.
 
-Tu t'en sers pour ouvrir l'atelier 2 (reprendre les « flous » les plus fréquents).
+Tu t'en sers pour ouvrir l'atelier 2 (reprendre les « flous » les plus fréquents).
 :::
 
 ## Le défi de la semaine
 
-Mettez **une vraie étude en cours** sous Git :
+Mettez **une vraie étude en cours** sous Git :
 
 **trois commits**, **un push**.
 
 ::: {.fragment}
-L'atelier 2 s'ouvrira sur : **« Franck reprend votre étude. »**
+L'atelier 2 s'ouvrira sur : **« Franck reprend votre étude. »**
 :::
 
 ::: {.notes}
@@ -1432,17 +1432,17 @@ L'atelier 2 s'ouvrira sur : **« Franck reprend votre étude. »**
 
 Une vraie étude, pas l'exercice. Trois commits avec de vrais messages, un push sur le GitLab interne. Propose-leur de t'envoyer le lien du projet.
 
-L'atelier 2 portera sur le travail à plusieurs : cloner, tirer, se synchroniser.
+L'atelier 2 portera sur le travail à plusieurs : cloner, tirer, se synchroniser.
 :::
 
 ## Merci
 
-- Le site : [{{< var site_url >}}]({{< var site_url >}})
-- Le mémo : [{{< var site_url >}}memo.html]({{< var site_url >}}memo.html)
-- Le bac à sable : [{{< var site_url >}}bac-a-sable.html]({{< var site_url >}}bac-a-sable.html)
+- Le site : [{{< var site_url >}}]({{< var site_url >}})
+- Le mémo : [{{< var site_url >}}memo.html]({{< var site_url >}}memo.html)
+- Le bac à sable : [{{< var site_url >}}bac-a-sable.html]({{< var site_url >}}bac-a-sable.html)
 
 ::: {.notes}
 **⏱ 1:58 → 2:00** — Merci.
 
-Le bac à sable fonctionne dans le navigateur, sans Onyxia : pratique pour s'entraîner entre deux ateliers.
+Le bac à sable fonctionne dans le navigateur, sans Onyxia : pratique pour s'entraîner entre deux ateliers.
 :::

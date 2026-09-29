@@ -1,13 +1,13 @@
 | Mon problème | La commande |
 |---|---|
 | Je veux que Git suive ce dossier | `git init` |
-| Où en suis-je ? | `git status` |
-| Qu'ai-je changé ? (pas encore choisi / déjà choisi) | `git diff` / `git diff --staged` |
+| Où en suis-je ? | `git status` |
+| Qu'ai-je changé ? (pas encore choisi / déjà choisi) | `git diff` / `git diff --staged` |
 | Je choisis ce qui entre dans la prochaine photo | `git add <fichier>` |
 | J'ai choisi un fichier par erreur | `git restore --staged <fichier>` |
 | J'enregistre la photo, avec le pourquoi | `git commit -m "…"` |
 | Je feuillette l'album | `git log --oneline` |
-| Qu'a changé ce commit ? Qui, quand, pourquoi ? | `git show <empreinte>` |
+| Qu'a changé ce commit ? Qui, quand, pourquoi ? | `git show <empreinte>` |
 | Je regrette une modification pas encore commitée | `git restore <fichier>` |
 | Je veux la version d'un fichier à une date donnée | `git restore --source=<empreinte> <fichier>` |
 | Certains fichiers n'ont rien à faire dans le dépôt | `.gitignore` |
