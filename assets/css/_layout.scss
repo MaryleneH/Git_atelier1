@@ -1,0 +1,416 @@
+// ============================================================
+// Layout — navbar, sidebar-parcours, en-têtes de page, rythme
+// ============================================================
+
+// --- Navbar --------------------------------------------------
+.navbar {
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--gsd-line);
+  box-shadow: none;
+  padding-top: 0.55rem;
+  padding-bottom: 0.55rem;
+
+  .navbar-logo {
+    max-height: 34px;
+    width: auto;
+  }
+
+  .nav-link {
+    font-weight: 600;
+    font-size: 0.92rem;
+    color: var(--gsd-ink-soft);
+
+    &:hover, &.active {
+      color: var(--gsd-teal-deep);
+    }
+  }
+}
+
+// Barre de progression de lecture, injectée par progress.js
+.gsd-readbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0;
+  background: linear-gradient(90deg, var(--gsd-teal), var(--gsd-amber-bright));
+  z-index: 2000;
+  transition: width 120ms linear;
+}
+
+// --- Sidebar : le parcours du jour ---------------------------
+#quarto-sidebar {
+  .sidebar-item .sidebar-item-container {
+    border-radius: var(--gsd-radius-sm);
+    padding: 0.1rem 0.3rem;
+  }
+
+  .sidebar-item a {
+    font-size: 0.9rem;
+    color: var(--gsd-ink-soft);
+    padding-block: 0.32rem;
+
+    &.active {
+      color: var(--gsd-teal-deep);
+      font-weight: 700;
+    }
+  }
+
+  .sidebar-item a:hover {
+    color: var(--gsd-teal-deep);
+  }
+
+  .sidebar-section .sidebar-item-text {
+    font-size: 0.9rem;
+  }
+}
+
+// Numéros du parcours : pastilles rondes ajoutées par progress.js
+.gsd-step-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+  margin-right: 0.55rem;
+  border-radius: 50%;
+  font-family: var(--gsd-font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--gsd-ink-faint);
+  border: 1.5px solid var(--gsd-line);
+  background: var(--gsd-surface);
+  flex: none;
+  transition: all var(--gsd-dur-fast) var(--gsd-ease);
+}
+
+.sidebar-item a.active .gsd-step-dot {
+  background: var(--gsd-teal);
+  border-color: var(--gsd-teal);
+  color: #fff;
+}
+
+.sidebar-item a.gsd-step-done .gsd-step-dot {
+  border-color: var(--gsd-teal);
+  color: var(--gsd-teal);
+}
+
+// Progression du jour affichée en tête de sidebar
+.gsd-day-progress {
+  margin: 0.25rem 0.5rem 1rem;
+
+  .gsd-day-progress__label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gsd-ink-faint);
+    margin-bottom: 0.4rem;
+  }
+
+  .gsd-day-progress__track {
+    height: 5px;
+    border-radius: 999px;
+    background: var(--gsd-line);
+    overflow: hidden;
+  }
+
+  .gsd-day-progress__fill {
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--gsd-teal), var(--gsd-amber-bright));
+    transition: width var(--gsd-dur-slow) var(--gsd-ease);
+  }
+}
+
+// --- En-tête de page de cours --------------------------------
+.page-hero {
+  position: relative;
+  margin: var(--gsd-space-4) 0 var(--gsd-space-5);
+  padding-bottom: var(--gsd-space-4);
+  border-bottom: 1px solid var(--gsd-line);
+
+  .page-hero__num {
+    font-family: var(--gsd-font-display);
+    font-size: clamp(3.2rem, 8vw, 5.2rem);
+    font-weight: 700;
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--gsd-teal);
+    opacity: 0.55;
+    display: block;
+    margin-bottom: 0.4rem;
+    user-select: none;
+  }
+
+  h1 {
+    margin-top: 0;
+    margin-bottom: var(--gsd-space-3);
+  }
+}
+
+// Quarto range le H1 dans un header .quarto-title-block :
+// on masque son bloc par défaut sur les pages qui ont un .page-hero maison.
+.gsd-course-page #title-block-header {
+  display: none;
+}
+
+// --- Rythme des sections -------------------------------------
+main.content {
+  padding-bottom: var(--gsd-space-6);
+}
+
+// Séparateur éditorial : trois pastilles de commit
+hr {
+  border: none;
+  height: auto;
+  margin: var(--gsd-space-6) auto;
+  text-align: center;
+  opacity: 1;
+  background: none;
+
+  &::after {
+    content: "● ● ●";
+    display: block;
+    letter-spacing: 1.2em;
+    padding-left: 1.2em; // compense l'espacement du dernier caractère
+    font-size: 0.55rem;
+    color: var(--gsd-teal);
+    opacity: 0.6;
+  }
+}
+
+// --- Navigation bas de page ----------------------------------
+.page-navigation {
+  margin-top: var(--gsd-space-6);
+  border-top: 1px solid var(--gsd-line);
+  padding-top: var(--gsd-space-3);
+
+  .nav-page {
+    a {
+      text-decoration: none;
+      border-radius: var(--gsd-radius);
+      padding: 0.7rem 0.9rem;
+      transition: background var(--gsd-dur-fast) var(--gsd-ease);
+
+      &:hover {
+        background: var(--gsd-paper-soft);
+      }
+    }
+
+    .nav-page-text {
+      font-weight: 600;
+      color: var(--gsd-teal-deep);
+      font-size: 0.95rem;
+    }
+  }
+}
+
+// --- Boutons -------------------------------------------------
+.btn-hero,
+.btn-hero:visited {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--gsd-teal);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.02rem;
+  padding: 0.85rem 1.7rem;
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: var(--gsd-shadow);
+  transition: transform var(--gsd-dur-fast) var(--gsd-ease),
+              box-shadow var(--gsd-dur-fast) var(--gsd-ease),
+              background var(--gsd-dur-fast) var(--gsd-ease);
+
+  &:hover, &:focus-visible {
+    background: var(--gsd-teal-deep);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: var(--gsd-shadow-lg);
+  }
+
+  &::after {
+    content: "→";
+    font-family: var(--gsd-font-body);
+    transition: transform var(--gsd-dur-fast) var(--gsd-ease);
+  }
+
+  &:hover::after {
+    transform: translateX(4px);
+  }
+}
+
+.btn-ghost,
+.btn-ghost:visited {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--gsd-teal-deep);
+  font-weight: 650;
+  padding: 0.85rem 1.4rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--gsd-line);
+  text-decoration: none;
+  transition: border-color var(--gsd-dur-fast) var(--gsd-ease),
+              background var(--gsd-dur-fast) var(--gsd-ease);
+
+  &:hover, &:focus-visible {
+    border-color: var(--gsd-teal);
+    background: var(--gsd-teal-soft);
+    color: var(--gsd-teal-deep);
+  }
+}
+
+// CTA de fin de page vers la séquence suivante
+.next-cta {
+  margin-top: var(--gsd-space-6);
+  padding: var(--gsd-space-4);
+  border-radius: var(--gsd-radius-lg);
+  background: linear-gradient(135deg, var(--gsd-teal-soft), #f2ede2);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gsd-space-3);
+
+  p {
+    margin: 0;
+    font-family: var(--gsd-font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    max-width: 30ch;
+  }
+}
+
+// --- Débordements maîtrisés ----------------------------------
+// Les blocs de code défilent horizontalement au lieu d'élargir
+// la page ; les tableaux deviennent défilants sur petit écran.
+pre, div.sourceCode {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+// Garde-fou : la page ne défile jamais horizontalement
+// (la grille Quarto laisse parfois dépasser la TOC de quelques
+// pixels sur tablette). `clip` ne crée pas de conteneur de
+// défilement, le positionnement sticky reste fonctionnel.
+body {
+  overflow-x: clip;
+}
+
+@media (max-width: 767px) {
+  .content table {
+    display: block;
+    overflow-x: auto;
+  }
+}
+
+// --- Équilibre horizontal sur desktop -------------------------
+// La grille Quarto (layout « floating ») répartit l'espace libre
+// du viewport 50/50 entre deux colonnes 5fr, à gauche ET à droite
+// du bloc sidebar+contenu : le contenu paraît repoussé vers la
+// droite (65 px de vide à gauche à 1366 px, 342 px à 1920 px).
+// Ici, le mou gauche est borné (≈1 rem) et l'espace restant part
+// à droite : la page s'ancre à gauche comme un site documentaire,
+// sans toucher à la largeur de lecture (max 775 px) ni à la
+// gouttière sidebar↔contenu (2,5 rem).
+// NB : ces gabarits recopient ceux que Quarto génère à partir de
+// grid: {sidebar-width: 290px, body-width: 860px, margin-width:
+// 240px, gutter-width: 2.5rem} dans _quarto.yml — à resynchroniser
+// si ces valeurs changent.
+@media (min-width: 1200px) {
+  // Pages avec table des matières (cours, exercices, mémo)
+  body.floating .page-columns {
+    grid-template-columns:
+      [screen-start] 1.5rem
+      [screen-start-inset] minmax(0, 1rem)
+      [page-start] minmax(29px, 58px)
+      [page-start-inset] minmax(58px, 174px)
+      [body-start-outset] minmax(29px, 58px)
+      [body-start] 2.5rem
+      [body-content-start] minmax(500px, calc(860px - 5rem))
+      [body-content-end] 2.5rem
+      [body-end] minmax(24px, 48px)
+      [body-end-outset] minmax(48px, 144px)
+      [page-end-inset] minmax(24px, 48px)
+      [page-end] 5fr
+      [screen-end-inset] 1.5rem
+      [screen-end];
+  }
+
+  // Pages sans table des matières (accueil, mission) : sans TOC à
+  // caser, la colonne de lecture peut être plus généreuse que sur
+  // les pages de cours. --gsd-fullwidth pilote cette largeur (la
+  // colonne vaut la variable moins 5rem de gouttières) — le ruban
+  // droit de l'accueil (_ribbon.scss) est calé sur ces valeurs.
+  :root {
+    --gsd-fullwidth: 895px; // colonne de 810px : fin à 1185px
+  }
+
+  body.floating.fullcontent .page-columns {
+    grid-template-columns:
+      [screen-start] 1.5rem
+      [screen-start-inset] minmax(0, 1rem)
+      [page-start] 58px
+      [page-start-inset] minmax(58px, 174px)
+      [body-start-outset] 58px
+      [body-start] 2.5rem
+      [body-content-start] minmax(500px, calc(var(--gsd-fullwidth) - 5rem))
+      [body-content-end] 2.5rem
+      [body-end body-end-outset page-end-inset page-end] 5fr
+      [screen-end-inset] 1.5rem
+      [screen-end];
+  }
+}
+
+@media (min-width: 1512px) {
+  :root {
+    --gsd-fullwidth: 985px; // colonne de 900px : fin à 1275px
+  }
+}
+
+// --- Focus visible partout -----------------------------------
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+input:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--gsd-amber-bright);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+// --- Footer --------------------------------------------------
+.nav-footer {
+  border-top: 1px solid var(--gsd-line);
+  font-size: 0.85rem;
+  color: var(--gsd-ink-faint);
+  padding-block: 1.4rem;
+}
+
+// --- Responsive ----------------------------------------------
+@media (max-width: 991px) {
+  .page-hero .page-hero__num {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 576px) {
+  :root {
+    --gsd-space-5: 2.4rem;
+    --gsd-space-6: 3.4rem;
+  }
+
+  .lede {
+    font-size: 1.1rem;
+  }
+
+  .next-cta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

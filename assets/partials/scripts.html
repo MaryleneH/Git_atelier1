@@ -1,0 +1,21 @@
+<script>
+  // Charge les scripts du site quelle que soit la profondeur de la page.
+  // La racine du site est déduite du chemin vers site_libs, toujours présent
+  // dans une page Quarto ; on évite ainsi les chemins absolus qui casseraient
+  // un déploiement en sous-répertoire (GitHub Pages) ou en local (file://).
+  (function () {
+    document.documentElement.classList.add("gsd-js");
+    var ref = document.querySelector('script[src*="site_libs"], link[href*="site_libs"]');
+    var root = "./";
+    if (ref) {
+      var url = ref.getAttribute("src") || ref.getAttribute("href");
+      root = url.split("site_libs")[0] || "./";
+    }
+    ["animations.js", "terminal.js", "progress.js", "interactions.js", "home-graph.js", "films.js"].forEach(function (f) {
+      var s = document.createElement("script");
+      s.src = root + "assets/js/" + f;
+      s.defer = true;
+      document.body.appendChild(s);
+    });
+  })();
+</script>

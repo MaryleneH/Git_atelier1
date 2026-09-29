@@ -1,0 +1,705 @@
+// ============================================================
+// Widgets interactifs — accueil, staging, push, mission
+// Chaque widget reste lisible sans JavaScript : le JS enrichit,
+// il ne conditionne jamais la compréhension.
+// ============================================================
+
+// --- Accueil : le chaos des versions --------------------------
+.home-hero {
+  text-align: center;
+  padding: var(--gsd-space-6) 0 var(--gsd-space-5);
+
+  .home-hero__eyebrow {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gsd-teal-deep);
+    background: var(--gsd-teal-soft);
+    border-radius: 999px;
+    padding: 0.4rem 1.1rem;
+    margin-bottom: var(--gsd-space-3);
+  }
+
+  h1 {
+    font-size: clamp(2.6rem, 6vw, 4.4rem);
+    font-weight: 700;
+    line-height: 1.04;
+    margin: 0 auto var(--gsd-space-3);
+    max-width: 16ch;
+
+    em {
+      font-style: italic;
+      color: var(--gsd-teal);
+    }
+  }
+
+  .home-hero__lede {
+    font-size: 1.25rem;
+    color: var(--gsd-ink-soft);
+    max-width: 44ch;
+    margin: 0 auto var(--gsd-space-4);
+    text-wrap: balance;
+  }
+
+  .home-hero__actions {
+    display: flex;
+    gap: var(--gsd-space-2);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+// Sur desktop, la colonne de l'accueil s'élargit (--gsd-fullwidth,
+// voir _layout.scss) : le héro et la scène en profitent pleinement,
+// avec une hiérarchie de largeurs — titre très large, accroche
+// large mais lisible, paragraphes courants toujours bornés à 68ch.
+@media (min-width: 1200px) {
+  .home-hero h1 {
+    max-width: none;
+  }
+
+  .home-hero .home-hero__lede {
+    max-width: 52ch;
+    font-size: 1.3rem;
+  }
+
+  .chaos-scene {
+    max-width: 780px;
+  }
+}
+
+// La scène : les fichiers en désordre deviennent un historique
+.chaos-scene {
+  max-width: 640px;
+  margin: var(--gsd-space-5) auto;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: var(--gsd-space-3);
+  align-items: center;
+
+  .chaos-files {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-end;
+
+    .file-chip {
+      transition: opacity var(--gsd-dur-slow) var(--gsd-ease),
+                  transform var(--gsd-dur-slow) var(--gsd-ease);
+    }
+
+    .file-chip:nth-child(2) { transform: rotate(-1.2deg); }
+    .file-chip:nth-child(3) { transform: rotate(0.8deg); }
+    .file-chip:nth-child(4) { transform: rotate(-0.6deg); }
+  }
+
+  .chaos-arrow {
+    font-size: 1.6rem;
+    color: var(--gsd-teal);
+    text-align: center;
+
+    .chaos-arrow__label {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gsd-ink-faint);
+      margin-top: 0.2rem;
+    }
+  }
+
+  .chaos-result {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    align-items: flex-start;
+
+    .file-chip {
+      border-color: var(--gsd-teal);
+      box-shadow: var(--gsd-shadow);
+    }
+
+    .chaos-history {
+      display: flex;
+      flex-direction: column;
+      gap: 0.28rem;
+      padding-left: 0.4rem;
+
+      span {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: var(--gsd-font-mono);
+        font-size: 0.72rem;
+        color: var(--gsd-ink-faint);
+
+        &::before {
+          content: "";
+          inline-size: 0.6rem;
+          block-size: 0.6rem;
+          border-radius: 50%;
+          background: var(--gsd-surface);
+          border: 2.5px solid var(--gsd-teal);
+          flex: none;
+        }
+      }
+    }
+  }
+
+  // Version animée (classe posée par animations.js au scroll)
+  &.is-visible .chaos-files .file-chip:not(:first-child) {
+    opacity: 0.28;
+    transform: translateX(14px) scale(0.96);
+  }
+
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
+    justify-items: center;
+
+    .chaos-files { align-items: center; }
+    .chaos-result { align-items: center; }
+    .chaos-arrow { transform: rotate(90deg); }
+    .chaos-arrow .chaos-arrow__label { transform: rotate(-90deg); display: none; }
+  }
+}
+
+// Le sommaire de la journée sur l'accueil — liste éditoriale
+.day-outline {
+  margin: var(--gsd-space-5) 0;
+  border-top: 1px solid var(--gsd-line);
+
+  .day-outline__item {
+    display: grid;
+    grid-template-columns: 4.5rem 1fr auto;
+    gap: var(--gsd-space-3);
+    align-items: baseline;
+    padding: 1.1rem 0.4rem;
+    border-bottom: 1px solid var(--gsd-line);
+    text-decoration: none;
+    color: inherit;
+    transition: background var(--gsd-dur-fast) var(--gsd-ease),
+                padding-left var(--gsd-dur-fast) var(--gsd-ease);
+
+    &:hover {
+      background: var(--gsd-surface);
+      padding-left: 0.9rem;
+
+      .day-outline__go { opacity: 1; transform: none; }
+      .day-outline__num { color: var(--gsd-teal); opacity: 1; }
+    }
+
+    .day-outline__num {
+      font-family: var(--gsd-font-display);
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--gsd-ink-faint);
+      opacity: 0.7;
+      transition: color var(--gsd-dur-fast) var(--gsd-ease);
+    }
+
+    .day-outline__title {
+      font-family: var(--gsd-font-display);
+      font-size: 1.28rem;
+      font-weight: 600;
+      display: block;
+    }
+
+    .day-outline__desc {
+      display: block;
+      font-size: 0.92rem;
+      color: var(--gsd-ink-soft);
+      margin-top: 0.15rem;
+    }
+
+    .day-outline__go {
+      color: var(--gsd-teal);
+      font-size: 1.2rem;
+      opacity: 0;
+      transform: translateX(-6px);
+      transition: all var(--gsd-dur-fast) var(--gsd-ease);
+    }
+  }
+
+  @media (max-width: 576px) {
+    .day-outline__item {
+      grid-template-columns: 2.6rem 1fr;
+
+      .day-outline__num { font-size: 1.2rem; }
+      .day-outline__go { display: none; }
+    }
+  }
+}
+
+// --- Widget staging (séquence 02) ------------------------------
+.staging-widget {
+  margin: var(--gsd-space-4) 0;
+  border-radius: var(--gsd-radius-lg);
+  border: 1px solid var(--gsd-line);
+  background: var(--gsd-surface);
+  padding: var(--gsd-space-4);
+
+  .sw-zones {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gsd-space-3);
+  }
+
+  .sw-zone {
+    border-radius: var(--gsd-radius);
+    padding: 1.1rem 1.2rem;
+    min-height: 9.5rem;
+
+    .sw-zone__label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      margin-bottom: 0.7rem;
+      display: block;
+    }
+  }
+
+  .sw-wd {
+    background: var(--gsd-paper-soft);
+    .sw-zone__label { color: var(--gsd-ink-faint); }
+  }
+
+  .sw-stage {
+    background: var(--gsd-teal-soft);
+    border: 1.5px dashed var(--gsd-teal);
+    .sw-zone__label { color: var(--gsd-teal-deep); }
+
+    .sw-stage__empty {
+      font-size: 0.88rem;
+      color: var(--gsd-ink-faint);
+      font-style: italic;
+    }
+  }
+
+  .sw-file {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    width: 100%;
+    text-align: left;
+    appearance: none;
+    border: 1px solid var(--gsd-line);
+    background: var(--gsd-surface);
+    border-radius: 0.55rem;
+    padding: 0.5rem 0.8rem;
+    margin-bottom: 0.5rem;
+    font-family: var(--gsd-font-mono);
+    font-size: 0.84rem;
+    cursor: pointer;
+    box-shadow: var(--gsd-shadow-sm);
+    transition: transform var(--gsd-dur-fast) var(--gsd-ease),
+                border-color var(--gsd-dur-fast) var(--gsd-ease),
+                box-shadow var(--gsd-dur-fast) var(--gsd-ease);
+
+    .sw-file__state {
+      margin-left: auto;
+      font-family: var(--gsd-font-body);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gsd-amber);
+    }
+
+    &:hover {
+      transform: translateY(-1px);
+      border-color: var(--gsd-teal);
+      box-shadow: var(--gsd-shadow);
+    }
+
+    &.is-staged {
+      border-color: var(--gsd-teal);
+      background: #f2faf8;
+
+      .sw-file__state { color: var(--gsd-teal-deep); }
+    }
+  }
+
+  .sw-actions {
+    margin-top: var(--gsd-space-3);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--gsd-space-2);
+  }
+
+  .sw-commit-preview {
+    margin-top: var(--gsd-space-3);
+    border-radius: var(--gsd-radius);
+    background: var(--gsd-night);
+    color: var(--gsd-night-muted);
+    font-family: var(--gsd-font-mono);
+    font-size: 0.84rem;
+    padding: 1rem 1.2rem;
+
+    .sw-commit-preview__title {
+      color: var(--gsd-term-green);
+      font-weight: 600;
+      display: block;
+      margin-bottom: 0.4rem;
+      font-family: var(--gsd-font-body);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 1.1rem;
+    }
+
+    .sw-empty { font-style: italic; }
+  }
+
+  @media (max-width: 700px) {
+    padding: var(--gsd-space-3);
+    .sw-zones { grid-template-columns: 1fr; }
+  }
+}
+
+// Bouton d'action générique des widgets
+.gsd-btn {
+  appearance: none;
+  border: none;
+  border-radius: 999px;
+  background: var(--gsd-teal);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  font-family: var(--gsd-font-body);
+  padding: 0.6rem 1.3rem;
+  cursor: pointer;
+  transition: background var(--gsd-dur-fast) var(--gsd-ease),
+              transform var(--gsd-dur-fast) var(--gsd-ease);
+
+  &:hover { background: var(--gsd-teal-deep); transform: translateY(-1px); }
+
+  // État désactivé : « Jalon posé ✓ » ou « git push » en attente restent
+  // du contenu à lire — fond clair + encre foncée (≈7:1) plutôt qu'un
+  // blanc sur gris pâle sous le seuil AA.
+  &:disabled {
+    background: var(--gsd-paper-soft);
+    color: var(--gsd-ink-soft);
+    box-shadow: inset 0 0 0 1.5px var(--gsd-line);
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  &.gsd-btn--ghost {
+    background: transparent;
+    color: var(--gsd-teal-deep);
+    border: 1.5px solid var(--gsd-line);
+
+    &:hover { border-color: var(--gsd-teal); background: var(--gsd-teal-soft); }
+  }
+
+  // Le fragment de commande dans le bouton. Le :not(.sourceCode) n'est
+  // pas décoratif : Quarto pose `p code:not(.sourceCode) { background:
+  // #f4f1ea }` (spécificité 0-1-2) qui battait `.gsd-btn code` (0-1-1) —
+  // résultat : texte blanc hérité sur pastille crème, illisible. (0-2-1)
+  // reprend la main. Voile sombre plutôt que clair : le blanc y garde
+  // un contraste ≥ 4.5:1 (AA) au lieu de ~3.5:1.
+  code:not(.sourceCode) {
+    background: rgba(0, 0, 0, 0.22);
+    color: inherit;
+    border: none;
+    font-size: 0.85em;
+    font-weight: 600;
+    padding: 0.1em 0.45em;
+  }
+
+  // Sur fond clair désactivé, le même voile serait trop dense :
+  // version légère pour garder l'encre douce lisible (~5.8:1).
+  &:disabled code:not(.sourceCode) {
+    background: rgba(0, 0, 0, 0.08);
+  }
+}
+
+// --- Widget commit ≠ push (séquence 07) -------------------------
+.push-widget {
+  margin: var(--gsd-space-4) 0;
+  border-radius: var(--gsd-radius-lg);
+  border: 1px solid var(--gsd-line);
+  background: var(--gsd-surface);
+  padding: var(--gsd-space-4);
+
+  .pw-panels {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: var(--gsd-space-3);
+    align-items: stretch;
+  }
+
+  .pw-panel {
+    border-radius: var(--gsd-radius);
+    padding: 1.1rem 1.2rem;
+    min-height: 11rem;
+
+    .pw-panel__label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+  }
+
+  .pw-local {
+    background: var(--gsd-paper-soft);
+    .pw-panel__label { color: var(--gsd-teal-deep); }
+  }
+
+  .pw-remote {
+    background: var(--gsd-violet-soft);
+    .pw-panel__label { color: var(--gsd-violet); }
+  }
+
+  .pw-net {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    color: var(--gsd-ink-faint);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    padding: 0 0.2rem;
+
+    &::before, &::after {
+      content: "";
+      flex: 1;
+      width: 1.5px;
+      background: var(--gsd-line);
+    }
+  }
+
+  .pw-commit {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-family: var(--gsd-font-mono);
+    font-size: 0.78rem;
+    color: var(--gsd-ink-soft);
+    background: var(--gsd-surface);
+    border: 1px solid var(--gsd-line);
+    border-radius: 0.55rem;
+    padding: 0.42rem 0.7rem;
+    margin-bottom: 0.45rem;
+    box-shadow: var(--gsd-shadow-sm);
+
+    &::before {
+      content: "";
+      inline-size: 0.65rem;
+      block-size: 0.65rem;
+      border-radius: 50%;
+      background: var(--gsd-surface);
+      border: 2.5px solid var(--gsd-teal);
+      flex: none;
+    }
+
+    &.pw-commit--new {
+      border-color: var(--gsd-amber-bright);
+      &::before { border-color: var(--gsd-amber-bright); }
+    }
+
+    &.pw-flying {
+      animation: pw-fly var(--gsd-dur-slow) var(--gsd-ease) both;
+    }
+  }
+
+  .pw-empty {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--gsd-ink-faint);
+  }
+
+  .pw-actions {
+    margin-top: var(--gsd-space-3);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gsd-space-2);
+    align-items: center;
+  }
+
+  .pw-hint {
+    font-size: 0.88rem;
+    color: var(--gsd-ink-soft);
+    margin: var(--gsd-space-2) 0 0;
+    min-height: 1.4em;
+
+    strong { color: var(--gsd-violet); }
+  }
+
+  @media (max-width: 700px) {
+    padding: var(--gsd-space-3);
+
+    .pw-panels { grid-template-columns: 1fr; }
+
+    .pw-net {
+      writing-mode: horizontal-tb;
+      flex-direction: row;
+      padding: 0.2rem 0;
+
+      &::before, &::after {
+        height: 1.5px;
+        width: auto;
+        flex: 1;
+      }
+    }
+  }
+}
+
+@keyframes pw-fly {
+  0% { opacity: 0; transform: translateX(-30px) scale(0.9); }
+  100% { opacity: 1; transform: none; }
+}
+
+// --- Quiz à choix (checkpoints interactifs) ---------------------
+.quiz {
+  margin: var(--gsd-space-2) 0 0;
+
+  .quiz-q {
+    font-weight: 650;
+    margin-bottom: 0.7rem;
+  }
+
+  .quiz-opt {
+    display: block;
+    width: 100%;
+    text-align: left;
+    appearance: none;
+    background: var(--gsd-surface);
+    border: 1.5px solid var(--gsd-line);
+    border-radius: 0.6rem;
+    padding: 0.6rem 0.95rem;
+    margin-bottom: 0.45rem;
+    font-size: 0.95rem;
+    font-family: var(--gsd-font-body);
+    cursor: pointer;
+    transition: border-color var(--gsd-dur-fast) var(--gsd-ease),
+                background var(--gsd-dur-fast) var(--gsd-ease);
+
+    code { white-space: nowrap; }
+
+    &:hover { border-color: var(--gsd-violet); }
+
+    &.is-right {
+      border-color: var(--gsd-teal);
+      background: var(--gsd-teal-soft);
+
+      &::after {
+        content: " ✓ exact";
+        font-weight: 700;
+        color: var(--gsd-teal-deep);
+      }
+    }
+
+    &.is-wrong {
+      border-color: var(--gsd-coral);
+      background: var(--gsd-coral-soft);
+
+      &::after {
+        content: " ✗";
+        font-weight: 700;
+        color: var(--gsd-coral);
+      }
+    }
+  }
+
+  .quiz-explain {
+    margin: 0.6rem 0 0;
+    font-size: 0.92rem;
+    color: var(--gsd-ink-soft);
+    border-left: 3px solid var(--gsd-violet);
+    padding-left: 0.8rem;
+
+    &[hidden] { display: none; }
+  }
+}
+
+// --- Page Mission (séquence 09) ---------------------------------
+.mission-banner {
+  margin: var(--gsd-space-4) 0 var(--gsd-space-5);
+  border-radius: var(--gsd-radius-lg);
+  background:
+    radial-gradient(120% 160% at 85% -20%, rgba(91, 74, 138, 0.35), transparent 55%),
+    radial-gradient(100% 140% at 0% 110%, rgba(15, 118, 110, 0.28), transparent 50%),
+    var(--gsd-night);
+  color: var(--gsd-night-ink);
+  padding: clamp(1.8rem, 4vw, 3.2rem);
+  box-shadow: var(--gsd-shadow-lg);
+
+  .mission-banner__kicker {
+    font-family: var(--gsd-font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gsd-term-yellow);
+    margin-bottom: var(--gsd-space-2);
+    display: block;
+  }
+
+  h1, .mission-banner__title {
+    font-family: var(--gsd-font-display);
+    color: #fff;
+    font-size: clamp(1.9rem, 4.4vw, 3rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0 0 var(--gsd-space-2);
+  }
+
+  p {
+    color: var(--gsd-night-muted);
+    max-width: 52ch;
+    margin: 0;
+    font-size: 1.05rem;
+  }
+}
+
+// Étapes de mission cochables
+.mission-steps {
+  counter-reset: mission;
+  list-style: none;
+  padding: 0;
+  margin: var(--gsd-space-4) 0;
+
+  > li {
+    counter-increment: mission;
+    position: relative;
+    border: 1px solid var(--gsd-line);
+    border-radius: var(--gsd-radius);
+    background: var(--gsd-surface);
+    padding: 1.1rem 1.2rem 1.1rem 3.6rem;
+    margin-bottom: 0.7rem;
+
+    > :last-child { margin-bottom: 0; }
+
+    &::before {
+      content: counter(mission, decimal-leading-zero);
+      position: absolute;
+      left: 1.1rem;
+      top: 1.15rem;
+      font-family: var(--gsd-font-mono);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--gsd-teal);
+    }
+
+    strong:first-child {
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+  }
+}

@@ -1,0 +1,89 @@
+/*-- scss:defaults --*/
+
+// ============================================================
+// Git sans douleur — thème Quarto
+// Direction artistique : clair, chaud, éditorial, premium.
+// Les variables Bootstrap sont surchargées ici ; les règles
+// détaillées vivent dans les partiels importés plus bas.
+// ============================================================
+
+// --- Palette -------------------------------------------------
+$paper:        #fbfaf7;   // fond principal, blanc chaud
+$paper-soft:   #f4f1ea;   // zones légèrement teintées
+$surface:      #ffffff;   // cartes et encarts
+$ink:          #211d18;   // texte principal, noir chaud
+$ink-soft:     #575046;   // texte secondaire
+$ink-faint:    #8a8377;   // légendes, métadonnées
+
+$teal:         #0f766e;   // accent principal (actions, liens, Git)
+$teal-deep:    #0b5952;   // hover / titres accentués
+$teal-soft:    #e4f2f0;   // fonds d'encarts "concept"
+$amber:        #b45309;   // accent chaud (jalons, tags) — accessible sur clair
+$amber-bright: #f59e0b;   // pastilles, jalons décoratifs
+$amber-soft:   #fdf3e3;   // fonds d'encarts "à retenir"
+$coral:        #b3372e;   // avertissements
+$coral-soft:   #fbeeec;
+$violet:       #5b4a8a;   // GitLab / distant
+$violet-soft:  #efecf7;
+
+$night:        #1a1723;   // zones sombres ponctuelles (terminal, mission)
+$night-soft:   #262231;
+$night-ink:    #e8e5f0;
+
+// --- Bootstrap -----------------------------------------------
+$body-bg:      $paper;
+$body-color:   $ink;
+$primary:      $teal;
+$secondary:    $ink-soft;
+$success:      $teal;
+$warning:      $amber-bright;
+$danger:       $coral;
+
+$link-color:   $teal-deep;
+$link-decoration: underline;
+$link-hover-color: $teal;
+
+$font-family-sans-serif: "Public Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+$headings-font-family: "Fraunces", Georgia, "Times New Roman", serif;
+$font-family-monospace: "JetBrains Mono", "Cascadia Code", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+$font-size-root: 17px;
+$line-height-base: 1.65;
+$headings-font-weight: 600;
+$headings-line-height: 1.15;
+$headings-color: $ink;
+
+$border-radius: 0.6rem;
+$border-radius-lg: 1rem;
+
+$code-color: $teal-deep;
+$code-bg: $paper-soft;
+
+$navbar-bg: rgba(251, 250, 247, 0.92);
+$navbar-fg: $ink;
+$navbar-hl: $teal-deep;
+
+$footer-bg: $paper;
+$footer-fg: $ink-faint;
+
+// Tables
+$table-border-color: #e6e1d6;
+
+// Callouts Quarto par défaut (peu utilisés, on garde discret)
+$callout-border-width: 0;
+
+/*-- scss:rules --*/
+
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap");
+
+@import "tokens";
+@import "typography";
+@import "layout";
+@import "components";
+@import "terminal";
+@import "widgets";
+@import "gitgraph";
+@import "ribbon";
+@import "films";
+@import "animations";
+@import "atelier";

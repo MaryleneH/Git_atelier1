@@ -1,0 +1,659 @@
+// ============================================================
+// Composants pédagogiques
+// Similarité (Gestalt) : chaque famille garde ses codes —
+// même structure, couleur et pictogramme constants par type.
+// Proximité : padding interne serré, marges externes larges.
+// ============================================================
+
+// Les enfants de grilles doivent pouvoir rétrécir sous la largeur
+// de leur contenu (sinon un bloc de code élargit toute la page).
+.before-after > div,
+.duo > .duo-card,
+.sw-zones > .sw-zone,
+.pw-panels > .pw-panel {
+  min-width: 0;
+}
+
+// --- Base commune des encarts --------------------------------
+%encart {
+  position: relative;
+  margin: var(--gsd-space-4) 0;
+  padding: 1.4rem 1.6rem 1.25rem;
+  border-radius: var(--gsd-radius);
+  border: 1px solid var(--gsd-line);
+  background: var(--gsd-surface);
+
+  > :last-child { margin-bottom: 0; }
+
+  &::before {
+    display: block;
+    font-family: var(--gsd-font-body);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+}
+
+// Concept — une notion (fond sauge très léger, filet teal)
+.concept {
+  @extend %encart;
+  background: var(--gsd-teal-soft);
+  border: none;
+  border-left: 4px solid var(--gsd-teal);
+
+  &::before {
+    content: "◉ Notion";
+    color: var(--gsd-teal-deep);
+  }
+}
+
+// À essayer — action dans le terminal (filet pointillé : geste à faire)
+.try {
+  @extend %encart;
+  border: 1.5px dashed var(--gsd-teal);
+  background: var(--gsd-surface);
+
+  &::before {
+    content: "⌨ Essayez";
+    color: var(--gsd-teal-deep);
+  }
+}
+
+// À retenir — mémo (ambre chaud)
+.remember {
+  @extend %encart;
+  background: var(--gsd-amber-soft);
+  border: none;
+  border-left: 4px solid var(--gsd-amber-bright);
+
+  &::before {
+    content: "★ À retenir";
+    color: var(--gsd-amber);
+  }
+}
+
+// Attention — piège (corail)
+.warning {
+  @extend %encart;
+  background: var(--gsd-coral-soft);
+  border: none;
+  border-left: 4px solid var(--gsd-coral);
+
+  &::before {
+    content: "▲ Piège";
+    color: var(--gsd-coral);
+  }
+}
+
+// Mission / exercice cadré
+.mission-block {
+  @extend %encart;
+  border: 1.5px solid var(--gsd-ink);
+  box-shadow: 4px 4px 0 var(--gsd-ink);
+  background: var(--gsd-surface);
+
+  &::before {
+    content: "◆ Mission";
+    color: var(--gsd-ink);
+  }
+}
+
+// Checkpoint — question rapide (intrapersonnel)
+.checkpoint {
+  @extend %encart;
+  background: var(--gsd-violet-soft);
+  border: none;
+  border-left: 4px solid var(--gsd-violet);
+
+  &::before {
+    content: "? Une seconde de réflexion";
+    color: var(--gsd-violet);
+  }
+}
+
+// --- Détails / accordéons ------------------------------------
+// .reveal : clôture Gestalt — deviner avant de dérouler
+// .go-further : second niveau de lecture
+details.reveal,
+details.go-further {
+  margin: var(--gsd-space-3) 0;
+  border-radius: var(--gsd-radius-sm);
+  overflow: clip;
+
+  summary {
+    cursor: pointer;
+    font-weight: 650;
+    padding: 0.75rem 1rem 0.75rem 3rem;
+    border-radius: var(--gsd-radius-sm);
+    list-style: none;
+    position: relative;
+    transition: background var(--gsd-dur-fast) var(--gsd-ease);
+
+    &::-webkit-details-marker { display: none; }
+
+    &::before {
+      content: "+";
+      font-family: var(--gsd-font-mono);
+      font-weight: 600;
+      inline-size: 1.4rem;
+      block-size: 1.4rem;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      left: 1rem;
+      top: 0.85rem;
+      transition: transform var(--gsd-dur-fast) var(--gsd-ease);
+    }
+  }
+
+  &[open] summary::before {
+    transform: rotate(45deg);
+  }
+
+  > *:not(summary) {
+    padding: 0.25rem 1rem 0.75rem 3rem;
+  }
+}
+
+details.reveal {
+  background: var(--gsd-paper-soft);
+
+  summary { color: var(--gsd-ink); }
+  summary::before {
+    background: var(--gsd-surface);
+    border: 1.5px solid var(--gsd-ink-faint);
+    content: "?";
+  }
+  &[open] summary::before { transform: none; content: "!"; }
+}
+
+details.go-further {
+  border: 1px solid var(--gsd-line);
+  background: var(--gsd-surface);
+
+  summary {
+    color: var(--gsd-teal-deep);
+    font-size: 0.95rem;
+  }
+  summary::before {
+    background: var(--gsd-teal-soft);
+    color: var(--gsd-teal-deep);
+    border: none;
+  }
+}
+
+// --- Fichiers ------------------------------------------------
+// Petite "puce fichier" utilisée dans les schémas et widgets
+.file-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--gsd-font-mono);
+  font-size: 0.82rem;
+  padding: 0.35rem 0.8rem;
+  border-radius: 0.5rem;
+  background: var(--gsd-surface);
+  border: 1px solid var(--gsd-line);
+  box-shadow: var(--gsd-shadow-sm);
+  color: var(--gsd-ink);
+  white-space: nowrap;
+
+  &::before {
+    content: "▤";
+    color: var(--gsd-ink-faint);
+    font-size: 0.9em;
+  }
+
+  &.is-modified {
+    border-color: var(--gsd-amber-bright);
+    &::before { content: "▲"; color: var(--gsd-amber); font-size: 0.7em; }
+  }
+
+  &.is-staged {
+    border-color: var(--gsd-teal);
+    background: var(--gsd-teal-soft);
+    &::before { content: "✚"; color: var(--gsd-teal-deep); font-size: 0.8em; }
+  }
+}
+
+// --- Avant / après -------------------------------------------
+.before-after {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gsd-space-3);
+  margin: var(--gsd-space-4) 0;
+  align-items: stretch;
+
+  > div {
+    border-radius: var(--gsd-radius);
+    padding: 1.3rem 1.4rem;
+    border: 1px solid var(--gsd-line);
+
+    > :last-child { margin-bottom: 0; }
+
+    &::before {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 0.7rem;
+    }
+  }
+
+  .before {
+    background: var(--gsd-paper-soft);
+    &::before { content: "Avant"; color: var(--gsd-ink-faint); }
+  }
+
+  .after {
+    background: var(--gsd-teal-soft);
+    border-color: transparent;
+    &::before { content: "Après"; color: var(--gsd-teal-deep); }
+  }
+
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// --- Frise Git (historique vertical) --------------------------
+.git-timeline {
+  --tl-line: var(--gsd-line);
+  position: relative;
+  margin: var(--gsd-space-4) 0;
+  padding-left: 2.2rem;
+  list-style: none;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0.62rem;
+    top: 0.9rem;
+    bottom: 0.9rem;
+    width: 2.5px;
+    border-radius: 2px;
+    background: var(--tl-line);
+  }
+
+  .tl-commit {
+    position: relative;
+    padding: 0.55rem 0.9rem 0.55rem 0.4rem;
+    margin-bottom: 0.35rem;
+    border-radius: var(--gsd-radius-sm);
+    transition: background var(--gsd-dur-fast) var(--gsd-ease);
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: -2.05rem;
+      top: 1.05rem;
+      inline-size: 0.95rem;
+      block-size: 0.95rem;
+      border-radius: 50%;
+      background: var(--gsd-surface);
+      border: 3px solid var(--gsd-teal);
+      transition: transform var(--gsd-dur-fast) var(--gsd-ease-snap);
+    }
+
+    &:hover {
+      background: var(--gsd-paper-soft);
+      &::before { transform: scale(1.25); }
+    }
+
+    // Commit mis en évidence dans le récit (ex. celui qui répond à la
+    // question de la séquence) : fond teal doux et pastille ambrée —
+    // discret, le tl-meta explicite toujours pourquoi en toutes lettres.
+    &.tl-commit--focus {
+      background: var(--gsd-teal-soft);
+
+      &::before { border-color: var(--gsd-amber-bright); }
+      &:hover { background: var(--gsd-teal-soft); }
+    }
+
+    .tl-hash {
+      font-family: var(--gsd-font-mono);
+      font-size: 0.78rem;
+      color: var(--gsd-amber);
+      margin-right: 0.5rem;
+    }
+
+    .tl-msg {
+      font-weight: 600;
+    }
+
+    .tl-meta {
+      display: block;
+      font-size: 0.82rem;
+      color: var(--gsd-ink-faint);
+      margin-top: 0.15rem;
+    }
+
+    // Jalon officiel : le losange du tag
+    &.tl-tag::before {
+      border-radius: 3px;
+      transform: rotate(45deg);
+      background: var(--gsd-amber-bright);
+      border-color: var(--gsd-amber);
+    }
+
+    &.tl-tag:hover::before {
+      transform: rotate(45deg) scale(1.2);
+    }
+
+    .tl-tagname {
+      display: inline-block;
+      font-family: var(--gsd-font-mono);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--gsd-amber);
+      background: var(--gsd-amber-soft);
+      border: 1px solid var(--gsd-amber-bright);
+      border-radius: 999px;
+      padding: 0.1rem 0.6rem;
+      margin-left: 0.5rem;
+    }
+  }
+}
+
+// --- La carte mentale de Git (métaphore centrale) -------------
+// Un même schéma revient de page en page et s'enrichit.
+.git-map {
+  margin: var(--gsd-space-5) auto;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+
+  .gm-zone {
+    border-radius: var(--gsd-radius);
+    border: 1.5px solid var(--gsd-line);
+    background: var(--gsd-surface);
+    padding: 1rem 1.3rem;
+    text-align: center;
+
+    .gm-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gsd-ink-faint);
+      margin-bottom: 0.35rem;
+    }
+
+    .gm-desc {
+      font-size: 0.92rem;
+      color: var(--gsd-ink-soft);
+    }
+
+    .gm-files {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      justify-content: center;
+      margin-top: 0.6rem;
+    }
+
+    &.is-focus {
+      border-color: var(--gsd-teal);
+      box-shadow: 0 0 0 4px rgba(15, 118, 110, 0.12);
+
+      .gm-label { color: var(--gsd-teal-deep); }
+    }
+
+    &.gm-remote {
+      border-color: var(--gsd-violet);
+      background: var(--gsd-violet-soft);
+
+      .gm-label { color: var(--gsd-violet); }
+    }
+
+    &.gm-ghost {
+      border-style: dashed;
+      opacity: 0.55;
+    }
+  }
+
+  .gm-arrow {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.35rem 0;
+    color: var(--gsd-ink-faint);
+
+    code {
+      background: var(--gsd-night);
+      color: var(--gsd-term-green);
+      border: none;
+      font-size: 0.8rem;
+      padding: 0.22em 0.7em;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    &::before, &::after {
+      content: "";
+      width: 2px;
+      height: 0.8rem;
+      background: var(--gsd-ink-faint);
+      opacity: 0.5;
+    }
+
+    &::after {
+      clip-path: polygon(50% 100%, 0 0, 100% 0);
+      width: 10px;
+      height: 8px;
+      background: var(--gsd-ink-faint);
+    }
+
+  }
+}
+
+// --- Duo Marie / Franck (interpersonnel) -----------------------
+.duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gsd-space-3);
+  margin: var(--gsd-space-4) 0;
+
+  .duo-card {
+    border-radius: var(--gsd-radius);
+    border: 1px solid var(--gsd-line);
+    background: var(--gsd-surface);
+    padding: 1.2rem 1.3rem;
+
+    > :last-child { margin-bottom: 0; }
+
+    .duo-name {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+
+      &::before {
+        content: attr(data-initial);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        inline-size: 2rem;
+        block-size: 2rem;
+        border-radius: 50%;
+        font-size: 0.9rem;
+        color: #fff;
+        background: var(--gsd-teal);
+        flex: none;
+      }
+    }
+
+    &.duo-b .duo-name::before {
+      background: var(--gsd-violet);
+    }
+  }
+
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// --- Micro-parcours : je comprends / regarde / essaie / vérifie
+.micro-steps {
+  counter-reset: mstep;
+  margin: var(--gsd-space-4) 0;
+  padding: 0;
+  list-style: none;
+  border-left: 2.5px solid var(--gsd-teal-soft);
+
+  > li {
+    counter-increment: mstep;
+    position: relative;
+    padding: 0.2rem 0 1.1rem 2.4rem;
+    max-width: 62ch;
+
+    &::before {
+      content: counter(mstep);
+      position: absolute;
+      left: -1.05rem;
+      top: 0;
+      inline-size: 1.9rem;
+      block-size: 1.9rem;
+      border-radius: 50%;
+      background: var(--gsd-teal);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 3px solid var(--gsd-paper);
+    }
+
+    strong:first-child {
+      display: block;
+      font-size: 0.78rem;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--gsd-teal-deep);
+      margin-bottom: 0.2rem;
+    }
+
+    &:last-child { padding-bottom: 0.2rem; }
+  }
+}
+
+// --- Emplacement vidéo (mini-films à venir) --------------------
+.video-slot {
+  margin: var(--gsd-space-4) 0;
+  border-radius: var(--gsd-radius-lg);
+  border: 1.5px dashed var(--gsd-line);
+  background:
+    radial-gradient(circle at 30% 20%, rgba(15, 118, 110, 0.06), transparent 60%),
+    var(--gsd-paper-soft);
+  padding: var(--gsd-space-4);
+  text-align: center;
+  color: var(--gsd-ink-faint);
+
+  .video-slot__play {
+    inline-size: 3.4rem;
+    block-size: 3.4rem;
+    margin: 0 auto 0.8rem;
+    border-radius: 50%;
+    background: var(--gsd-surface);
+    box-shadow: var(--gsd-shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &::before {
+      content: "";
+      display: block;
+      margin-left: 4px;
+      border-left: 14px solid var(--gsd-teal);
+      border-top: 9px solid transparent;
+      border-bottom: 9px solid transparent;
+    }
+  }
+
+  .video-slot__title {
+    font-weight: 650;
+    color: var(--gsd-ink-soft);
+    margin-bottom: 0.15rem;
+  }
+
+  .video-slot__note {
+    font-size: 0.85rem;
+    margin: 0;
+  }
+
+  video {
+    width: 100%;
+    border-radius: var(--gsd-radius);
+  }
+}
+
+// --- Tableaux -------------------------------------------------
+table {
+  font-size: 0.95rem;
+
+  thead th {
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gsd-ink-faint);
+    border-bottom: 2px solid var(--gsd-line) !important;
+  }
+
+  tbody td {
+    padding-block: 0.6rem;
+  }
+}
+
+// Tables larges : défilement horizontal propre sur mobile
+.table-responsive-wrap {
+  overflow-x: auto;
+}
+
+// --- Les quatre capacités de Git (synthèse de la séquence 01) ------
+// Une bande 2x2 sobre : le verbe en Fraunces, une ligne de
+// description — même famille visuelle que les cartes du site.
+.git-powers {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--gsd-space-2);
+  margin: var(--gsd-space-4) 0;
+
+  @media (max-width: 575.98px) {
+    grid-template-columns: 1fr;
+  }
+
+  .gp-item {
+    min-width: 0;
+    background: var(--gsd-surface);
+    border: 1px solid var(--gsd-line);
+    border-radius: var(--gsd-radius);
+    box-shadow: var(--gsd-shadow-sm);
+    padding: 0.9rem 1.1rem;
+  }
+
+  .gp-verb {
+    display: block;
+    font-family: var(--gsd-font-display);
+    font-size: 1.08rem;
+    font-weight: 600;
+    color: var(--gsd-teal-deep);
+    margin-bottom: 0.15rem;
+  }
+
+  .gp-desc {
+    display: block;
+    font-size: 0.92rem;
+    color: var(--gsd-ink-soft);
+  }
+}

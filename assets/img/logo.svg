@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 36" role="img" aria-label="Git sans douleur">
+  <g>
+    <rect x="1" y="2" width="32" height="32" rx="8" fill="#0f766e"/>
+    <line x1="17" y1="9" x2="17" y2="27" stroke="#f8f5f0" stroke-width="2.4" stroke-linecap="round"/>
+    <circle cx="17" cy="9.5" r="3.2" fill="#f8f5f0"/>
+    <circle cx="17" cy="18" r="3.2" fill="#f8f5f0"/>
+    <circle cx="17" cy="26.5" r="3.2" fill="#fbbf24"/>
+  </g>
+  <text x="42" y="24" font-family="Georgia, 'Times New Roman', serif" font-size="17" font-weight="700" fill="#1c1917">Git sans douleur</text>
+</svg>

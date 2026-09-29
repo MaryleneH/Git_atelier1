@@ -1,0 +1,186 @@
+// ============================================================
+// Terminal — la seule zone sombre récurrente du site.
+// Contraste narratif : le terminal est "l'atelier", le reste
+// de la page est "la salle d'exposition".
+// ============================================================
+
+.terminal-demo {
+  margin: var(--gsd-space-4) 0;
+  border-radius: var(--gsd-radius);
+  background: var(--gsd-night);
+  box-shadow: var(--gsd-shadow-lg);
+  overflow: clip;
+  border: 1px solid var(--gsd-night-line);
+
+  // Barre de titre (injectée par terminal.js ; version CSS de repli)
+  .term-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    background: var(--gsd-night-soft);
+    border-bottom: 1px solid var(--gsd-night-line);
+
+    .term-dots {
+      display: flex;
+      gap: 0.38rem;
+
+      span {
+        inline-size: 0.72rem;
+        block-size: 0.72rem;
+        border-radius: 50%;
+        background: var(--gsd-night-line);
+      }
+    }
+
+    .term-title {
+      margin-left: 0.4rem;
+      font-family: var(--gsd-font-mono);
+      font-size: 0.75rem;
+      color: var(--gsd-night-muted);
+    }
+
+    .term-copy {
+      margin-left: auto;
+      appearance: none;
+      border: 1px solid var(--gsd-night-line);
+      background: transparent;
+      color: var(--gsd-night-muted);
+      font-family: var(--gsd-font-body);
+      font-size: 0.72rem;
+      font-weight: 600;
+      border-radius: 999px;
+      padding: 0.22rem 0.75rem;
+      cursor: pointer;
+      transition: all var(--gsd-dur-fast) var(--gsd-ease);
+
+      &:hover {
+        color: var(--gsd-night-ink);
+        border-color: var(--gsd-night-muted);
+      }
+
+      &.is-copied {
+        color: var(--gsd-term-green);
+        border-color: var(--gsd-term-green);
+      }
+    }
+  }
+
+  // Blocs de code à l'intérieur : fond transparent, texte clair
+  div.sourceCode, pre {
+    margin: 0;
+    background: transparent !important;
+    border: none;
+    border-radius: 0;
+  }
+
+  pre {
+    padding: 0.9rem 1.15rem;
+    font-size: 0.87rem;
+    line-height: 1.65;
+    color: var(--gsd-night-ink);
+
+    code {
+      color: var(--gsd-night-ink);
+      background: transparent;
+      padding: 0;
+      border: none;
+      white-space: pre;
+    }
+  }
+
+  // La commande : préfixée d'un prompt, teinte verte
+  .term-cmd pre {
+    padding-bottom: 0.2rem;
+
+    code::before {
+      content: "$ ";
+      color: var(--gsd-term-green);
+      font-weight: 600;
+      user-select: none;
+    }
+
+    // Neutralise la coloration syntaxique claire de Pandoc
+    code span { color: var(--gsd-night-ink); }
+    code span.ex, code span.fu { color: var(--gsd-term-cyan); font-weight: 500; }
+    code span.st, code span.vs { color: var(--gsd-term-green); }
+    code span.co { color: var(--gsd-night-muted); }
+    code span.at, code span.op { color: var(--gsd-term-yellow); }
+    code span.kw, code span.cf { color: var(--gsd-term-cyan); }
+    code span.dt, code span.va { color: var(--gsd-night-ink); }
+  }
+
+  // La sortie : un cran sous la commande, séparée par un fin filet.
+  // Attention à la structure : les blocs ```text ne sont pas enveloppés
+  // dans div.sourceCode, donc .term-out est posé sur le <pre> lui-même.
+  pre.term-out,
+  .term-out pre {
+    padding-top: 0.55rem;
+    border-top: 1px dashed var(--gsd-night-line);
+    color: var(--gsd-night-ink-2);
+  }
+
+  // Le sélecteur `code span` est indispensable : la feuille de coloration
+  // syntaxique de Quarto pose `code span { color: #24292e }`, qui sinon
+  // s'applique aux spans .t-line injectés par terminal.js et rend la
+  // sortie quasi invisible sur fond nuit (contraste 1.2:1).
+  .term-out code,
+  .term-out code span {
+    color: var(--gsd-night-ink-2);
+  }
+
+  // Mise en évidence sémantique dans les sorties (via terminal.js)
+  .term-out {
+    // Une ligne par span, quel que soit le mode : sans ce display de base,
+    // les utilisateurs en prefers-reduced-motion (pas de [data-animated])
+    // voyaient toutes les lignes concaténées sur une seule.
+    .t-line { display: block; }
+
+    .t-green { color: var(--gsd-term-green); }
+    .t-red { color: var(--gsd-term-red); }
+    .t-yellow { color: var(--gsd-term-yellow); }
+    .t-bold { color: var(--gsd-night-ink); font-weight: 600; }
+    .t-meta { color: var(--gsd-night-muted); }
+
+    // Ligne pointée par data-highlight : plus claire et en graisse (le
+    // signal ne repose pas que sur la couleur), halo ambré très léger.
+    .t-hl {
+      color: var(--gsd-night-ink);
+      font-weight: 600;
+      background: linear-gradient(90deg, rgba(245, 215, 110, 0.13), transparent 88%);
+      border-radius: 4px;
+    }
+  }
+
+  // Révélation progressive des lignes de sortie
+  &[data-animated] .term-out .t-line {
+    display: block;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity var(--gsd-dur) var(--gsd-ease),
+                transform var(--gsd-dur) var(--gsd-ease);
+  }
+
+  &[data-animated].is-visible .term-out .t-line {
+    opacity: 1;
+    transform: none;
+  }
+
+  // Défilement horizontal si nécessaire, jamais de débordement
+  pre {
+    overflow-x: auto;
+  }
+}
+
+// Terminal en pleine largeur dans les moments spectaculaires
+.terminal-demo.term-wide {
+  max-width: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .terminal-demo[data-animated] .term-out .t-line {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
