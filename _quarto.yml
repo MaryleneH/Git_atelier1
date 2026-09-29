@@ -32,6 +32,8 @@ website:
     left:
       - href: index.qmd
         text: Accueil
+      - href: slides.qmd
+        text: Slides
 
   page-footer:
     left: "Git sans douleur — Atelier 1 · Je regarde, je choisis, j'enregistre"

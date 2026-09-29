@@ -1,0 +1,66 @@
+<script>
+  // Film d'ouverture : film_url (_variables.yml) est une adresse YouTube
+  // ordinaire (watch?v=… ou youtu.be/…). On la convertit en lecteur
+  // intégré ; Reveal ne le charge que lorsque la slide s'affiche.
+  (function () {
+    function versLecteur(url) {
+      var m = url.match(/(?:youtu\.be\/|[?&]v=|\/embed\/)([A-Za-z0-9_-]{11})/);
+      return m ? "https://www.youtube-nocookie.com/embed/" + m[1] + "?rel=0" : url;
+    }
+    document.querySelectorAll("iframe.film[data-film]").forEach(function (f) {
+      f.setAttribute("data-src", versLecteur(f.getAttribute("data-film")));
+    });
+
+    // Pause : l'heure de reprise = heure d'arrivée sur la slide + 5 min
+    function afficheReprise(event) {
+      var cible = event.currentSlide && event.currentSlide.querySelector(".reprise");
+      if (!cible || cible.dataset.fixe) return;
+      var t = new Date(Date.now() + 5 * 60 * 1000);
+      var mm = String(t.getMinutes()).padStart(2, "0");
+      cible.textContent = t.getHours() + " h " + mm;
+      cible.dataset.fixe = "1";
+    }
+    // Sorties de Git : mêmes couleurs que dans le terminal de VS Code.
+    // Le texte reste exactement celui produit par Git ; seule la couleur change.
+    function classeLigne(t, etat) {
+      if (/^\$ /.test(t)) { etat.zone = null; return "t-cmd"; }
+      if (/^Changes to be committed:/.test(t)) { etat.zone = "t-vert"; return ""; }
+      if (/^(Changes not staged for commit|Untracked files):/.test(t)) { etat.zone = "t-rouge"; return ""; }
+      if (/^\s*$/.test(t)) { etat.zone = null; return ""; }
+      if (etat.zone && /^(\t| {4,})\S/.test(t)) return etat.zone;  // Pandoc remplace les tabulations par des espaces
+      if (/^\+(?!\+\+ )/.test(t)) return "t-vert";
+      if (/^-(?!-- )/.test(t)) return "t-rouge";
+      if (/^@@/.test(t)) return "t-meta";
+      if (/^commit [0-9a-f]{40}/.test(t)) return "t-jaune";
+      if (/^ ! \[rejected\]|^error:/.test(t)) return "t-rouge";
+      return "";
+    }
+    document.querySelectorAll("pre.sortie code").forEach(function (code) {
+      var etat = { zone: null };
+      var lignes = code.textContent.replace(/\n$/, "").split("\n");
+      code.textContent = "";
+      lignes.forEach(function (t, i) {
+        var span = document.createElement("span");
+        var c = classeLigne(t, etat);
+        if (c) span.className = c;
+        var m = !c && t.match(/^([0-9a-f]{7})( .*)$/);
+        if (m) {
+          var h = document.createElement("span");
+          h.className = "t-jaune";
+          h.textContent = m[1];
+          span.appendChild(h);
+          span.appendChild(document.createTextNode(m[2]));
+        } else {
+          span.textContent = t;
+        }
+        code.appendChild(span);
+        if (i < lignes.length - 1) code.appendChild(document.createTextNode("\n"));
+      });
+    });
+
+    if (window.Reveal) {
+      Reveal.on("slidechanged", afficheReprise);
+      Reveal.on("ready", afficheReprise);
+    }
+  })();
+</script>
