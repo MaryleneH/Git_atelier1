@@ -32,8 +32,19 @@ website:
     left:
       - href: index.qmd
         text: Accueil
+      - href: prerequis.qmd
+        text: Avant l'atelier
+      - href: atelier.qmd
+        text: Le guide
       - href: slides.qmd
         text: Slides
+      - href: bac-a-sable.qmd
+        text: Bac à sable
+      - href: memo.qmd
+        text: Mémo
+    right:
+      - href: formateur.qmd
+        text: Formatrice
 
   page-footer:
     left: "Git sans douleur — Atelier 1 · Je regarde, je choisis, j'enregistre"

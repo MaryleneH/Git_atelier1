@@ -42,3 +42,54 @@ Une seule idée à garder en tête : un commit est une **photo complète** de vo
 | Clôture | 8 min | Le mémo, le ticket de sortie, le défi de la semaine |
 
 : {tbl-colwidths="[36,12,52]"}
+
+## Avant l'atelier {.unnumbered}
+
+Vingt minutes, la semaine précédente : renseigner votre compte Onyxia, lancer un service VS Code, vérifier Git, créer le kit d'exercices, et faire cinq minutes de bac à sable. Tout est détaillé dans **[Avant l'atelier](prerequis.qmd)**.
+
+## Les supports {.unnumbered}
+
+```{=html}
+<nav class="day-outline" aria-label="Les supports de l'atelier">
+  <a class="day-outline__item" href="prerequis.html">
+    <span class="day-outline__num">01</span>
+    <span>
+      <span class="day-outline__title">Avant l'atelier</span>
+      <span class="day-outline__desc">Onyxia, VS Code, le kit d'exercices : vingt minutes de préparation.</span>
+    </span>
+    <span class="day-outline__go" aria-hidden="true">→</span>
+  </a>
+  <a class="day-outline__item" href="atelier.html">
+    <span class="day-outline__num">02</span>
+    <span>
+      <span class="day-outline__title">Le guide de l'atelier</span>
+      <span class="day-outline__desc">Toutes les commandes, pas à pas, avec les sorties attendues.</span>
+    </span>
+    <span class="day-outline__go" aria-hidden="true">→</span>
+  </a>
+  <a class="day-outline__item" href="slides.html">
+    <span class="day-outline__num">03</span>
+    <span>
+      <span class="day-outline__title">Les slides</span>
+      <span class="day-outline__desc">Le diaporama projeté pendant l'atelier.</span>
+    </span>
+    <span class="day-outline__go" aria-hidden="true">→</span>
+  </a>
+  <a class="day-outline__item" href="bac-a-sable.html">
+    <span class="day-outline__num">04</span>
+    <span>
+      <span class="day-outline__title">Le bac à sable</span>
+      <span class="day-outline__desc">Trois exercices Git dans le navigateur, sans rien installer.</span>
+    </span>
+    <span class="day-outline__go" aria-hidden="true">→</span>
+  </a>
+  <a class="day-outline__item" href="memo.html">
+    <span class="day-outline__num">05</span>
+    <span>
+      <span class="day-outline__title">Le mémo</span>
+      <span class="day-outline__desc">Problème → commande, en treize lignes (aussi en PDF à imprimer).</span>
+    </span>
+    <span class="day-outline__go" aria-hidden="true">→</span>
+  </a>
+</nav>
+```
