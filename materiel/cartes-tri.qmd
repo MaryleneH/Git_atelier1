@@ -1,0 +1,57 @@
+---
+pagetitle: "Cartes de tri"
+format:
+  typst:
+    papersize: a4
+    margin:
+      x: 10mm
+      y: 10mm
+    fontsize: 11pt
+    mainfont: "Public Sans"
+    font-paths: ["assets/fonts"]
+    keep-typ: false
+---
+
+```{=typst}
+// 12 cartes à découper le long des pointillés : un jeu par groupe de 2 ou 3.
+// Trois piles : à versionner · à ignorer · jamais.
+#set text(lang: "fr", fill: rgb("#211d18"), hyphenate: false)
+#set page(numbering: none)
+
+// Les noms longs peuvent se couper après « / » et « _ »
+#let coupe(nom) = nom.replace("/", "/\u{200b}").replace("_", "_\u{200b}")
+
+#let carte(fichier, detail) = box(
+  width: 100%,
+  height: 66mm,
+  stroke: (paint: rgb("#8a8377"), thickness: 0.6pt, dash: "dashed"),
+  inset: 7mm,
+)[
+  #align(center + horizon)[
+    #text(font: "JetBrains Mono", weight: "bold", size: 13pt, fill: rgb("#0b5952"), coupe(fichier))
+    #if detail != none [
+      #v(4mm)
+      #text(size: 9.5pt, fill: rgb("#575046"), detail)
+    ]
+  ]
+]
+
+#place(top + right, dy: -6mm)[#text(size: 7pt, fill: rgb("#8a8377"))[Atelier 1 · tri de cartes · à versionner / à ignorer / jamais]]
+
+#grid(
+  columns: (1fr, 1fr, 1fr),
+  gutter: 0pt,
+  carte("scripts/02_nettoyage.R", none),
+  carte("rapport.qmd", none),
+  carte("README.md", none),
+  carte(".gitignore", none),
+  carte("data/entreprises_defense_2024.csv", [extrait synthétique de 40 lignes]),
+  carte("data/bitd_2024.parquet", [600 Mo]),
+  carte("rapport.html", none),
+  carte("figures/effectifs_par_taille.png", none),
+  carte(".Rhistory", none),
+  carte(".Renviron", [contient un jeton]),
+  carte("donnees_entreprises_confidentiel.xlsx", [données individuelles d'entreprises]),
+  carte("notes_reunion_chef_de_bureau.md", none),
+)
+```
