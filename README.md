@@ -56,9 +56,9 @@ Le test lance `kit.sh` plusieurs fois, en R puis en Python, et vérifie que l'hi
 
 ## Publier sur GitHub Pages
 
-Le workflow `.github/workflows/publish.yml` rend le site et le pousse sur la branche `gh-pages` à chaque push sur `main` (il crée cette branche la première fois).
+Le workflow `.github/workflows/publish.yml` rend le site et le déploie directement par GitHub Actions à chaque push sur `main` (ou à la demande, depuis l'onglet *Actions* : *Run workflow*). Il n'y a pas de branche `gh-pages`.
 
-Une seule fois, dans GitHub : **Settings → Pages → Build and deployment → Source : *Deploy from a branch*** puis choisir la branche **`gh-pages`**, dossier **`/ (root)`**.
+Une seule fois, dans GitHub : **Settings → Pages → Build and deployment → Source : *GitHub Actions***. Le workflow tente aussi de l'activer lui-même au premier passage.
 
 ## Mettre à jour les supports
 
