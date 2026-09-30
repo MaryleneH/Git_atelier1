@@ -1,108 +1,375 @@
 ---
 title: "Bac à sable"
-subtitle: "S'entraîner dans le navigateur, sans rien installer"
+subtitle: "Un petit projet statistique, et Git, dans votre navigateur"
+toc: false
 filters:
   - git-sandbox
 ---
 
-Trois exercices sur la même histoire que l'atelier : l'étude `entreprises_defense`. Tout se passe dans cette page : rien n'est installé, rien n'est envoyé nulle part. Le schéma sous chaque terminal montre en direct les trois zones (répertoire de travail, zone de sélection, dépôt).
+Voici l'étude `entreprises_defense` de l'atelier, avec ses scripts, son rapport et ses données fictives. Vous y travaillez comme dans VS Code : **ouvrez un fichier, modifiez-le, enregistrez**, puis regardez ce que Git en dit dans le terminal. Tout se passe dans cette page : rien n'est installé, rien n'est envoyé nulle part.
 
 ::: {.concept}
-Les fichiers du bac à sable sont **simplifiés** (une ou deux lignes chacun) : ce qui compte ici, c'est le geste, pas le code R. Pour modifier un fichier, on utilise `echo "…" > fichier`, qui remplace tout son contenu.
+**Comment ça marche.** L'explorateur, à gauche, liste les fichiers du projet. Un clic ouvre un fichier dans l'éditeur. Tant que vous n'avez pas **enregistré** (bouton *Enregistrer*, ou <kbd>Ctrl</kbd>+<kbd>S</kbd>), Git ne voit rien — exactement comme sur Onyxia. Le terminal exécute un vrai Git. En bas, **les trois zones** montrent la version de chaque fichier dans votre répertoire de travail, dans la zone de sélection et dans le dépôt.
 :::
 
-## 1. Le geste
+| Partie | Durée | Quand |
+|---|---:|---|
+| **Prise en main** : premier `status`, `add`, `commit` | 5 min | Avant l'atelier |
+| **Missions 1 à 4** : une journée de travail sur l'étude | 15 à 20 min | Après l'atelier, ou pour s'entraîner |
+| **Défi** : le cycle complet, sans assistance | 10 min | Pour vérifier que c'est acquis |
 
-```git-sandbox
-id: le-geste
-title: "Exercice 1 · Regarder, choisir, enregistrer"
-prompt: "~/entreprises_defense $"
-intro: |
-  Le dossier de l'étude est là, mais Git ne le suit pas encore.
-  Commencez par {y}git init{/}, puis regardez avec {y}git status{/}.
-  Tapez {y}help{/} pour la liste des commandes.
-hints: [git init, git status, git add README.md scripts/ rapport.qmd, 'git commit -m "Initialise le suivi de l''étude entreprises_defense"', 'echo "seuil_dependance <- 0.10" > scripts/02_nettoyage.R', git diff, 'git commit -m "Abaisse le seuil de dépendance défense à 10 %"', git log --oneline]
-seed: |
-  echo "# Entreprises liées à la défense" > README.md
-  mkdir scripts
-  echo "seuil_dependance <- 0.20" > scripts/02_nettoyage.R
-  echo "title: Les entreprises liées à la défense en 2024" > rapport.qmd
-  echo "x <- read.csv('data.csv')" > brouillon_test.R
-tasks:
-  - text: Transformez le dossier en dépôt (`git init`)
-    when: repo
-  - text: Faites une première photo avec `README.md`, les scripts et le rapport, sans le brouillon
-    when: commits >= 1
-  - text: Passez le seuil à `0.10`, regardez le diff, et faites une deuxième photo
-    when: commits >= 2
-done-note: "**Regarder, choisir, enregistrer.** Et le brouillon est resté dehors : tout ne mérite pas la photo."
+: {tbl-colwidths="[58,14,28]"}
+
+Choisissez votre langage habituel en haut de l'espace de travail : les scripts passent de `.R` à `.py`, **Git reste exactement le même**.
+
+::: {#atelier .git-workbench .column-screen-inset}
+
+::: {.gw-mission data-mission="prise-en-main" data-short="Premier commit" data-kind="Prise en main" data-duration="5 min"}
+### Prise en main — le geste de base
+
+::: {.gw-objectif}
+**Objectif.** Découvrir l'espace de travail et faire un premier *regarder, choisir, enregistrer* — le Temps 2 de l'atelier.
+:::
+
+::: {.gw-checklist}
+- [Ouvrez `README.md` dans l'explorateur]{data-check="pm-open"}
+- [Transformez le dossier en dépôt : `git init`]{data-check="pm-init"}
+- [Regardez : `git status`]{data-check="pm-status"}
+- [Choisissez `README.md`, `scripts/` et `rapport.qmd` — ni le brouillon, ni les données]{data-check="pm-add"}
+- [Enregistrez la photo : `git commit -m "…"`]{data-check="pm-commit"}
+- [Feuilletez l'album : `git log --oneline`]{data-check="pm-log"}
+:::
+
+::: {.gw-hints}
+::: {.gw-hint}
+`git add` accepte plusieurs chemins d'un coup, et un dossier entier : `scripts/` prend les trois scripts.
+:::
+::: {.gw-hint}
+Le message se met entre guillemets, après `-m`. Il décrit ce que fait la photo, du point de vue de l'étude.
+:::
+::: {.gw-solution}
+```bash
+git init
+git status
+git add README.md scripts/ rapport.qmd
+git status
+git commit -m "Initialise le suivi de l'étude entreprises_defense"
+git log --oneline
 ```
+:::
+:::
 
-## 2. `add` fige une version
+::: {.gw-bilan}
+Vous avez transformé le dossier en dépôt, regardé ce que Git voyait, **choisi** ce qui méritait la photo — le brouillon et les données sont restés dehors — puis enregistré votre premier commit.
 
-```git-sandbox
-id: add-fige
-title: "Exercice 2 · Modifier après add"
-prompt: "~/entreprises_defense $"
-intro: |
-  L'étude a déjà deux photos. Modifiez le script, sélectionnez-le,
-  puis modifiez-le encore une fois AVANT de faire le commit.
-  Observez {y}git status{/} à chaque étape.
-hints: ['echo "seuil_dependance <- 0.10" > scripts/02_nettoyage.R', git add scripts/02_nettoyage.R, 'echo "seuil_dependance <- 0.15" > scripts/02_nettoyage.R', git status, git diff, 'git commit -m "Abaisse le seuil de dépendance défense à 10 %"', git log --oneline]
-seed: |
-  git init
-  echo "# Entreprises liées à la défense" > README.md
-  git add README.md
-  git commit -m "Initialise l'étude des entreprises liées à la défense"
-  mkdir scripts
-  echo "seuil_dependance <- 0.20" > scripts/02_nettoyage.R
-  git add scripts/02_nettoyage.R
-  git commit -m "Ne garde que les entreprises dont la part de CA défense dépasse 20 %"
-tasks:
-  - text: Modifiez le seuil et sélectionnez le fichier (`git add`)
-    when: staged
-  - text: Modifiez-le encore, et constatez avec `git status` qu'il est dans les deux listes
-    js: c.status.staged.some(s => s.file === 'scripts/02_nettoyage.R') && c.status.modified.includes('scripts/02_nettoyage.R') && c.history.some(h => /git\s+status/.test(h))
-  - text: Faites le commit, puis vérifiez que la dernière modification attend toujours
-    when: commits >= 3 and not clean
-done-note: "`git add` a figé **une version** du fichier : la modification faite après le `add` n'est pas dans la photo. Un nouveau `git add` l'y aurait mise."
+::: {.gw-retenir}
+**Regarder, choisir, enregistrer.** `git status` ne casse jamais rien.
+:::
+
+```{=html}
+<p class="gw-next"><button type="button" class="gw-btn" data-next-mission>Mission 1 : une demande métier →</button></p>
 ```
+:::
+:::
 
-## 3. Revenir
+::: {.gw-mission data-mission="mission-1" data-short="Une demande métier" data-kind="Mission 1" data-duration="5 min"}
+### Mission 1 — Une demande métier arrive
 
-```git-sandbox
-id: revenir
-title: "Exercice 3 · Feuilleter l'album et revenir"
-prompt: "~/entreprises_defense $"
-intro: |
-  Trois photos dans l'album. Feuilletez-le avec {y}git log --oneline{/}.
-  Puis cassez le script, constatez le changement avec {y}git diff{/},
-  et remettez-le exactement comme dans la dernière photo.
-hints: [git log --oneline, 'echo "group_by(secteur)" > scripts/03_analyse.R', git status, git diff, 'echo "count(taille)" > scripts/03_analyse.R', git status]
-seed: |
-  git init
-  echo "# Entreprises liées à la défense" > README.md
-  git add README.md
-  git commit -m "Initialise l'étude des entreprises liées à la défense"
-  mkdir scripts
-  echo "seuil_dependance <- 0.20" > scripts/02_nettoyage.R
-  git add scripts/02_nettoyage.R
-  git commit -m "Ne garde que les entreprises dont la part de CA défense dépasse 20 %"
-  echo "count(taille)" > scripts/03_analyse.R
-  git add scripts/03_analyse.R
-  git commit -m "Ajoute la ventilation par taille d'entreprise (PME, ETI, GE)"
-tasks:
-  - text: Feuilletez l'album
-    when: ran /git\s+log/
-  - text: Modifiez `scripts/03_analyse.R` et regardez le diff
-    when: ran /git\s+diff/ and not clean
-  - text: Remettez le fichier comme dans la dernière photo, jusqu'à retrouver un dépôt propre
-    when: ran /git\s+diff/ and clean and file scripts/03_analyse.R contains "count(taille)"
-done-note: "Ici, vous avez remis la ligne à la main. Sur Onyxia, Git le fait pour vous : `git restore scripts/03_analyse.R` (Temps 3 de l'atelier). Le bac à sable ne connaît pas encore `git restore`."
+::: {.gw-ticket data-from="Message de Franck, chargé d'études"}
+« Pour la nouvelle analyse, on retient désormais les entreprises dont **au moins 10 %** du chiffre d'affaires dépend de la défense, au lieu de 20 %. »
+:::
+
+::: {.gw-objectif}
+**Objectif.** Modifier le script comme vous le feriez dans VS Code, puis laisser Git vous montrer exactement ce qui a changé.
+:::
+
+::: {.gw-checklist}
+- [Ouvrez `scripts/02_nettoyage.R`]{data-check="m1-open"}
+- [Remplacez `0.20` par `0.10` sur la ligne `seuil_dependance`, puis enregistrez]{data-check="m1-edit"}
+- [Demandez à Git où vous en êtes : `git status`]{data-check="m1-status"}
+- [Regardez la modification ligne à ligne : `git diff`]{data-check="m1-diff"}
+- [Répondez à la question ci-dessous]{data-check="m1-question"}
+:::
+
+::: {.gw-question data-id="m1"}
+**Git a-t-il déjà enregistré cette modification dans l'historique ?**
+
+::: {.gw-answer data-for="oui" data-label="Oui"}
+Pas encore. Relisez `git status` : le fichier est dans *Changes not staged for commit*. La modification n'existe que dans votre **répertoire de travail**. Regardez les trois zones : la zone de sélection et le dépôt ont toujours `0.20`.
+:::
+::: {.gw-answer data-for="non" data-label="Non"}
+Exact. La modification n'existe que dans votre **répertoire de travail**. Le dépôt a toujours `0.20` : tant qu'il n'y a pas de commit, rien n'est dans l'historique. C'est la mission suivante.
+:::
+:::
+
+::: {.gw-hints}
+::: {.gw-hint}
+Dans l'éditeur, placez le curseur juste après `0.2`, effacez le `2`, tapez `1`. Puis <kbd>Ctrl</kbd>+<kbd>S</kbd> : tant que l'éditeur affiche « Modifié, non enregistré », Git ne voit rien.
+:::
+::: {.gw-hint}
+Dans le diff, la ligne qui commence par `-` est l'ancienne version, celle qui commence par `+` la nouvelle. Les autres lignes sont du contexte.
+:::
+::: {.gw-solution}
+Modifier la ligne en `seuil_dependance <- 0.10`, enregistrer, puis :
+
+```bash
+git status
+git diff
 ```
+:::
+:::
+
+::: {.gw-bilan}
+1. Vous avez modifié un vrai fichier du projet et l'avez enregistré.
+2. Git a vu le fichier modifié, sans que vous ne lui disiez rien.
+3. Le diff vous a montré **exactement** ce qui a changé : `-0.20`, `+0.10`.
+
+::: {.gw-retenir}
+**status** = où en suis-je ? · **diff** = qu'ai-je changé ?
+:::
+
+```{=html}
+<p class="gw-next"><button type="button" class="gw-btn" data-next-mission>Mission 2 : un commit cohérent →</button></p>
+```
+:::
+:::
+
+::: {.gw-mission data-mission="mission-2" data-short="Un commit cohérent" data-kind="Mission 2" data-duration="5 min"}
+### Mission 2 — Faire un commit cohérent
+
+::: {.gw-ticket data-from="Message de Franck"}
+« Merci ! Pense aussi au rapport : la phrase du champ dit toujours 20 %. »
+:::
+
+::: {.gw-objectif}
+**Objectif.** Enregistrer ensemble, en une seule étape, le nouveau seuil **et** la phrase du rapport qui le décrit — et rien d'autre.
+:::
+
+::: {.gw-checklist}
+- [Dans `rapport.qmd`, remplacez « 20 % » par « 10 % » dans la section *Champ*, puis enregistrez]{data-check="m2-rapport"}
+- [Regardez ce qui a changé : `git status`, `git diff`]{data-check="m2-observe"}
+- [Sélectionnez le script et le rapport, **pas** le brouillon]{data-check="m2-add"}
+- [Vérifiez ce qui partira dans le commit : `git diff --staged`]{data-check="m2-staged"}
+- [Faites le commit]{data-check="m2-commit"}
+- [Écrivez un message qui dit l'intention, pas « modif »]{data-check="m2-message"}
+- [Retrouvez-le dans l'historique : `git log --oneline`]{data-check="m2-log"}
+:::
+
+::: {.gw-hints}
+::: {.gw-hint}
+`git add .` prendrait **tout**, y compris `brouillon_test.R`. Nommez les fichiers : `git add scripts/02_nettoyage.R rapport.qmd`.
+:::
+::: {.gw-hint}
+`git diff` (sans option) compare vos fichiers à la zone de sélection : après le `add`, il n'affiche plus rien. C'est `git diff --staged` qui montre ce que contient la sélection.
+:::
+::: {.gw-solution}
+```bash
+git status
+git diff
+git add scripts/02_nettoyage.R rapport.qmd
+git status
+git diff --staged
+git commit -m "Abaisse le seuil de dépendance défense à 10 %"
+git log --oneline
+```
+:::
+:::
+
+::: {.gw-bilan}
+1. Vous avez modifié deux fichiers qui vont ensemble.
+2. Vous avez laissé Git observer, et inspecté le diff.
+3. Vous avez **choisi** le contenu du prochain commit — le brouillon est resté dehors.
+4. Vous avez vérifié la sélection avec `git diff --staged`.
+5. Vous avez enregistré une étape cohérente, avec un message qui dit pourquoi.
+
+Un commit n'est pas « tout ce que j'ai fait depuis ce matin » : c'est **une modification cohérente** que je choisis d'enregistrer ensemble.
+
+::: {.gw-retenir}
+**status** = où en suis-je ? · **diff** = qu'ai-je changé ? · **add** = qu'est-ce que je choisis ? · **commit** = quelle étape j'enregistre ?
+:::
+
+```{=html}
+<p class="gw-next"><button type="button" class="gw-btn" data-next-mission>Mission 3 : le piège du add →</button></p>
+```
+:::
+:::
+
+::: {.gw-mission data-mission="mission-3" data-short="Le piège du add" data-kind="Mission 3" data-duration="5 min"}
+### Mission 3 — Le piège du `add`
+
+::: {.gw-ticket data-from="Message de Franck, un peu plus tard"}
+« Attends ! Le chef de bureau hésite : essaie plutôt **15 %**. »
+:::
+
+::: {.gw-objectif}
+**Objectif.** Vivre ce qui se passe quand on modifie un fichier **après** l'avoir sélectionné. Le script est enregistré avec `0.10`, mais pas encore sélectionné.
+:::
+
+::: {.gw-checklist}
+- [Sélectionnez le script tel qu'il est (`0.10`) : `git add`]{data-check="m3-add"}
+- [Dans l'éditeur, passez à `0.15` et enregistrez]{data-check="m3-edit"}
+- [`git status` : le même fichier apparaît **deux fois**]{data-check="m3-status"}
+- [`git diff` : ce qui n'est **pas encore** sélectionné]{data-check="m3-diff"}
+- [`git diff --staged` : ce qui partirait dans le prochain commit]{data-check="m3-staged"}
+- [Décidez : sélectionnez `0.15` (`git add`), ou revenez à la version sélectionnée (`git restore`)]{data-check="m3-decide"}
+:::
+
+Regardez les trois zones à chaque étape : vous devez y lire `0.15`, `0.10` et `0.20`, chacun à sa place.
+
+::: {.gw-hints}
+::: {.gw-hint}
+`git add` a copié le contenu du fichier **à cet instant**. Modifier le fichier ensuite ne change pas ce qui a été sélectionné.
+:::
+::: {.gw-hint}
+Deux façons de réconcilier les deux versions : `git add scripts/02_nettoyage.R` (la sélection prend `0.15`) ou `git restore scripts/02_nettoyage.R` (le fichier revient à `0.10`, la version sélectionnée).
+:::
+::: {.gw-solution}
+```bash
+git add scripts/02_nettoyage.R
+# … modifier 0.10 en 0.15 dans l'éditeur, enregistrer …
+git status
+git diff
+git diff --staged
+git add scripts/02_nettoyage.R
+```
+:::
+:::
+
+::: {.gw-bilan}
+1. `git add` a figé **une version** du fichier, pas le fichier lui-même.
+2. Après la nouvelle modification, le fichier existait en trois versions : `0.15` dans vos fichiers, `0.10` dans la sélection, `0.20` dans le dépôt.
+3. `git diff` et `git diff --staged` ont montré deux choses différentes : ce qui reste à sélectionner, et ce qui est sélectionné.
+
+::: {.gw-retenir}
+**`git diff`** = mes fichiers comparés à la sélection · **`git diff --staged`** = la sélection comparée au dernier commit.
+:::
+
+```{=html}
+<p class="gw-next"><button type="button" class="gw-btn" data-next-mission>Mission 4 : vendredi, ça marchait →</button></p>
+```
+:::
+:::
+
+::: {.gw-mission data-mission="mission-4" data-short="Vendredi, ça marchait" data-kind="Mission 4" data-duration="5 min"}
+### Mission 4 — « Vendredi, ça marchait »
+
+::: {.gw-ticket data-from="Lundi matin"}
+Vendredi soir, tout était commité et le script d'analyse fonctionnait. Ce matin, vous essayez une autre ventilation… et vous le regrettez.
+:::
+
+::: {.gw-objectif}
+**Objectif.** Comprendre exactement ce qui a changé, puis revenir à la version enregistrée — et voir l'éditeur suivre.
+:::
+
+::: {.gw-checklist}
+- [Ouvrez `scripts/03_analyse.R`]{data-check="m4-open"}
+- [Dans le comptage, remplacez `taille` par `departement`, puis enregistrez (c'est « l'accident »)]{data-check="m4-accident"}
+- [`git status`]{data-check="m4-status"}
+- [`git diff` : que s'est-il passé exactement ?]{data-check="m4-diff"}
+- [Revenez à la dernière version enregistrée : `git restore scripts/03_analyse.R`]{data-check="m4-restore"}
+- [`git status` : tout est de nouveau propre]{data-check="m4-clean"}
+:::
+
+::: {.gw-hints}
+::: {.gw-hint}
+Regardez l'éditeur au moment du `git restore` : le fichier ouvert reprend tout seul la version du dernier commit.
+:::
+::: {.gw-solution}
+Modifier la ligne de comptage, enregistrer, puis :
+
+```bash
+git status
+git diff
+git restore scripts/03_analyse.R
+git status
+```
+:::
+:::
+
+::: {.gw-bilan}
+1. Le diff vous a montré précisément la ligne changée.
+2. `git restore` a remis le fichier dans l'état de la zone de sélection — ici, celui du dernier commit, puisque rien n'était sélectionné.
+3. Votre modification a **disparu** : `restore` est destructif pour ce qui n'a jamais été confié à Git.
+
+::: {.gw-retenir}
+**Git ne peut retrouver que ce qu'on lui a confié.** Avant de bidouiller : commit.
+:::
+
+```{=html}
+<p class="gw-next"><button type="button" class="gw-btn" data-next-mission>Le défi →</button></p>
+```
+:::
+:::
+
+::: {.gw-mission data-mission="defi" data-short="Défi autonome" data-kind="Défi" data-duration="10 min"}
+### Défi — Le cycle complet, sans assistance
+
+::: {.gw-ticket data-from="Demande du commanditaire"}
+« Nous souhaitons maintenant distinguer les entreprises **par taille et par département**. Mettez à jour le script d'analyse et la phrase correspondante du rapport, puis créez un commit propre. »
+:::
+
+::: {.gw-objectif}
+**Objectif.** Retrouver seul le cycle : modifier, enregistrer, regarder, choisir, vérifier, enregistrer, retrouver. Aucune commande n'est donnée ; les indices sont là si vous en avez besoin.
+:::
+
+::: {.gw-checklist}
+- [Le script d'analyse ventile aussi par département]{data-check="d-script"}
+- [Le rapport annonce cette ventilation]{data-check="d-rapport"}
+- [Vous avez regardé ce qui a changé]{data-check="d-observe"}
+- [Vous avez vérifié la sélection avant le commit]{data-check="d-staged"}
+- [Un commit cohérent : les deux fichiers, rien d'autre, un vrai message]{data-check="d-commit"}
+- [Vous avez vérifié l'historique]{data-check="d-log"}
+:::
+
+::: {.gw-hints}
+::: {.gw-hint}
+Deux fichiers à modifier : `scripts/03_analyse.R` (la ligne qui compte les entreprises par `taille`) et `rapport.qmd` (la phrase « Leur répartition par taille est la suivante. »). La colonne s'appelle `departement` dans les données.
+:::
+::: {.gw-hint}
+Le cycle : regarder (`status`, `diff`), choisir (`add`, en nommant les fichiers), vérifier (`diff --staged`), enregistrer (`commit -m`), retrouver (`log`).
+:::
+::: {.gw-solution}
+::: {.gw-only-R}
+Dans `scripts/03_analyse.R` : `count(taille, departement, name = "effectifs")`.
+:::
+::: {.gw-only-Python}
+Dans `scripts/03_analyse.py` : `groupby(["taille", "departement"])`.
+:::
+
+Dans `rapport.qmd` : « Leur répartition par taille et par département est la suivante. »
+
+```bash
+git status
+git diff
+git add scripts/03_analyse.R rapport.qmd
+git diff --staged
+git commit -m "Ventile les résultats par taille et par département"
+git log --oneline
+```
+:::
+:::
+
+::: {.gw-bilan}
+Vous avez refait seul le cycle de travail avec Git : **modifier → enregistrer → status → diff → add → diff --staged → commit → log**. C'est exactement ce que vous ferez dans VS Code, sur Onyxia, avec vos propres études.
+
+::: {.gw-retenir}
+**status** = où en suis-je ? · **diff** = qu'ai-je changé ? · **add** = qu'est-ce que je choisis ? · **commit** = quelle étape j'enregistre ?
+:::
+:::
+:::
+
+:::
+
+## Et maintenant, sur Onyxia {.unnumbered}
+
+Le projet de cette page est celui que crée le [kit d'exercices](prerequis.qmd) dans votre service VS Code : mêmes fichiers, mêmes scripts, même seuil de 20 %. Les commandes que vous venez de taper sont celles du [guide de l'atelier](atelier.qmd).
 
 ::: {.remember}
-Un exercice raté ? Le bouton **Undo** (ou la commande `undo`) annule la dernière commande, **Reset** remet l'exercice à zéro. Ce sont des facilités du bac à sable, pas des commandes Git.
+Le bouton **Annuler la dernière action** (ou la commande `undo`) défait la dernière commande ou le dernier enregistrement ; **Recommencer la mission** remet le projet dans son état de départ. Ce sont des facilités du bac à sable : le vrai Git n'a pas de bouton « annuler ».
 :::
 
-[Bac à sable : extension [quarto-git-sandbox](https://github.com/ryjohnson09/quarto-git-sandbox) de Ryan Johnson (licence MIT).]{.eyebrow}
+[Votre langage, la mission en cours et les missions terminées sont retenus par votre navigateur (rien n'est envoyé). Bac à sable construit sur l'extension [quarto-git-sandbox](https://github.com/ryjohnson09/quarto-git-sandbox) de Ryan Johnson (licence MIT).]{.eyebrow}
+
+```{=html}
+<script src="assets/js/bac-a-sable.js"></script>
+```
