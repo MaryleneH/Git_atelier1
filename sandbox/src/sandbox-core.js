@@ -328,11 +328,122 @@
       var prefix = dir + '/';
       fs._store.forEach(function (v, k) {
         if (k.indexOf(prefix) !== 0) return;
-        if (k.indexOf(dir + '/.git') === 0) return;
+        if (k === dir + '/.git' || k.indexOf(dir + '/.git/') === 0) return;
         if (v.type !== 'file') return;
         out.push(k.slice(prefix.length));
       });
       return out.sort();
+    }
+
+    /* ----------------- the three zones, by content --------------------- */
+
+    // Git's own status compares file *contents*. isomorphic-git's
+    // statusMatrix trusts the index stat cache (size + mtime) instead, which
+    // misses an edit of the same length made within the same millisecond as
+    // `git add` — exactly "0.10 → 0.15 right after add". Everything below
+    // therefore compares blob ids computed from the actual bytes.
+    var textDec = new TextDecoder();
+
+    async function headOid() {
+      try { return await gitlib.resolveRef(opts({ ref: 'HEAD' })); }
+      catch (e) { return null; }
+    }
+
+    // { path: blobOid } for a tree walker (STAGE, or TREE of a commit)
+    async function blobMap(walker) {
+      var entries = await gitlib.walk(opts({
+        trees: [walker],
+        map: async function (fp, list) {
+          var e = list[0];
+          if (!e || fp === '.') return undefined;
+          if ((await e.type()) !== 'blob') return undefined;
+          return { fp: fp, oid: await e.oid() };
+        }
+      }));
+      var out = {};
+      (entries || []).forEach(function (x) { if (x && x.fp) out[x.fp] = x.oid; });
+      return out;
+    }
+
+    async function indexMap() {
+      if (!(await isRepo())) return {};
+      try { return await blobMap(gitlib.STAGE()); }
+      catch (e) { return {}; }
+    }
+
+    async function treeMap(commitOid) {
+      if (!commitOid) return {};
+      return blobMap(gitlib.TREE({ ref: commitOid }));
+    }
+
+    // Write a working file, creating its folders (the editor saves through
+    // this too, so terminal and editor share one filesystem).
+    async function writeWork(file, text) {
+      var p = abs(file);
+      await fs.promises.mkdir(fs._dirname(p), { recursive: true });
+      await fs.promises.writeFile(p, text);
+    }
+
+    async function hashText(text) {
+      return (await gitlib.hashBlob({ object: text })).oid;
+    }
+
+    async function readBlobText(oid) {
+      return textDec.decode((await gitlib.readBlob(opts({ oid: oid }))).blob);
+    }
+
+    async function isIgnored(file) {
+      if (!(await isRepo())) {
+        // before `git init` there is no git to ask; read .gitignore ourselves
+        return false;
+      }
+      try { return await gitlib.isIgnored(opts({ filepath: file })); }
+      catch (e) { return false; }
+    }
+
+    // Working files git can see: every file, minus ignored ones that are
+    // not already tracked (a tracked file stays tracked whatever .gitignore
+    // says, as in real git).
+    async function workMap(index) {
+      var files = await listFiles();
+      var out = {};
+      for (var i = 0; i < files.length; i++) {
+        var f = files[i];
+        if (!(f in index) && (await isIgnored(f))) continue;
+        out[f] = await hashText(await fs.promises.readFile(dir + '/' + f));
+      }
+      return out;
+    }
+
+    // One row per path known to any zone:
+    // { file, work, index, head } — blob ids, or null when absent there.
+    async function zoneRows() {
+      var index = await indexMap();
+      var head = await treeMap(await headOid());
+      var work = await workMap(index);
+      var all = {};
+      [work, index, head].forEach(function (m) { Object.keys(m).forEach(function (k) { all[k] = true; }); });
+      return Object.keys(all).sort().map(function (f) {
+        return {
+          file: f,
+          work: f in work ? work[f] : null,
+          index: f in index ? index[f] : null,
+          head: f in head ? head[f] : null
+        };
+      });
+    }
+
+    // Text of one file in each zone (null when absent), for the editor and
+    // the three-zone diagram.
+    async function fileVersions(file) {
+      var out = { work: null, index: null, head: null };
+      try { out.work = await fs.promises.readFile(abs(file), 'utf8'); } catch (e) {}
+      if (!(await isRepo())) return out;
+      var index = await indexMap();
+      if (file in index) out.index = await readBlobText(index[file]);
+      var head = await treeMap(await headOid());
+      if (file in head) out.head = await readBlobText(head[file]);
+      return out;
     }
 
     /* ------------------------------ remote -------------------------- */
@@ -565,35 +676,176 @@
     //   HEAD:    0 = absent,               1 = present
     //   WORKDIR: 0 = absent,               1 = same as HEAD, 2 = different from HEAD
     //   STAGE:   0 = absent, 1 = same as HEAD, 2 = same as WORKDIR, 3 = different from both
+    // Same shape as before, computed from content ids (see zoneRows):
+    //   staged       index differs from the last commit
+    //   modified     working file differs from the index
+    //   untracked    working file git does not know (and does not ignore)
     async function statusModel() {
-      var matrix = await gitlib.statusMatrix(opts());
+      var rows = await zoneRows();
       var res = { staged: [], modified: [], untracked: [], deleted: [], stagedDeleted: [] };
-      matrix.forEach(function (row) {
-        var file = row[0], head = row[1], workdir = row[2], stage = row[3];
-
-        if (head === 0) {
-          // file is not in the last commit
-          if (stage === 0) { if (workdir !== 0) res.untracked.push(file); return; }
-          res.staged.push({ file: file, kind: 'new file' });
-          if (workdir === 0) res.deleted.push(file);       // staged then deleted on disk
-          else if (stage === 3) res.modified.push(file);   // staged, then edited again
-          return;
+      rows.forEach(function (r) {
+        if (r.index !== null && r.index !== r.head) {
+          res.staged.push({ file: r.file, kind: r.head === null ? 'new file' : 'modified' });
         }
-
-        // file was in the last commit
-        if (stage === 0) { res.stagedDeleted.push(file); if (workdir !== 0) res.untracked.push(file); return; }
-        if (workdir === 0) { res.deleted.push(file); return; }
-        if (stage === 1) { if (workdir === 2) res.modified.push(file); return; }
-        // stage 2 or 3 => something is staged
-        if (workdir === 2 || stage === 3) {
-          res.staged.push({ file: file, kind: 'modified' });
-          if (stage === 3) res.modified.push(file);        // staged one version, edited again
-        }
+        if (r.index === null && r.head !== null) res.stagedDeleted.push(r.file);
+        if (r.index !== null && r.work === null) res.deleted.push(r.file);
+        if (r.index !== null && r.work !== null && r.work !== r.index) res.modified.push(r.file);
+        if (r.index === null && r.work !== null) res.untracked.push(r.file);
       });
       return res;
     }
 
+    // Like `git status`, show an untracked directory as "dir/" when nothing
+    // inside it is known to git.
+    function collapseUntracked(untracked, known) {
+      var out = [];
+      untracked.forEach(function (f) {
+        var parts = f.split('/');
+        var shown = f;
+        for (var n = 1; n < parts.length; n++) {
+          var d = parts.slice(0, n).join('/') + '/';
+          var hasKnown = known.some(function (k) { return k.indexOf(d) === 0; });
+          if (!hasKnown) { shown = d; break; }
+        }
+        if (out.indexOf(shown) === -1) out.push(shown);
+      });
+      return out;
+    }
+
     /* -------------------------- git commands ----------------------- */
+
+    // `git status`, worded exactly as git 2.4x prints it (the learners read
+    // the same lines on Onyxia afterwards).
+    async function statusText() {
+      var st = await statusModel();
+      var br = await currentBranch();
+      var anyCommit = (await headOid()) !== null;
+      var lines = ['On branch ' + (br || 'HEAD (detached)')];
+      if (!anyCommit) lines.push('', 'No commits yet');
+      var sections = [];
+
+      if (st.staged.length || st.stagedDeleted.length) {
+        var s1 = ['Changes to be committed:',
+          anyCommit ? '  (use "git restore --staged <file>..." to unstage)'
+                    : '  (use "git rm --cached <file>..." to unstage)'];
+        st.staged.forEach(function (s) {
+          s1.push('\t{g}' + (s.kind + ':').padEnd(12) + s.file + '{/}');
+        });
+        st.stagedDeleted.forEach(function (f) { s1.push('\t{g}deleted:    ' + f + '{/}'); });
+        sections.push(s1);
+      }
+      if (st.modified.length || st.deleted.length) {
+        var s2 = ['Changes not staged for commit:',
+          st.deleted.length ? '  (use "git add/rm <file>..." to update what will be committed)'
+                            : '  (use "git add <file>..." to update what will be committed)',
+          '  (use "git restore <file>..." to discard changes in working directory)'];
+        st.modified.forEach(function (f) { s2.push('\t{r}modified:   ' + f + '{/}'); });
+        st.deleted.forEach(function (f) { s2.push('\t{r}deleted:    ' + f + '{/}'); });
+        sections.push(s2);
+      }
+      if (st.untracked.length) {
+        var known = (await zoneRows())
+          .filter(function (r) { return r.index !== null || r.head !== null; })
+          .map(function (r) { return r.file; });
+        var s3 = ['Untracked files:', '  (use "git add <file>..." to include in what will be committed)'];
+        collapseUntracked(st.untracked, known).forEach(function (f) { s3.push('\t{r}' + f + '{/}'); });
+        sections.push(s3);
+      }
+      var staged = st.staged.length || st.stagedDeleted.length;
+      var hasSections = sections.length > 0;
+      if (sections.length) {
+        if (anyCommit) lines.push(sections.shift().join('\n'));
+        else lines.push('', sections.shift().join('\n'));
+        sections.forEach(function (s) { lines.push('', s.join('\n')); });
+      }
+      if (!staged) {
+        var tail;
+        if (st.modified.length || st.deleted.length) tail = 'no changes added to commit (use "git add" and/or "git commit -a")';
+        else if (st.untracked.length) tail = 'nothing added to commit but untracked files present (use "git add" to track)';
+        else if (anyCommit) tail = 'nothing to commit, working tree clean';
+        else tail = 'nothing to commit (create/copy files and use "git add" to track)';
+        lines.push(hasSections || !anyCommit ? '' : null, tail);
+      }
+      return lines.filter(function (l) { return l !== null; }).join('\n');
+    }
+
+    // Resolve a revision the way learners type it: HEAD, HEAD~n, a branch,
+    // or a (short) commit id. Returns a full commit id, or null.
+    async function resolveRev(rev) {
+      var m = /^(.*?)(?:~(\d+))?$/.exec(rev || 'HEAD');
+      var baseRev = m[1] || 'HEAD', back = m[2] ? parseInt(m[2], 10) : 0;
+      var oid = null;
+      try { oid = await gitlib.resolveRef(opts({ ref: baseRev })); }
+      catch (e) {
+        if (/^[0-9a-f]{4,40}$/.test(baseRev)) {
+          try { oid = await gitlib.expandOid(opts({ oid: baseRev })); } catch (e2) { oid = null; }
+        }
+      }
+      for (var i = 0; oid && i < back; i++) {
+        var c = await gitlib.readCommit(opts({ oid: oid }));
+        oid = (c.commit.parent || [])[0] || null;
+      }
+      if (!oid) return null;
+      try { await gitlib.readCommit(opts({ oid: oid })); } catch (e) { return null; }
+      return oid;
+    }
+
+    // "Mon Sep 14 09:05:00 2026 +0200", as `git log` prints dates
+    function gitDate(ts, tzOffsetMin) {
+      var off = -(tzOffsetMin || 0);   // isomorphic-git stores JS-style offsets
+      var d = new Date((ts + off * 60) * 1000);
+      var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+      var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      var p2 = function (x) { return (x < 10 ? '0' : '') + x; };
+      var sign = off >= 0 ? '+' : '-';
+      var a = Math.abs(off);
+      return days[d.getUTCDay()] + ' ' + months[d.getUTCMonth()] + ' ' + d.getUTCDate() + ' ' +
+        p2(d.getUTCHours()) + ':' + p2(d.getUTCMinutes()) + ':' + p2(d.getUTCSeconds()) + ' ' +
+        d.getUTCFullYear() + ' ' + sign + p2(Math.floor(a / 60)) + p2(a % 60);
+    }
+
+    // "2026-09-11T17:20:00+02:00" -> { timestamp, timezoneOffset } (JS-style)
+    function parseDate(s) {
+      var m = /^(\d{4})-(\d\d)-(\d\d)[T ](\d\d):(\d\d)(?::(\d\d))?\s*(Z|[+-]\d\d:?\d\d)?$/.exec(String(s).trim());
+      if (!m) return null;
+      var offMin = 0;
+      if (m[7] && m[7] !== 'Z') {
+        var z = m[7].replace(':', '');
+        offMin = (z.charAt(0) === '-' ? -1 : 1) * (parseInt(z.slice(1, 3), 10) * 60 + parseInt(z.slice(3, 5), 10));
+      }
+      var utc = Date.UTC(+m[1], +m[2] - 1, +m[3], +m[4], +m[5], +(m[6] || 0)) / 1000 - offMin * 60;
+      return { timestamp: utc, timezoneOffset: -offMin };
+    }
+
+    // Header + diff of one commit against its first parent, as `git show`
+    async function showCommit(oid) {
+      var c = await gitlib.readCommit(opts({ oid: oid }));
+      var g = await graphModel();
+      var node = g.commits.filter(function (x) { return x.oid === oid; })[0];
+      var decor = node && node.refs.length
+        ? ' {y}(' + node.refs.map(function (r) { return r.isHead ? 'HEAD -> ' + r.name : r.name; }).join(', ') + '){/}'
+        : '';
+      var a = c.commit.author;
+      var out = ['{y}commit ' + oid + '{/}' + decor,
+        'Author: ' + a.name + ' <' + a.email + '>',
+        'Date:   ' + gitDate(a.timestamp, a.timezoneOffset), ''];
+      c.commit.message.replace(/\n+$/, '').split('\n').forEach(function (l) { out.push('    ' + l); });
+      var parent = (c.commit.parent || [])[0] || null;
+      var before = await treeMap(parent);
+      var after = await treeMap(oid);
+      var all = {};
+      Object.keys(before).concat(Object.keys(after)).forEach(function (k) { all[k] = true; });
+      var diffs = [];
+      var names = Object.keys(all).sort();
+      for (var i = 0; i < names.length; i++) {
+        var f = names[i];
+        var x = f in before ? before[f] : null, y = f in after ? after[f] : null;
+        if (x === y) continue;
+        diffs.push(unifiedDiff(f, await textOf(x), await textOf(y), x, y));
+      }
+      if (diffs.length) out.push('', diffs.join('\n'));
+      return out.join('\n');
+    }
 
     async function gitCommand(args) {
       var sub = args[0];
@@ -622,56 +874,50 @@
         }
 
         case 'status': {
-          var st = await statusModel();
-          var br = await currentBranch();
-          var lines = ['On branch ' + (br || 'HEAD (detached)')];
-          var anyCommit = true;
-          try { await gitlib.resolveRef(opts({ ref: 'HEAD' })); }
-          catch (e) { anyCommit = false; }
-          if (!anyCommit) lines.push('', 'No commits yet');
-
-          if (st.staged.length || st.stagedDeleted.length) {
-            lines.push('', 'Changes to be committed:');
-            st.staged.forEach(function (s) { lines.push('  {g}' + s.kind + ':   ' + s.file + '{/}'); });
-            st.stagedDeleted.forEach(function (f) { lines.push('  {g}deleted:    ' + f + '{/}'); });
-          }
-          if (st.modified.length || st.deleted.length) {
-            lines.push('', 'Changes not staged for commit:');
-            st.modified.forEach(function (f) { lines.push('  {r}modified:   ' + f + '{/}'); });
-            st.deleted.forEach(function (f) { lines.push('  {r}deleted:    ' + f + '{/}'); });
-          }
-          if (st.untracked.length) {
-            lines.push('', 'Untracked files:');
-            st.untracked.forEach(function (f) { lines.push('  {r}' + f + '{/}'); });
-          }
-          if (!st.staged.length && !st.stagedDeleted.length && !st.modified.length && !st.deleted.length && !st.untracked.length) {
-            lines.push('', 'nothing to commit, working tree clean');
-          }
-          return { out: lines.join('\n'), ok: true };
+          return { out: await statusText(), ok: true };
         }
 
         case 'add': {
-          if (!rest.length) return { out: "Nothing specified, nothing added.\nhint: try 'git add .' or 'git add <file>'", ok: false };
-          var added = 0;
-          for (var i = 0; i < rest.length; i++) {
-            var spec = rest[i];
-            if (spec === '.' || spec === '-A' || spec === '--all' || spec === '*') {
-              var m = await gitlib.statusMatrix(opts());
-              for (var j = 0; j < m.length; j++) {
-                var row = m[j];
-                if (row[2] === 0) await gitlib.remove(opts({ filepath: row[0] }));
-                else await gitlib.add(opts({ filepath: row[0] }));
-                added++;
+          var force = rest.indexOf('-f') !== -1 || rest.indexOf('--force') !== -1;
+          var specs = rest.filter(function (a) { return a !== '-f' && a !== '--force'; });
+          if (!specs.length) return { out: "Nothing specified, nothing added.\nhint: Maybe you wanted to say 'git add .'?", ok: false };
+          var rowsA = await zoneRows();
+          var toStage = [], ignoredHit = [];
+          for (var i = 0; i < specs.length; i++) {
+            var spec = specs[i];
+            var all = spec === '.' || spec === '-A' || spec === '--all' || spec === '*';
+            var matched = rowsA.filter(function (r) { return all || matchesPath(r.file, spec); });
+            if (!all && !matched.length) {
+              // not visible to git: either absent, or ignored
+              var exists = false;
+              try { await fs.promises.stat(abs(spec)); exists = true; } catch (e) {}
+              if (!exists) return { out: "fatal: pathspec '" + spec + "' did not match any files", ok: false };
+              if (force) {
+                var under = (await listFiles()).filter(function (f) { return matchesPath(f, spec); });
+                under.forEach(function (f) { toStage.push({ file: f, remove: false }); });
+              } else {
+                ignoredHit.push(rel(spec).split('/')[0]);
               }
-            } else {
-              var f = rel(spec);
-              try { await fs.promises.stat(abs(spec)); }
-              catch (e) { return { out: "fatal: pathspec '" + spec + "' did not match any files", ok: false }; }
-              await gitlib.add(opts({ filepath: f }));
-              added++;
+              continue;
             }
+            matched.forEach(function (r) {
+              if (r.work === r.index) return;                 // nothing new to stage
+              toStage.push({ file: r.file, remove: r.work === null });
+            });
           }
-          return { out: '', ok: true, silentNote: added + ' path(s) staged' };
+          if (ignoredHit.length) {
+            return {
+              out: 'The following paths are ignored by one of your .gitignore files:\n' +
+                   ignoredHit.filter(function (x, k) { return ignoredHit.indexOf(x) === k; }).join('\n') + '\n' +
+                   'hint: Use -f if you really want to add them.',
+              ok: false
+            };
+          }
+          for (var j = 0; j < toStage.length; j++) {
+            if (toStage[j].remove) await gitlib.remove(opts({ filepath: toStage[j].file }));
+            else await gitlib.add(opts({ filepath: toStage[j].file, force: true }));
+          }
+          return { out: '', ok: true, silentNote: toStage.length + ' path(s) staged' };
         }
 
         case 'rm': {
@@ -689,20 +935,40 @@
             if (rest[k].indexOf('-m') === 0 && rest[k].length > 2) { msg = rest[k].slice(2); break; }
           }
           if (!msg) return { out: 'Aborting commit due to empty commit message.\nhint: use  git commit -m "your message"', ok: false };
+          var when = null;
+          for (var kd = 0; kd < rest.length; kd++) {
+            if (rest[kd] === '--date') when = parseDate(rest[kd + 1]);
+            else if (rest[kd].indexOf('--date=') === 0) when = parseDate(rest[kd].slice(7));
+          }
           var st2 = await statusModel();
           if (!st2.staged.length && !st2.stagedDeleted.length) {
-            var br2 = await currentBranch();
-            var extra = st2.untracked.length || st2.modified.length
-              ? '\nUse `git add <file>` to stage changes first.' : '';
-            return { out: 'On branch ' + br2 + '\nnothing to commit, working tree clean' + extra, ok: false };
+            // git answers with the status, and fails
+            return { out: await statusText(), ok: false };
           }
-          var sha = await gitlib.commit(opts({ message: msg, author: { name: author.name, email: author.email } }));
+          // summary counts: index vs last commit, before committing
+          var rowsC = await zoneRows();
+          var ins = 0, dels = 0, nFiles = 0, created = [], removed = [];
+          for (var rc = 0; rc < rowsC.length; rc++) {
+            var rr = rowsC[rc];
+            if (rr.index === rr.head) continue;
+            nFiles++;
+            var cnt = countChanges(await textOf(rr.head), await textOf(rr.index));
+            ins += cnt.ins; dels += cnt.del;
+            if (rr.head === null) created.push(rr.file);
+            if (rr.index === null) removed.push(rr.file);
+          }
+          var isRoot = (await headOid()) === null;
+          var who = { name: author.name, email: author.email };
+          if (when) { who.timestamp = when.timestamp; who.timezoneOffset = when.timezoneOffset; }
+          var sha = await gitlib.commit(opts({ message: msg, author: who, committer: who }));
           var branch3 = await currentBranch();
-          var nFiles = st2.staged.length + st2.stagedDeleted.length;
-          return {
-            out: '[' + branch3 + ' ' + sha.slice(0, 7) + '] ' + msg + '\n ' + nFiles + ' file' + (nFiles === 1 ? '' : 's') + ' changed',
-            ok: true
-          };
+          var summary = ' ' + nFiles + ' file' + (nFiles === 1 ? '' : 's') + ' changed';
+          if (ins) summary += ', ' + ins + ' insertion' + (ins === 1 ? '' : 's') + '(+)';
+          if (dels) summary += ', ' + dels + ' deletion' + (dels === 1 ? '' : 's') + '(-)';
+          var outC = ['[' + branch3 + (isRoot ? ' (root-commit)' : '') + ' ' + sha.slice(0, 7) + '] ' + msg, summary];
+          created.forEach(function (f) { outC.push(' create mode 100644 ' + f); });
+          removed.forEach(function (f) { outC.push(' delete mode 100644 ' + f); });
+          return { out: outC.join('\n'), ok: true };
         }
 
         case 'log': {
@@ -731,6 +997,7 @@
             } else {
               outLines.push('{y}commit ' + c.oid + '{/}' + decor);
               outLines.push('Author: ' + c.commit.author.name + ' <' + c.commit.author.email + '>');
+              outLines.push('Date:   ' + gitDate(c.commit.author.timestamp, c.commit.author.timezoneOffset));
               outLines.push('');
               outLines.push('    ' + c.commit.message.split('\n')[0]);
               outLines.push('');
@@ -930,19 +1197,90 @@
         }
 
         case 'diff': {
-          var st3 = await statusModel();
-          if (!st3.modified.length && !st3.untracked.length) return { out: '', ok: true };
-          var chunks = [];
-          for (var d = 0; d < st3.modified.length; d++) {
-            var file = st3.modified[d];
-            var headOid = await gitlib.resolveRef(opts({ ref: 'HEAD' }));
-            var blob = await gitlib.readBlob(opts({ oid: headOid, filepath: file }));
-            var oldTxt = new TextDecoder().decode(blob.blob);
-            var newTxt = await fs.promises.readFile(dir + '/' + file, 'utf8');
-            chunks.push('{w}diff --git a/' + file + ' b/' + file + '{/}');
-            chunks.push(simpleDiff(oldTxt, newTxt));
+          // git diff            working tree  vs  staging area (index)
+          // git diff --staged   staging area  vs  last commit
+          var stagedD = rest.indexOf('--staged') !== -1 || rest.indexOf('--cached') !== -1;
+          var unknownD = rest.filter(function (a) { return a.charAt(0) === '-' && a !== '--staged' && a !== '--cached' && a !== '--'; });
+          if (unknownD.length) return { out: 'error: option `' + unknownD[0].replace(/^-+/, '') + "' is not supported in this sandbox\nhint: try  git diff  or  git diff --staged", ok: false };
+          var pathsD = rest.filter(function (a) { return a.charAt(0) !== '-'; });
+          return { out: await diffText(stagedD, pathsD), ok: true };
+        }
+
+        case 'restore': {
+          // git restore <file>              working file  <- staging area
+          // git restore --staged <file>     staging area  <- last commit
+          // git restore --source=<c> <file> working file  <- commit <c>
+          var S = false, W = false, source = null;
+          var pathsR = [];
+          for (var ri = 0; ri < rest.length; ri++) {
+            var a = rest[ri];
+            if (a === '--staged' || a === '-S') S = true;
+            else if (a === '--worktree' || a === '-W') W = true;
+            else if (a.indexOf('--source=') === 0) source = a.slice(9);
+            else if (a === '--source' || a === '-s') source = rest[++ri];
+            else if (a === '--') continue;
+            else if (a.charAt(0) === '-') return { out: "error: unknown option `" + a.replace(/^-+/, '') + "'", ok: false };
+            else pathsR.push(a);
           }
-          return { out: chunks.join('\n'), ok: true };
+          if (!S) W = true;
+          if (!pathsR.length) return { out: 'fatal: you must specify path(s) to restore', ok: false };
+          var srcOid = null;
+          if (source !== null) {
+            srcOid = await resolveRev(source);
+            if (!srcOid) return { out: "fatal: could not resolve " + source, ok: false };
+          } else if (S) {
+            srcOid = await headOid();
+            if (!srcOid) return { out: 'fatal: could not resolve HEAD', ok: false };
+          }
+          var rowsR = await zoneRows();
+          var srcMap = srcOid ? await treeMap(srcOid) : null;
+          for (var pi = 0; pi < pathsR.length; pi++) {
+            var spec2 = pathsR[pi];
+            // candidate files: known to the source (or to the index when
+            // restoring the working tree from it)
+            var known2 = {};
+            rowsR.forEach(function (r) {
+              if (!matchesPath(r.file, spec2)) return;
+              if (srcMap ? (r.file in srcMap || (S && r.index !== null)) : r.index !== null) known2[r.file] = r;
+            });
+            if (srcMap) Object.keys(srcMap).forEach(function (f) { if (matchesPath(f, spec2) && !known2[f]) known2[f] = { file: f }; });
+            var filesR = Object.keys(known2).sort();
+            if (!filesR.length) return { out: "error: pathspec '" + spec2 + "' did not match any file(s) known to git", ok: false };
+            for (var fi2 = 0; fi2 < filesR.length; fi2++) {
+              var fr = filesR[fi2];
+              var wanted;   // blob id the target should end up with (null = absent)
+              if (S) {
+                wanted = srcMap && fr in srcMap ? srcMap[fr] : null;
+                if (wanted === null) await gitlib.remove(opts({ filepath: fr }));
+                else if (source === null) await gitlib.resetIndex(opts({ filepath: fr }));
+                else {
+                  // stage the source version without touching the working file
+                  var keep = null;
+                  try { keep = await fs.promises.readFile(abs(fr)); } catch (e) {}
+                  await writeWork(fr, await readBlobText(wanted));
+                  await gitlib.add(opts({ filepath: fr, force: true }));
+                  if (keep === null) await fs.promises.unlink(abs(fr)); else await fs.promises.writeFile(abs(fr), keep);
+                }
+              }
+              if (W) {
+                if (srcMap) wanted = fr in srcMap ? srcMap[fr] : null;
+                else wanted = known2[fr].index;
+                if (wanted === null) { try { await fs.promises.unlink(abs(fr)); } catch (e) {} }
+                else await writeWork(fr, await readBlobText(wanted));
+              }
+            }
+          }
+          return { out: '', ok: true };
+        }
+
+        case 'show': {
+          var revS = rest.filter(function (a) { return a.charAt(0) !== '-'; })[0] || 'HEAD';
+          var oidS = await resolveRev(revS);
+          if (!oidS) {
+            if ((await headOid()) === null) return { out: "fatal: your current branch 'main' does not have any commits yet", ok: false };
+            return { out: "fatal: ambiguous argument '" + revS + "': unknown revision or path not in the working tree.", ok: false };
+          }
+          return { out: await showCommit(oidS), ok: true };
         }
 
         case 'help':
@@ -955,19 +1293,115 @@
 
     // Line-by-line diff as data: [{ t: ' '|'+'|'-', text, a, b }] where a/b
     // are 1-based line numbers in the old/new file (absent on the other side).
+    // Longest-common-subsequence alignment, so an edited line shows as one
+    // "-" and one "+" at the right place, as in git. Files here are a few
+    // dozen lines, so the quadratic table is tiny.
     function diffLines(oldTxt, newTxt) {
-      var a = oldTxt.split('\n'), b = newTxt.split('\n');
+      var a = oldTxt === '' ? [] : oldTxt.split('\n');
+      var b = newTxt === '' ? [] : newTxt.split('\n');
+      var n = a.length, m = b.length;
+      var L = [];
+      for (var i = 0; i <= n; i++) { L.push(new Array(m + 1).fill(0)); }
+      for (i = n - 1; i >= 0; i--) {
+        for (var j = m - 1; j >= 0; j--) {
+          L[i][j] = a[i] === b[j] ? L[i + 1][j + 1] + 1 : Math.max(L[i + 1][j], L[i][j + 1]);
+        }
+      }
       var out = [];
-      var i = 0, j = 0;
-      while (i < a.length || j < b.length) {
-        if (i < a.length && j < b.length && a[i] === b[j]) { out.push({ t: ' ', text: a[i], a: i + 1, b: j + 1 }); i++; j++; }
-        else if (j < b.length && (i >= a.length || a.indexOf(b[j], i) === -1)) { out.push({ t: '+', text: b[j], b: j + 1 }); j++; }
-        else if (i < a.length) { out.push({ t: '-', text: a[i], a: i + 1 }); i++; }
-        else break;
+      i = 0; j = 0;
+      while (i < n || j < m) {
+        if (i < n && j < m && a[i] === b[j]) { out.push({ t: ' ', text: a[i], a: i + 1, b: j + 1 }); i++; j++; }
+        else if (i < n && (j >= m || L[i + 1][j] >= L[i][j + 1])) { out.push({ t: '-', text: a[i], a: i + 1 }); i++; }
+        else { out.push({ t: '+', text: b[j], b: j + 1 }); j++; }
       }
       return out;
     }
 
+    // Split text into lines the way git does: a final newline ends the last
+    // line rather than starting an empty one.
+    function gitLines(txt) {
+      if (txt === null || txt === '') return { body: '', noEol: false };
+      var noEol = txt.charAt(txt.length - 1) !== '\n';
+      return { body: noEol ? txt : txt.slice(0, -1), noEol: noEol };
+    }
+
+    // One file's unified diff, as git prints it (3 lines of context, hunk
+    // headers with the enclosing "function" line). oldTxt/newTxt are null
+    // when the file is absent on that side.
+    function unifiedDiff(file, oldTxt, newTxt, oldOid, newOid) {
+      var head = ['{w}diff --git a/' + file + ' b/' + file + '{/}'];
+      var zero = '0000000';
+      if (oldTxt === null) {
+        head.push('{w}new file mode 100644{/}', '{w}index ' + zero + '..' + newOid.slice(0, 7) + '{/}',
+          '{w}--- /dev/null{/}', '{w}+++ b/' + file + '{/}');
+      } else if (newTxt === null) {
+        head.push('{w}deleted file mode 100644{/}', '{w}index ' + oldOid.slice(0, 7) + '..' + zero + '{/}',
+          '{w}--- a/' + file + '{/}', '{w}+++ /dev/null{/}');
+      } else {
+        head.push('{w}index ' + oldOid.slice(0, 7) + '..' + newOid.slice(0, 7) + ' 100644{/}',
+          '{w}--- a/' + file + '{/}', '{w}+++ b/' + file + '{/}');
+      }
+      var o = gitLines(oldTxt), nw = gitLines(newTxt);
+      var ops = diffLines(o.body, nw.body);
+      var oldAll = o.body === '' ? [] : o.body.split('\n');
+      var CONTEXT = 3;
+      // indexes of changed ops, grouped into hunks
+      var changed = [];
+      ops.forEach(function (op, k) { if (op.t !== ' ') changed.push(k); });
+      var hunks = [];
+      changed.forEach(function (k) {
+        var last = hunks[hunks.length - 1];
+        if (last && k - last.end <= 2 * CONTEXT) last.end = k;
+        else hunks.push({ start: k, end: k });
+      });
+      var body = [];
+      hunks.forEach(function (h) {
+        var from = Math.max(0, h.start - CONTEXT);
+        var to = Math.min(ops.length - 1, h.end + CONTEXT);
+        var slice = ops.slice(from, to + 1);
+        var aStart = 0, aLen = 0, bStart = 0, bLen = 0;
+        slice.forEach(function (op) {
+          if (op.t !== '+') { aLen++; if (!aStart) aStart = op.a; }
+          if (op.t !== '-') { bLen++; if (!bStart) bStart = op.b; }
+        });
+        // an empty side is reported as the line *before* the hunk
+        if (!aLen) aStart = firstLineBefore(ops, from, 'a');
+        if (!bLen) bStart = firstLineBefore(ops, from, 'b');
+        // git's default "function name": the last line before the hunk that
+        // starts with a letter, "_" or "$"
+        var fn = '';
+        for (var q = (aLen ? aStart : aStart + 1) - 2; q >= 0; q--) {
+          if (/^[A-Za-z_$]/.test(oldAll[q] || '')) { fn = ' ' + oldAll[q]; break; }
+        }
+        body.push('{b}@@ -' + range(aStart, aLen) + ' +' + range(bStart, bLen) + ' @@{/}' + fn);
+        slice.forEach(function (op) {
+          if (op.t === '+') body.push('{g}+' + op.text + '{/}');
+          else if (op.t === '-') body.push('{r}-' + op.text + '{/}');
+          else body.push(' ' + op.text);
+        });
+      });
+      if (o.noEol && hunks.length) body.push('\\ No newline at end of file');
+      return head.concat(body).join('\n');
+    }
+
+    function firstLineBefore(ops, from, side) {
+      for (var k = from - 1; k >= 0; k--) if (ops[k][side]) return ops[k][side];
+      return 0;
+    }
+
+    function range(start, len) {
+      return len === 1 ? String(start) : start + ',' + len;
+    }
+
+    // Count "+" and "-" lines between two texts (for `git commit`'s summary).
+    function countChanges(oldTxt, newTxt) {
+      var ops = diffLines(gitLines(oldTxt).body, gitLines(newTxt).body);
+      var ins = 0, del = 0;
+      ops.forEach(function (op) { if (op.t === '+') ins++; else if (op.t === '-') del++; });
+      return { ins: ins, del: del };
+    }
+
+    // Legacy whole-file rendering, kept for callers outside the diff command.
     function simpleDiff(oldTxt, newTxt) {
       return diffLines(oldTxt, newTxt).map(function (l) {
         if (l.t === '+') return '{g}+' + l.text + '{/}';
@@ -976,25 +1410,51 @@
       }).join('\n');
     }
 
+    // Text for a blob id (null stays null)
+    async function textOf(oid) {
+      return oid === null ? null : readBlobText(oid);
+    }
+
+    // `git diff` (working tree vs index) or `git diff --staged` (index vs
+    // last commit), limited to `paths` when given.
+    async function diffText(staged, paths) {
+      var rows = await zoneRows();
+      var chunks = [];
+      for (var r = 0; r < rows.length; r++) {
+        var row = rows[r];
+        if (paths.length && !paths.some(function (p) { return matchesPath(row.file, p); })) continue;
+        var from = staged ? row.head : row.index;
+        var to = staged ? row.index : row.work;
+        if (!staged && row.index === null) continue;   // untracked: not in `git diff`
+        if (from === to) continue;
+        var toText = to === null ? null
+          : (staged ? await readBlobText(to) : await fs.promises.readFile(dir + '/' + row.file, 'utf8'));
+        chunks.push(unifiedDiff(row.file, await textOf(from), toText, from, to));
+      }
+      return chunks.join('\n');
+    }
+
+    // "scripts/" and "scripts" both match files under scripts/; "." matches all
+    function matchesPath(file, spec) {
+      var p = rel(spec).replace(/\/$/, '');
+      if (spec === '.' || p === '') return true;
+      return file === p || file.indexOf(p + '/') === 0;
+    }
+
     // Working directory vs the last commit, structured for rendering:
     // { files: [{ file, kind: 'new'|'modified'|'deleted', lines: [...] }] }
     // or null when there is no repository yet.
     async function diffModel() {
       if (!(await isRepo())) return null;
-      var headOid = null;
-      try { headOid = await gitlib.resolveRef(opts({ ref: 'HEAD' })); } catch (e) {}
-      var matrix = await gitlib.statusMatrix(opts());
+      var rows = await zoneRows();
       var files = [];
-      for (var r = 0; r < matrix.length; r++) {
-        var file = matrix[r][0], head = matrix[r][1], workdir = matrix[r][2];
+      for (var r = 0; r < rows.length; r++) {
+        var file = rows[r].file, head = rows[r].head, workdir = rows[r].work;
         if (head === workdir) continue;                       // unchanged or absent
-        var kind = head === 0 ? 'new' : (workdir === 0 ? 'deleted' : 'modified');
+        var kind = head === null ? 'new' : (workdir === null ? 'deleted' : 'modified');
         var oldTxt = '', newTxt = '';
-        if (head === 1 && headOid) {
-          var blob = await gitlib.readBlob(opts({ oid: headOid, filepath: file }));
-          oldTxt = new TextDecoder().decode(blob.blob);
-        }
-        if (workdir !== 0) newTxt = await fs.promises.readFile(dir + '/' + file, 'utf8');
+        if (head !== null) oldTxt = await readBlobText(head);
+        if (workdir !== null) newTxt = await fs.promises.readFile(dir + '/' + file, 'utf8');
         // Strip one trailing newline per side so the panel never shows a
         // phantom blank last line.
         oldTxt = oldTxt.replace(/\n$/, '');
@@ -1013,7 +1473,9 @@
         'Supported git commands in this sandbox:',
         '  git init                      git status',
         '  git add <file> | .            git commit -m "message"',
-        '  git log [--oneline]           git diff',
+        '  git log [--oneline]           git diff [--staged]',
+        '  git show [<commit>]           git restore [--staged] <file>',
+        '  git restore --source=<commit> <file>',
         '  git branch [name] [-d name]   git checkout [-b] <branch>',
         '  git switch [-c] <branch>      git merge <branch>',
         '  git remote add origin <url>   git push [-u origin <branch>]',
@@ -1239,7 +1701,17 @@
       currentBranch: currentBranch,
       listFiles: listFiles,
       readFile: function (p) { return fs.promises.readFile(abs(p), 'utf8'); },
-      writeFile: function (p, c) { return ensureWorkdir().then(function () { return fs.promises.writeFile(abs(p), c); }); },
+      writeFile: function (p, c) { return ensureWorkdir().then(function () { return writeWork(p, c); }); },
+      fileVersions: fileVersions,
+      headOid: headOid,
+      // text of a file in a given commit, or null when absent there
+      readAt: async function (oid, file) {
+        if (!oid) return null;
+        var m = await treeMap(oid);
+        return file in m ? readBlobText(m[file]) : null;
+      },
+      zoneRows: zoneRows,
+      isIgnored: isIgnored,
       get fs() { return fs; },
       get dir() { return dir; },
       git: gitlib
