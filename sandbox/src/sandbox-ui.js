@@ -853,6 +853,9 @@
   root.GitSandboxUI = {
     mount: mount,
     boot: boot,
+    // shared with the workbench (sandbox-workbench.js)
+    esc: esc,
+    markup: markup,
     branchOid: branchOid,
     reaches: reaches,
     isMerged: isMerged,

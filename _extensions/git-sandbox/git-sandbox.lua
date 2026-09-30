@@ -48,7 +48,7 @@ local function add_dependencies()
   quarto.doc.addHtmlDependency({
     name = 'git-sandbox',
     version = '1.0.0',
-    stylesheets = { res('git-sandbox.css') },
+    stylesheets = { res('git-sandbox.css'), res('git-workbench.css') },
     scripts = {
       -- isomorphic-git first, then the sandbox, then the boot call that drains
       -- the queue each exercise pushed onto. All after the body so a 260 KB
@@ -246,3 +246,17 @@ function CodeBlock(el)
       '<script>(window.__gsPending=window.__gsPending||[]).push(["#' .. id .. '",' .. json .. ']);</script>')
   })
 end
+
+--------------------------------------------------------------- workbench
+
+-- An atelier (explorer + editor + terminal + three zones) is a Div with the
+-- class "git-workbench". The page provides its project and missions in
+-- JavaScript (GitSandboxWorkbench.mount); the filter only makes sure the
+-- engine, the UI and the styles are loaded, once.
+function Div(el)
+  if el.classes:includes('git-workbench') and quarto.doc.isFormat('html:js') then
+    add_dependencies()
+  end
+  return nil
+end
+
