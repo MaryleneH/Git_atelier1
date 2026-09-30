@@ -1,6 +1,12 @@
 project:
   type: website
   output-dir: _site
+  # Tout est publié, sauf le guide d'animation (formateur/), réservé
+  # à la formatrice : il se rend à part, en PDF (voir formateur/_quarto.yml).
+  render:
+    - "*.qmd"
+    - "materiel/*.qmd"
+    - "!formateur/"
   resources:
     - assets/js/
     - assets/img/
@@ -42,9 +48,6 @@ website:
         text: Bac à sable
       - href: memo.qmd
         text: Mémo
-    right:
-      - href: formateur.qmd
-        text: Formatrice
 
   page-footer:
     left: "Git sans douleur — Atelier 1 · Je regarde, je choisis, j'enregistre"
