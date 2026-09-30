@@ -695,8 +695,26 @@ print(x["naf"].value_counts())
       '(<code>sorties/</code> dans <code>.gitignore</code>)&nbsp;: on le régénère, on ne le versionne pas.';
   }
 
+  // Le message d'accueil du terminal, affiché une fois par visite.
+  // {w}…{/} : gras ; {y}…{/} : une commande à taper.
+  var ACCUEIL = [
+    '{w}Bienvenue dans le bac à sable Git 👋{/}',
+    '',
+    'Ici, impossible de casser la prod.',
+    'Testez. Modifiez. Ratez. Recommencez.',
+    '',
+    'Git est justement là pour garder la trace.',
+    '',
+    'Un doute\u00a0?',
+    '{y}git status{/} est votre meilleur ami.',
+    '{y}help{/} vous donne un coup de pouce.',
+    '',
+    'À vous de jouer.'
+  ];
+
   var config = {
     project: 'entreprises_defense',
+    welcome: ACCUEIL,
     languages: [{ id: 'R', label: 'R' }, { id: 'Python', label: 'Python' }],
     fileFor: fileFor,
     swapLang: swapLang,
@@ -707,7 +725,7 @@ print(x["naf"].value_counts())
   };
 
   var api = {
-    KIT: KIT, GITIGNORE: GITIGNORE, SYNTHESE: SYNTHESE,
+    KIT: KIT, GITIGNORE: GITIGNORE, SYNTHESE: SYNTHESE, ACCUEIL: ACCUEIL,
     fichiers: fichiers, fileFor: fileFor, swapLang: swapLang,
     EDITS: EDITS, missions: missions, config: config, RE: RE
   };

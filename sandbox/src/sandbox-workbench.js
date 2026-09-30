@@ -239,6 +239,20 @@
       if (t === '' || t == null) return;
       write(markup(t), cls);
     }
+    // Welcome message (cfg.welcome, an array of lines with {y}…{/} marks),
+    // shown once per visit, above the first mission's intro.
+    var welcomed = false;
+    function writeWelcome(lines) {
+      var box = el('div', 'gw-welcome');
+      box.setAttribute('role', 'note');
+      box.setAttribute('aria-label', 'Message d\'accueil');
+      lines.forEach(function (l, i) {
+        box.appendChild(el('div', 'gw-line' + (i === 0 ? ' gw-welcome-title' : '') + (l === '' ? ' gw-blank' : ''),
+          l === '' ? '' : markup(l)));
+      });
+      out.appendChild(box);
+    }
+
     function promptText() {
       var br = lastModel && lastModel.branch;
       return '~/' + (cfg.project || 'projet') + (br ? ' (' + br + ')' : '') + ' $';
@@ -944,6 +958,10 @@
         writeText('{r}Le projet n\'a pas pu être préparé : ' + e.message + '{/}', 'gw-err');
       }
       startOid = await sb.headOid();
+      if (!welcomed && cfg.welcome && cfg.welcome.length) {
+        welcomed = true;
+        writeWelcome(cfg.welcome);
+      }
       (m.def.intro ? m.def.intro(lang) : []).forEach(function (l) { writeText(l, 'gw-note'); });
       busy = false;
       await refresh({ skipChecks: true });
