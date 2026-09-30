@@ -1,11 +1,9 @@
 ---
 title: "Guide d'animation"
-subtitle: "Pour la formatrice : minutage, matériel, corrigés, plan B"
+subtitle: "Atelier 1 · Je regarde, je choisis, j'enregistre — document réservé à la formatrice"
 ---
 
-[Pour la formatrice]{.eyebrow}
-
-Le diaporama ([slides.qmd](slides.qmd), touche `S` pour les notes) contient le discours slide par slide. Ce guide rassemble ce dont tu as besoin **autour** : le minutage d'ensemble, le matériel, les corrigés, les variantes démo/pratique, et quoi faire quand ça coince.
+Le diaporama (page `slides.html` du site, touche `S` pour les notes) contient le discours slide par slide. Ce guide rassemble ce dont tu as besoin **autour** : le minutage d'ensemble, le matériel, les corrigés, les variantes démo/pratique, et quoi faire quand ça coince.
 
 ## Minutage
 
@@ -50,21 +48,19 @@ Le diaporama ([slides.qmd](slides.qmd), touche `S` pour les notes) contient le d
 
 : {tbl-colwidths="[10,9,14,67]"}
 
-::: {.warning}
-**Deux fusibles** si tu prends du retard :
+**Deux fusibles**, si tu prends du retard :
 
 1. **Temps 4** : saute le tri de cartes, donne directement le `.gitignore` (slide « Écrire un `.gitignore` ») et passe au Temps 5. Gain : 5 minutes.
 2. **Temps 3** : le `git restore --source` passe en démonstration sur ton écran au lieu d'être tapé par tous. Gain : 2 à 3 minutes.
 
 Ne sacrifie jamais le Temps 5 : c'est le seul moment où leur travail sort de leur service.
-:::
 
 ## Matériel
 
 - **Trois feuilles A4** titrées *Bureau*, *Table de sélection*, *Album*, et une table où les poser, visible de tous.
 - **Des post-its** (un par fichier de l'étude : `README.md`, `rapport.qmd`, `01_import.R`, `02_nettoyage.R`, `03_analyse.R`, `brouillon_test.R`, `data/…csv`), un stylo, une agrafeuse.
-- **Les 12 cartes de tri**, imprimées et découpées : un jeu par groupe de 2 ou 3 ([materiel/cartes-tri.pdf](materiel/cartes-tri.pdf)).
-- **Le mémo A4**, un par personne ([materiel/memo.pdf](materiel/memo.pdf)).
+- **Les 12 cartes de tri**, imprimées et découpées : un jeu par groupe de 2 ou 3 (`materiel/cartes-tri.pdf` sur le site).
+- **Le mémo A4**, un par personne (`materiel/memo.pdf` sur le site).
 - **Les tickets de sortie** : une demi-feuille par personne avec les trois lignes « Une chose que je sais faire / Une chose encore floue / La commande que je taperai demain ».
 - **Le film** : accès YouTube vérifié, ou `video/le-nouveau.mp4` sur le poste (le dossier `video/` est ignoré par Git).
 - **Ton projet `entreprises_defense_marie` déjà poussé** sur le GitLab interne (plan B du Temps 5).
@@ -109,8 +105,7 @@ Les empreintes de Marie, **produites par la version courante de `kit.sh` ; relan
 
 : {tbl-colwidths="[4,15,8,47,13,13]"}
 
-<details>
-<summary>Empreintes complètes</summary>
+#### Empreintes complètes
 
 ```text
 Variante R
@@ -134,7 +129,6 @@ b62bd9527ef2073eb828adff5167ae73e439e683  4 Ajoute la ventilation par taille…
 c4a8e6b67bc015a8a0f4108926b29c1cf60ffe4b  8 Met à jour le rapport…
 ```
 
-</details>
 
 **Réponses attendues** : le passage en parts, c'est le **commit 6** — Marie, vendredi 11 septembre à 17 h 20, « à la demande du chef de bureau ». Le script cassé, c'est le **commit 7** — lundi 14 septembre, `group_by(secteur)` alors que la colonne `secteur` n'existe pas (seule `naf` existe).
 
@@ -193,7 +187,7 @@ Les notes de réunion laissées chez Marie (`notes_reunion_chef_de_bureau.md`) c
 
 ## Plan B
 
-- **Onyxia indisponible** (panne, services qui ne démarrent pas) : tout l'atelier bascule sur le [bac à sable](bac-a-sable.qmd), dans le navigateur. Les trois exercices couvrent le geste (Temps 2), `add` qui fige une version, et le retour à la dernière photo (Temps 3). Le Temps 4 se fait sur papier, le Temps 5 en démonstration sur ton écran.
+- **Onyxia indisponible** (panne, services qui ne démarrent pas) : tout l'atelier bascule sur le bac à sable du site (`bac-a-sable.html`), dans le navigateur. Les trois exercices couvrent le geste (Temps 2), `add` qui fige une version, et le retour à la dernière photo (Temps 3). Le Temps 4 se fait sur papier, le Temps 5 en démonstration sur ton écran.
 - **Le push échoue** pour une partie de la salle : montre ton projet `entreprises_defense_marie` déjà poussé sur le GitLab interne (historique, un commit, son diff, le README) ; les personnes concernées suivent sur ton écran et referont le push chez elles (défi de la semaine).
 - **Pas de YouTube dans la salle** : `video/le-nouveau.mp4` sur ton poste.
 - **Service recréé le jour J** : `bash kit.sh --force` (le kit est idempotent : mêmes dossiers, mêmes empreintes).
@@ -202,7 +196,7 @@ Les notes de réunion laissées chez Marie (`notes_reunion_chef_de_bureau.md`) c
 
 Toutes les sorties des slides et du guide ont été produites en exécutant réellement les commandes sur le kit (Git 2.43, identité fictive « Camille », dates fixées pour la reproductibilité). Deux exceptions, signalées :
 
-- la sortie de `git push` a été obtenue avec un dépôt distant local ; seule l'adresse a été remplacée par celle de GitLab (`{{< var gitlab_url >}}/camille/…`) ;
+- la sortie de `git push` a été obtenue avec un dépôt distant local ; seule l'adresse a été remplacée par celle de GitLab du GitLab interne ;
 - la slide « Et si le message avait été *modif* ? » montre un historique fictif, fabriqué pour l'exemple, ce que tu dis à voix haute.
 
 Les empreintes des commits des participants (Temps 2, 4 et 5) dépendent de leur nom et de l'heure : elles diffèrent d'un poste à l'autre. Celles de Marie sont identiques partout.

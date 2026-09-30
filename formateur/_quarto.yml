@@ -1,0 +1,41 @@
+# ============================================================
+# Guide d'animation — document réservé à la formatrice.
+#
+# Ce dossier est un projet Quarto à part : il n'est PAS publié
+# sur le site (voir project.render dans ../_quarto.yml).
+# Il produit un PDF, rangé à côté de sa source :
+#
+#   cd formateur && quarto render
+#
+# → formateur/guide-formateur.pdf
+# ============================================================
+
+project:
+  type: default
+
+lang: fr
+
+format:
+  typst:
+    papersize: a4
+    margin:
+      x: 18mm
+      y: 16mm
+    fontsize: 10pt
+    mainfont: "Public Sans"
+    font-paths: ["../assets/fonts"]
+    toc: true
+    toc-title: "Sommaire"
+    toc-depth: 2
+    keep-typ: false
+    include-in-header:
+      - text: |
+          #set text(lang: "fr", fill: rgb("#211d18"))
+          #show heading: set text(font: "Fraunces", fill: rgb("#211d18"))
+          #show raw: set text(font: "JetBrains Mono", size: 8.5pt, fill: rgb("#0b5952"))
+          #set table(
+            stroke: (x, y) => if y == 0 { (bottom: 1pt + rgb("#211d18")) } else { (bottom: 0.4pt + rgb("#e6e1d6")) },
+            inset: (x: 5pt, y: 5pt),
+          )
+          #show table.cell.where(y: 0): set text(weight: "bold", fill: rgb("#575046"))
+          #show table: set text(size: 8.5pt)
