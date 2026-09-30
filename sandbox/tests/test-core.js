@@ -100,14 +100,16 @@ async function scenario(name, fn) {
     check('status: untracked', /Untracked files/.test(r.out) && /README\.md/.test(r.out), r.out);
 
     r = await run('git commit -m "too soon"');
-    check('commit w/o staging fails', !r.ok && /nothing to commit/.test(r.out), r.out);
+    // real git answers with its status: nothing staged, untracked files present
+    check('commit w/o staging fails', !r.ok && /nothing added to commit but untracked files present/.test(r.out), r.out);
 
     await run('git add README.md');
     r = await run('git status');
     check('status: staged new file', /Changes to be committed/.test(r.out) && /new file:\s+README\.md/.test(r.out), r.out);
 
     r = await run('git commit -m "First commit"');
-    check('commit ok', r.ok && /\[main [0-9a-f]{7}\] First commit/.test(r.out), r.out);
+    // the first commit is announced as a root commit, as in real git
+    check('commit ok', r.ok && /\[main \(root-commit\) [0-9a-f]{7}\] First commit/.test(r.out), r.out);
     check('commit reports 1 file', /1 file changed/.test(r.out), r.out);
 
     r = await run('git status');
