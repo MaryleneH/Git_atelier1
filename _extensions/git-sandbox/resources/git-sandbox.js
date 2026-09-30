@@ -3243,12 +3243,18 @@
       write(markup(t), cls);
     }
     // Welcome message (cfg.welcome, an array of lines with {y}…{/} marks),
-    // shown once per visit, above the first mission's intro.
-    var welcomed = false;
+    // written above the intro each time a mission starts or restarts.
+    // cfg.welcomeIcon, optional, is a small decorative SVG shown in the
+    // block's left margin.
     function writeWelcome(lines) {
-      var box = el('div', 'gw-welcome');
+      var box = el('div', 'gw-welcome' + (cfg.welcomeIcon ? ' gw-welcome-has-icon' : ''));
       box.setAttribute('role', 'note');
       box.setAttribute('aria-label', 'Message d\'accueil');
+      if (cfg.welcomeIcon) {
+        var icon = el('span', 'gw-welcome-icon', cfg.welcomeIcon);
+        icon.setAttribute('aria-hidden', 'true');
+        box.appendChild(icon);
+      }
       lines.forEach(function (l, i) {
         box.appendChild(el('div', 'gw-line' + (i === 0 ? ' gw-welcome-title' : '') + (l === '' ? ' gw-blank' : ''),
           l === '' ? '' : markup(l)));
@@ -3961,16 +3967,15 @@
         writeText('{r}Le projet n\'a pas pu être préparé : ' + e.message + '{/}', 'gw-err');
       }
       startOid = await sb.headOid();
-      if (!welcomed && cfg.welcome && cfg.welcome.length) {
-        welcomed = true;
-        writeWelcome(cfg.welcome);
-      }
+      if (cfg.welcome && cfg.welcome.length) writeWelcome(cfg.welcome);
       (m.def.intro ? m.def.intro(lang) : []).forEach(function (l) { writeText(l, 'gw-note'); });
       busy = false;
       await refresh({ skipChecks: true });
       var first = m.def.open ? m.def.open(lang) : null;
       if (first) await openFile(first, { silent: true });
       renderMissionState();
+      // Start reading from the top, so the welcome is seen first.
+      if (cfg.welcome && cfg.welcome.length) out.scrollTop = 0;
       persist();
     }
 
