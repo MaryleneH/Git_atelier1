@@ -187,7 +187,7 @@ Les notes de réunion laissées chez Marie (`notes_reunion_chef_de_bureau.md`) c
 
 ## Plan B
 
-- **Onyxia indisponible** (panne, services qui ne démarrent pas) : tout l'atelier bascule sur le bac à sable du site (`bac-a-sable.html`), dans le navigateur. Les trois exercices couvrent le geste (Temps 2), `add` qui fige une version, et le retour à la dernière photo (Temps 3). Le Temps 4 se fait sur papier, le Temps 5 en démonstration sur ton écran.
+- **Onyxia indisponible** (panne, services qui ne démarrent pas) : tout l'atelier bascule sur le bac à sable du site (`bac-a-sable.html`), dans le navigateur. Chacun y ouvre la même étude que le kit, en R ou en Python. La prise en main couvre le Temps 2 ; les missions 1 à 3 le diff, le commit cohérent et le piège du `add` ; la mission 4 le `git restore` du Temps 3. Le `.gitignore` du Temps 4 y est visible (données et sorties ignorées), le tri de cartes se fait sur papier, le Temps 5 en démonstration sur ton écran.
 - **Le push échoue** pour une partie de la salle : montre ton projet `entreprises_defense_marie` déjà poussé sur le GitLab interne (historique, un commit, son diff, le README) ; les personnes concernées suivent sur ton écran et referont le push chez elles (défi de la semaine).
 - **Pas de YouTube dans la salle** : `video/le-nouveau.mp4` sur ton poste.
 - **Service recréé le jour J** : `bash kit.sh --force` (le kit est idempotent : mêmes dossiers, mêmes empreintes).

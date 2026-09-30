@@ -79,7 +79,7 @@ Vingt minutes, la semaine précédente : renseigner votre compte Onyxia, lancer
     <span class="day-outline__num">04</span>
     <span>
       <span class="day-outline__title">Le bac à sable</span>
-      <span class="day-outline__desc">Trois exercices Git dans le navigateur, sans rien installer.</span>
+      <span class="day-outline__desc">L'étude du soir dans le navigateur : ouvrir un script, le modifier, puis Git. Une prise en main, quatre missions, un défi.</span>
     </span>
     <span class="day-outline__go" aria-hidden="true">→</span>
   </a>
