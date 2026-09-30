@@ -386,6 +386,15 @@
 .gw-echo-prompt { color: var(--gw-green); font-weight: 600; }
 .gw-err { color: var(--gw-red); }
 .gw-note { color: var(--gw-night-muted); }
+
+/* Message d'accueil : un encadré discret, dans le terminal lui-même */
+.gw-welcome {
+  margin: 0.2rem 0 0.9rem;
+  padding: 0.15rem 0 0.2rem 0.8rem;
+  border-left: 2px solid var(--gw-green);
+  color: var(--gw-night-ink-2);
+}
+.gw-welcome .gw-welcome-title { color: var(--gw-night-ink); }
 .gw-out .tg { color: var(--gw-green); }
 .gw-out .tr { color: var(--gw-red); }
 .gw-out .ty { color: var(--gw-yellow); }
