@@ -892,7 +892,7 @@ Si `git show` affiche `:` en bas de l'écran ou `(END)` : c'est le lecteur de te
 
 Aide graduée : 1) « Lisez les messages » ; 2) « Lequel parle de pourcentages ? de NAF ? » ; 3) « Tapez `git show` suivi des 7 caractères. »
 
-Corrigé : dans `formateur.qmd`.
+Corrigé : dans le guide d'animation (`formateur/guide-formateur.pdf`).
 :::
 
 ## L'enquête : les réponses
@@ -1064,7 +1064,7 @@ git commit -m "Revient au script d'analyse de vendredi (la ventilation NAF cassa
 
 **Version pratique** : ils tapent les cinq commandes. Le `git diff` doit montrer les cinq lignes de la ventilation NAF en `-`.
 
-Variante Python : le fichier est `scripts/03_analyse.py` et les empreintes sont différentes (voir `formateur.qmd`) ; le commit de vendredi y est `693c70a`.
+Variante Python : le fichier est `scripts/03_analyse.py` et les empreintes sont différentes (voir le guide d'animation) ; le commit de vendredi y est `693c70a`.
 
 **Version démo (fusible, si le temps manque)** : tu la fais sur ton écran, ils suivent et prédisent le `git status`.
 
@@ -1148,7 +1148,7 @@ Les cartes portent des précisions : le CSV est un extrait synthétique de 40 l
 - le **PNG** : régénérable par `03_analyse.R` → à ignorer ; sauf s'il est une pièce officielle livrée à un instant donné ;
 - les **notes de réunion** : du texte, utile… mais nominatif et interne → pas dans le dépôt de l'étude.
 
-Corrigé détaillé dans `formateur.qmd`.
+Corrigé détaillé dans le guide d'animation (`formateur/guide-formateur.pdf`).
 :::
 
 ## Les critères
