@@ -10,7 +10,7 @@ Le site contient :
 | `slides.qmd` | Le diaporama complet (Reveal.js), notes formateur incluses (touche `S`) |
 | `atelier.qmd` | Le guide participant, pas à pas |
 | `prerequis.qmd` | Le pré-travail, le modèle de mail J-3, la checklist J-7 |
-| `bac-a-sable.qmd` | Trois exercices Git dans le navigateur (extension `git-sandbox`) |
+| `bac-a-sable.qmd` | L'étude dans le navigateur : explorateur, éditeur, terminal Git, trois zones ; prise en main, 4 missions, un défi |
 | `memo.qmd` | Le tableau problème → commande |
 | `materiel/` | Le mémo A4 et les 12 cartes de tri, en PDF (Typst) |
 | `kit/kit.sh` | Le script qui crée les dossiers d'exercice sur Onyxia |
@@ -63,6 +63,16 @@ Le test lance `kit.sh` plusieurs fois, en R puis en Python, et vérifie que l'hi
 
 **Après toute modification de `kit.sh`, relancez le test et reportez les nouvelles empreintes dans `formateur/guide-formateur.qmd`** (ainsi que dans les slides, le guide participant et la page de préparation, qui citent celles de Marie), puis régénérez le PDF.
 
+## Tester le bac à sable
+
+Le bac à sable (`bac-a-sable.qmd`) repose sur un fork de l'extension `git-sandbox`, dont les sources et les tests sont dans `sandbox/` :
+
+```bash
+cd sandbox && npm ci && bash tests/run.sh
+```
+
+Les suites vérifient le moteur Git (diff, `diff --staged`, `restore`, etc.), le déroulé complet de chaque mission en R et en Python, et que les sorties sont **identiques à celles du vrai Git**. Après toute modification de `sandbox/src/`, relancer `bash sandbox/build.sh` pour régénérer l'extension. Le parcours dans un vrai navigateur est décrit dans `sandbox/README.md`.
+
 ## Publier sur GitHub Pages
 
 Le workflow `.github/workflows/publish.yml` rend le site et le déploie directement par GitHub Actions à chaque push sur `main` (ou à la demande, depuis l'onglet *Actions* : *Run workflow*). Il n'y a pas de branche `gh-pages`.
@@ -81,4 +91,4 @@ Les commits de ce dépôt suivent la règle enseignée dans l'atelier : de petit
 
 - Identité visuelle : cours « Git sans douleur — Jour 1 ».
 - Polices : [Fraunces](https://github.com/undercasetype/Fraunces), [Public Sans](https://github.com/uswds/public-sans), [JetBrains Mono](https://github.com/JetBrains/JetBrainsMono), licence SIL OFL 1.1 (textes dans `assets/fonts/`).
-- Bac à sable : extension [quarto-git-sandbox](https://github.com/ryjohnson09/quarto-git-sandbox) de Ryan Johnson, licence MIT (copie dans `_extensions/git-sandbox/`).
+- Bac à sable : fork de l'extension [quarto-git-sandbox](https://github.com/ryjohnson09/quarto-git-sandbox) de Ryan Johnson, licence MIT. Les sources et les tests sont dans `sandbox/` (voir `sandbox/README.md`), le fichier construit dans `_extensions/git-sandbox/`.

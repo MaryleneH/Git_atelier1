@@ -114,7 +114,7 @@ Sans `--force`, le kit refuse d'écraser des dossiers existants.
 
 ## 5. Cinq minutes de bac à sable, et un mail
 
-- Faites le premier exercice du [bac à sable](bac-a-sable.qmd) : il tourne dans le navigateur, sans Onyxia.
+- Faites la **prise en main** du [bac à sable](bac-a-sable.qmd) (5 minutes) : la même étude que le kit, dans le navigateur, sans Onyxia. Les quatre missions et le défi sont pour après l'atelier.
 - Envoyez à la formatrice, par mail, **votre pire nom de fichier** (réel, anonymisé si besoin). Les meilleurs ouvriront l'atelier.
 
 ---
