@@ -12,7 +12,8 @@
 #   - l'historique de Marie a 8 commits et 7 fichiers non suivis ;
 #   - si R (ou pandas) est disponible : 03_analyse échoue au
 #     dernier commit et réussit au commit 6 ;
-#   - les empreintes figurent dans formateur.qmd.
+#   - les empreintes figurent dans le guide d'animation
+#     (formateur/guide-formateur.qmd).
 # ============================================================
 
 set -euo pipefail
@@ -20,7 +21,7 @@ set -euo pipefail
 ICI="$(cd "$(dirname "$0")" && pwd)"
 RACINE="$(cd "$ICI/.." && pwd)"
 KIT="$ICI/kit.sh"
-FORMATEUR="$RACINE/formateur.qmd"
+FORMATEUR="$RACINE/formateur/guide-formateur.qmd"
 
 TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
@@ -123,9 +124,9 @@ for variante in R Python; do
     for h in $(empreintes "$A"); do
       grep -q "$h" "$FORMATEUR" || manquantes=$((manquantes + 1))
     done
-    verifie "les 8 empreintes figurent dans formateur.qmd" "[ $manquantes -eq 0 ]"
+    verifie "les 8 empreintes figurent dans le guide d'animation" "[ $manquantes -eq 0 ]"
   else
-    echo "  --    formateur.qmd absent : empreintes non comparées"
+    echo "  --    guide d'animation absent : empreintes non comparées"
   fi
 done
 

@@ -152,6 +152,6 @@ Si une étape bloque, écrivez-moi : mieux vaut régler cela avant que pendant.
 - [ ] **Site joignable** depuis les postes de la salle : {{< var site_url >}}
 - [ ] **Film** : YouTube accessible dans la salle ? Sinon, copier `video/le-nouveau.mp4` sur le poste de présentation.
 - [ ] **Plan B** : pousser `entreprises_defense_marie` sur ton GitLab, pour le montrer si un push échoue.
-- [ ] **Kit** : `bash kit/test_kit.sh` vert, et empreintes identiques à celles du [guide formateur](formateur.qmd).
+- [ ] **Kit** : `bash kit/test_kit.sh` vert, et empreintes identiques à celles du guide d'animation (PDF).
 - [ ] **Impression** : [mémo A4](materiel/memo.pdf) (un par personne), [cartes de tri](materiel/cartes-tri.pdf) (un jeu par groupe de 2 ou 3), tickets de sortie.
 :::
