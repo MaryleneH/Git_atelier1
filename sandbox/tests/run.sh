@@ -6,7 +6,9 @@
 # 1. test-core   le moteur Git (sans DOM)
 # 2. test-when   le mini-langage des tâches `when:`
 # 3. test-ui     terminal et schéma des zones, au niveau du DOM (jsdom)
-# D'autres suites s'ajoutent ici quand elles existent.
+# 4. test-atelier le moteur et les missions du bac à sable, en R et en Python
+# 5. test-fidelite les sorties comparées à celles du vrai git
+# Le parcours dans un navigateur (e2e-bac-a-sable.js) se lance à part.
 
 set -uo pipefail
 cd "$(dirname "$0")/.."
@@ -14,8 +16,9 @@ cd "$(dirname "$0")/.."
 fail=0
 for t in tests/test-*.js; do
   printf '\n--- %s\n' "$(basename "$t")"
-  node "$t" | tail -6 || fail=1
-  node "$t" > /dev/null 2>&1 || fail=1
+  out=$(node "$t" 2>&1); status=$?
+  printf '%s\n' "$out" | tail -6
+  [ "$status" -eq 0 ] || fail=1
 done
 
 echo

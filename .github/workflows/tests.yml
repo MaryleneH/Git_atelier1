@@ -1,0 +1,47 @@
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  bac-a-sable:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+
+      - name: Installer Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: sandbox/package-lock.json
+
+      - name: Installer les dépendances de test
+        run: npm ci
+        working-directory: sandbox
+
+      - name: Vérifier que l'extension construite est à jour
+        run: |
+          bash sandbox/build.sh
+          git diff --exit-code _extensions/git-sandbox/resources/git-sandbox.js
+
+      # moteur, missions R et Python, fidélité au vrai Git, interface
+      - name: Tests du bac à sable
+        run: bash tests/run.sh
+        working-directory: sandbox
+
+  kit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+
+      - name: Tester le kit d'exercices
+        run: bash kit/test_kit.sh
