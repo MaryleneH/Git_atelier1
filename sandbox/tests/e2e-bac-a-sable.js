@@ -82,6 +82,11 @@ function check(label, cond, detail) {
     const p = await page(1368, 900);
     const h = helpers(p);
     const accueil = () => p.evaluate(() => [...document.querySelectorAll('.gw-out .gw-welcome')].map((w) => w.textContent));
+    const picto = () => p.evaluate(() => document.querySelectorAll('.gw-out .gw-welcome-icon').length);
+    const accueilEnTete = () => p.evaluate(() => {
+      const out = document.querySelector('.gw-out');
+      return out.querySelectorAll('.gw-welcome').length === 1 && out.firstElementChild.classList.contains('gw-welcome');
+    });
     if (lang === 'R') {
       /* ---- message d'accueil du terminal ---- */
       const w = await accueil();
@@ -97,6 +102,22 @@ function check(label, cond, detail) {
       check('accueil : lisible par un lecteur d\'écran (note étiquetée)', await p.evaluate(() => {
         const n = document.querySelector('.gw-welcome'); return n.getAttribute('role') === 'note' && !!n.getAttribute('aria-label');
       }));
+      /* ---- son pictogramme ---- */
+      check('pictogramme : un seul, dans le bloc d\'accueil', (await picto()) === 1 &&
+        await p.evaluate(() => !!document.querySelector('.gw-welcome > .gw-welcome-icon > svg')));
+      check('pictogramme : décoratif (aria-hidden), sans texte lu', await p.evaluate(() => {
+        const i = document.querySelector('.gw-welcome-icon'); return i.getAttribute('aria-hidden') === 'true' && i.textContent.trim() === '';
+      }));
+      const geo = await p.evaluate(() => {
+        const i = document.querySelector('.gw-welcome-icon').getBoundingClientRect();
+        const t = document.querySelector('.gw-welcome-title').getBoundingClientRect();
+        return { w: i.width, h: i.height, left: i.right <= t.left, top: Math.abs(i.top - t.top) };
+      });
+      check('pictogramme : petit, dans la marge, à hauteur du titre', geo.w >= 30 && geo.w <= 56 && geo.h <= 64 && geo.left && geo.top < 8, JSON.stringify(geo));
+      check('pictogramme : aux couleurs du terminal', await p.evaluate(() =>
+        getComputedStyle(document.querySelector('.gw-welcome-icon')).color === 'rgb(126, 226, 184)'));
+      check('prompt disponible dès l\'ouverture', await p.evaluate(() => { const c = document.querySelector('.gw-cmd'); return !c.disabled && !c.readOnly; }));
+      if (SHOTS) await (await p.$('.gw-terminal')).screenshot({ path: SHOTS + '/accueil-1368.png' });
     }
     if (lang === 'Python') { await p.click('.gw-lang-btn[data-lang="Python"]'); await p.waitForTimeout(600); }
     check(L('langage choisi'), await p.evaluate(() => document.querySelector('#atelier').getAttribute('data-lang')) === lang);
@@ -199,15 +220,19 @@ function check(label, cond, detail) {
     check(L('Annuler l\'enregistrement : la modification reste dans l\'éditeur, non enregistrée'),
       /departement/.test(await h.text()) && /non enregistré/.test(await h.edState()), JSON.stringify(st.buffers[f03]));
     check(L('Annuler : plus rien à annuler, bouton désactivé'), await p.evaluate(() => document.querySelector('.gw-undo').disabled));
+    check(L('Annuler : accueil et pictogramme toujours là, une seule fois'), (await accueilEnTete()) && (await picto()) === 1);
     await p.click('.gw-restart');
     await p.waitForTimeout(700);
     check(L('Recommencer : checklist remise à zéro'), (await h.done()).every((d) => !d));
     check(L('Recommencer : éditeur sur la version de départ'), (await h.text()) === original);
     check(L('Recommencer : terminal vidé'), (await p.textContent('.gw-out')).indexOf('git restore') === -1);
-    check(L('accueil : pas répété après Recommencer ni après un changement de mission'), (await accueil()).length === 0);
+    check(L('Recommencer : accueil et pictogramme réaffichés, une seule fois, en tête'), (await accueilEnTete()) && (await picto()) === 1);
+    o = await h.cmd('git status');
+    check(L('Recommencer : le terminal répond aussitôt'), /git status/.test(o), o);
 
     /* ---- mission 2 et défi, plus vite ---- */
     await h.step(2);
+    check(L('changement de mission : accueil et pictogramme, une seule fois'), (await accueilEnTete()) && (await picto()) === 1);
     await h.open('rapport.qmd');
     await h.type('moins 20 %.', 'moins 10 %.');
     await h.save();
@@ -256,6 +281,16 @@ function check(label, cond, detail) {
     await h.open('README.md');
     check('mobile : ouvrir un fichier bascule sur l\'éditeur', await visible('.gw-editor'));
     await p.click('.gw-mtabs [data-mtab="terminal"]');
+    await p.waitForTimeout(300);
+    const m = await p.evaluate(() => {
+      const r = (s) => document.querySelector(s).getBoundingClientRect();
+      const out = document.querySelector('.gw-out');
+      return { icon: r('.gw-welcome-icon').width, term: r('.gw-terminal').right, work: r('.gw-work').right,
+        outOverflow: out.scrollWidth - out.clientWidth };
+    });
+    check('mobile : pictogramme compact', m.icon >= 24 && m.icon <= 40, JSON.stringify(m));
+    check('mobile : le terminal tient dans son panneau (rien de coupé)', m.term <= m.work + 1 && m.outOverflow <= 1, JSON.stringify(m));
+    if (SHOTS) await (await p.$('.gw-terminal')).screenshot({ path: SHOTS + '/accueil-390.png' });
     await h.cmd('git init');
     await p.click('.gw-mtabs [data-mtab="zones"]');
     check('mobile : onglet Git', await visible('.gw-zones'));
