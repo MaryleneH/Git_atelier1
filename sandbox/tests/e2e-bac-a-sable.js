@@ -81,6 +81,23 @@ function check(label, cond, detail) {
     const assign = lang === 'R' ? '<- ' : '= ';
     const p = await page(1368, 900);
     const h = helpers(p);
+    const accueil = () => p.evaluate(() => [...document.querySelectorAll('.gw-out .gw-welcome')].map((w) => w.textContent));
+    if (lang === 'R') {
+      /* ---- message d'accueil du terminal ---- */
+      const w = await accueil();
+      check('accueil : affiché une fois au chargement', w.length === 1, JSON.stringify(w));
+      check('accueil : le texte attendu', w[0] && /Bienvenue dans le bac à sable Git/.test(w[0]) && /impossible de casser la prod/.test(w[0]) &&
+        /Testez\. Modifiez\. Ratez\. Recommencez\./.test(w[0]) && /À vous de jouer\./.test(w[0]), w[0]);
+      check('accueil : git status et help mis en évidence', await p.evaluate(() =>
+        [...document.querySelectorAll('.gw-welcome .ty')].map((x) => x.textContent).join('|') === 'git status|help'));
+      check('accueil : au-dessus de l\'intro de la mission', await p.evaluate(() => {
+        const out = document.querySelector('.gw-out');
+        return out.firstElementChild.classList.contains('gw-welcome') && out.children.length > 1;
+      }));
+      check('accueil : lisible par un lecteur d\'écran (note étiquetée)', await p.evaluate(() => {
+        const n = document.querySelector('.gw-welcome'); return n.getAttribute('role') === 'note' && !!n.getAttribute('aria-label');
+      }));
+    }
     if (lang === 'Python') { await p.click('.gw-lang-btn[data-lang="Python"]'); await p.waitForTimeout(600); }
     check(L('langage choisi'), await p.evaluate(() => document.querySelector('#atelier').getAttribute('data-lang')) === lang);
     check(L('textes adaptés au langage'), (await p.textContent('.gw-mission-panel')).indexOf('.' + (lang === 'R' ? 'py' : 'R') + ' ') === -1);
@@ -187,6 +204,7 @@ function check(label, cond, detail) {
     check(L('Recommencer : checklist remise à zéro'), (await h.done()).every((d) => !d));
     check(L('Recommencer : éditeur sur la version de départ'), (await h.text()) === original);
     check(L('Recommencer : terminal vidé'), (await p.textContent('.gw-out')).indexOf('git restore') === -1);
+    check(L('accueil : pas répété après Recommencer ni après un changement de mission'), (await accueil()).length === 0);
 
     /* ---- mission 2 et défi, plus vite ---- */
     await h.step(2);
