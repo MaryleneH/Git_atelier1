@@ -695,10 +695,10 @@ print(x["naf"].value_counts())
       '(<code>sorties/</code> dans <code>.gitignore</code>)&nbsp;: on le régénère, on ne le versionne pas.';
   }
 
-  // Le message d'accueil du terminal, affiché une fois par visite.
-  // {w}…{/} : gras ; {y}…{/} : une commande à taper.
+  // Le message d'accueil du terminal, affiché au début de chaque mission
+  // (et quand on la recommence). {w}…{/} : gras ; {y}…{/} : une commande.
   var ACCUEIL = [
-    '{w}Bienvenue dans le bac à sable Git 👋{/}',
+    '{w}Bienvenue dans le bac à sable Git{/}',
     '',
     'Ici, impossible de casser la prod.',
     'Testez. Modifiez. Ratez. Recommencez.',
@@ -712,9 +712,26 @@ print(x["naf"].value_counts())
     'À vous de jouer.'
   ];
 
+  // Son pictogramme : HEAD, le commit où l'on se trouve, avec un visage.
+  // Sous lui, l'historique (un trait, un commit plein) ; à droite, un bras
+  // levé en pointillé vers un commit encore vide : l'essai qu'on peut tenter.
+  // Décoratif (aria-hidden), dessiné aux couleurs du terminal par le CSS.
+  var PICTO =
+    '<svg viewBox="0 0 40 44" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" focusable="false">' +
+      '<path d="M15 21v15.5"/>' +
+      '<circle cx="15" cy="39" r="2.5" fill="currentColor" stroke="none"/>' +
+      '<path d="M15 30.5c9 0 16-4 16-11" stroke-dasharray="0.1 3.4"/>' +
+      '<circle cx="31" cy="16.4" r="2.4" stroke-width="1.8"/>' +
+      '<circle class="gw-pic-head" cx="15" cy="12" r="8.6"/>' +
+      '<circle class="gw-pic-face" cx="13" cy="11" r="1.25" stroke="none"/>' +
+      '<circle class="gw-pic-face" cx="18.4" cy="11" r="1.25" stroke="none"/>' +
+      '<path class="gw-pic-smile" d="M12.6 15.1q3 2.2 6 0" stroke-width="1.6"/>' +
+    '</svg>';
+
   var config = {
     project: 'entreprises_defense',
     welcome: ACCUEIL,
+    welcomeIcon: PICTO,
     languages: [{ id: 'R', label: 'R' }, { id: 'Python', label: 'Python' }],
     fileFor: fileFor,
     swapLang: swapLang,
@@ -726,6 +743,7 @@ print(x["naf"].value_counts())
 
   var api = {
     KIT: KIT, GITIGNORE: GITIGNORE, SYNTHESE: SYNTHESE, ACCUEIL: ACCUEIL,
+    PICTO: PICTO,
     fichiers: fichiers, fileFor: fileFor, swapLang: swapLang,
     EDITS: EDITS, missions: missions, config: config, RE: RE
   };

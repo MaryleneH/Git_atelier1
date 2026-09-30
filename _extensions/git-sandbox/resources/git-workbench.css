@@ -396,6 +396,31 @@
   color: var(--gw-night-ink-2);
 }
 .gw-welcome .gw-welcome-title { color: var(--gw-night-ink); }
+.gw-welcome .gw-blank { min-height: 0.55em; }
+
+/* Son pictogramme, dans la marge du bloc, à hauteur du titre */
+.gw-welcome-has-icon {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 0.75rem;
+}
+.gw-welcome-has-icon > .gw-line { grid-column: 2; }
+.gw-welcome-icon {
+  grid-column: 1;
+  grid-row: 1 / span 4;
+  align-self: start;
+  width: 2.7rem;
+  color: var(--gw-green);
+  animation: gw-welcome-in 0.4s ease-out both;
+}
+.gw-welcome-icon svg { display: block; width: 100%; height: auto; overflow: visible; }
+.gw-welcome-icon .gw-pic-head { fill: #14121c; } /* le fond du terminal */
+.gw-welcome-icon .gw-pic-face { fill: var(--gw-night-ink); }
+.gw-welcome-icon .gw-pic-smile { stroke: var(--gw-night-ink); }
+@keyframes gw-welcome-in {
+  from { opacity: 0; transform: translateY(3px); }
+  to { opacity: 1; transform: none; }
+}
 .gw-out .tg { color: var(--gw-green); }
 .gw-out .tr { color: var(--gw-red); }
 .gw-out .ty { color: var(--gw-yellow); }
@@ -679,6 +704,8 @@
   .gw-work[data-mtab="zones"] [data-panel="zones"] { display: block; }
   .gw-explorer, .gw-editor { height: 440px; }
   .gw-out { height: 300px; }
+  .gw-welcome-has-icon { column-gap: 0.55rem; }
+  .gw-welcome-icon { width: 2.1rem; }
   .gw-zrow, .gw-zhead { grid-template-columns: minmax(0, 1fr); gap: 0.3rem; }
   .gw-zhead, .gw-zarrow { display: none; }
   .gw-zrow { padding: 0.5rem 0; border-bottom: 1px solid var(--gw-line); }
