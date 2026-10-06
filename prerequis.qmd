@@ -15,10 +15,6 @@ Sur [{{< var onyxia_url >}}]({{< var onyxia_url >}}), ouvrez **Mon compte**, ong
 - votre **nom** et votre **adresse email** : ils signeront chacun de vos commits ;
 - un **jeton d'accès personnel GitLab**, créé sur [{{< var gitlab_url >}}]({{< var gitlab_url >}}) dans *Préférences → Jetons d'accès*, avec la portée **`write_repository`**.
 
-::: {.placeholder-capture}
-Capture à venir : l'onglet *Git* de *Mon compte* sur Onyxia.
-:::
-
 ::: {.warning}
 Le jeton vaut mot de passe. Il se colle **uniquement** dans *Mon compte* sur Onyxia : jamais dans un fichier, jamais dans un script, jamais dans un message. Onyxia le transmet lui-même à vos services.
 :::
@@ -26,10 +22,6 @@ Le jeton vaut mot de passe. Il se colle **uniquement** dans *Mon compte* sur Ony
 ## 2. Lancer un service VS Code
 
 Dans le catalogue Onyxia, lancez un service **VS Code** en version **R** ou **Python**, selon votre langage habituel. Ouvrez-le, puis ouvrez le terminal intégré : menu **Terminal → Nouveau terminal**.
-
-::: {.placeholder-capture}
-Capture à venir : le catalogue Onyxia, puis le terminal intégré de VS Code.
-:::
 
 ## 3. Vérifier Git
 
