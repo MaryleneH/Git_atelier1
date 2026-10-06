@@ -63,6 +63,7 @@ Ne sacrifie jamais le Temps 5 : c'est le seul moment où leur travail sort de l
 - **Le mémo A4**, un par personne (`materiel/memo.pdf` sur le site).
 - **Les tickets de sortie** : une demi-feuille par personne avec les trois lignes « Une chose que je sais faire / Une chose encore floue / La commande que je taperai demain ».
 - **Le film** : accès YouTube vérifié, ou `video/le-nouveau.mp4` sur le poste (le dossier `video/` est ignoré par Git).
+- **Le kit testé** sur un service neuf. Attention, une panne est **voulue** : dans `entreprises_defense_marie/`, `rapport.qmd` ne se rend pas et `03_analyse` s'arrête sur ``Column `secteur` is not found`` (commit 7, `b0b1445`). C'est la panne que le Temps 3 fait réparer : ne la corrige pas avant l'atelier. `entreprises_defense/`, lui, doit se rendre sans erreur. `kit/test_kit.sh` vérifie ce comportement sur `03_analyse` (quand R est installé).
 - **Ton projet `entreprises_defense_marie` déjà poussé** sur le GitLab interne (plan B du Temps 5).
 
 ## Simulation papier (Temps 2)

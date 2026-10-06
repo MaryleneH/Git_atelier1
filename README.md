@@ -61,6 +61,8 @@ bash kit/test_kit.sh
 
 Le test lance `kit.sh` plusieurs fois, en R puis en Python, et vérifie que l'historique de Marie a toujours les mêmes empreintes, que le dossier vierge n'a pas de `.git`, et que ces empreintes figurent bien dans le guide d'animation (`formateur/guide-formateur.qmd`). Si R (avec readr, dplyr, ggplot2) ou Python (avec pandas, matplotlib) est installé, il vérifie aussi que `03_analyse` échoue au dernier commit de Marie et fonctionne au commit 6.
 
+**Une panne est voulue.** Dans `entreprises_defense_marie/`, le dernier commit de Marie ne fonctionne pas : `scripts/03_analyse` et `rapport.qmd` s'arrêtent sur ``Column `secteur` is not found``. Le commit 7 (`b0b1445`) ajoute un `group_by(secteur)` alors que les données n'ont qu'une colonne `naf`. C'est l'enquête du Temps 3 (« Vendredi, ça marchait ») : les stagiaires retrouvent ce commit et reviennent à la version de vendredi avec `git restore --source`. Ne la corrigez pas dans `kit.sh`. `entreprises_defense/`, lui, doit se rendre sans erreur.
+
 **Après toute modification de `kit.sh`, relancez le test et reportez les nouvelles empreintes dans `formateur/guide-formateur.qmd`** (ainsi que dans les slides, le guide participant et la page de préparation, qui citent celles de Marie), puis régénérez le PDF.
 
 ## Tester le bac à sable
