@@ -45,7 +45,7 @@ Les PDF de `materiel/` (mémo A4, cartes de tri) sont produits par Typst, fourni
 
 ## Le guide d'animation (hors site)
 
-Le guide de la formatrice (minutage, matériel, corrigés, empreintes, plan B) n'est **pas publié sur le site**. Il vit dans `formateur/`, un projet Quarto à part, exclu du rendu du site (`project.render` dans `_quarto.yml`), et se produit en PDF :
+Le guide de la formatrice (préparation, déroulé minute par minute avec le discours et les sorties attendues, corrigés, dépannage, plan B) n'est **pas publié sur le site**. Il vit dans `formateur/`, un projet Quarto à part, exclu du rendu du site (`project.render` dans `_quarto.yml`), et se produit en PDF :
 
 ```bash
 cd formateur && quarto render    # → formateur/guide-formateur.pdf
