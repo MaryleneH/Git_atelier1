@@ -360,14 +360,14 @@ Fais répéter la phrase par un participant, avec ses mots. Laisse deux minutes 
 
 Chacun doit avoir le terminal intégré de VS Code ouvert (*Terminal → Nouveau terminal*) et être placé dans le dossier de l'étude :
 
-`cd ~/atelier-git/entreprises_defense`
+`cd ~/work/atelier-git/entreprises_defense`
 :::
 
 ## Qu'est-ce que je photographie ? {.probleme}
 
 ```{.text .sortie}
 $ git init
-Initialized empty Git repository in /home/onyxia/atelier-git/entreprises_defense/.git/
+Initialized empty Git repository in /home/onyxia/work/atelier-git/entreprises_defense/.git/
 
 $ git status
 On branch main
@@ -510,7 +510,7 @@ git status
 ::: {.notes}
 **⏱ 0:39 → 0:45 (6 min)**
 
-Rappelle le dossier : `cd ~/atelier-git/entreprises_defense`.
+Rappelle le dossier : `cd ~/work/atelier-git/entreprises_defense`.
 
 Binômes pilote/copilote : le pilote tape, le copilote prédit à voix haute ce que `git status` va répondre, **avant** que le pilote appuie sur Entrée. La prédiction est le vrai exercice.
 
@@ -806,7 +806,7 @@ Reprise à [dans 5 minutes]{.reprise}
 
 L'heure de reprise s'affiche automatiquement (heure d'arrivée sur cette slide + 5 minutes).
 
-Pendant la pause : vérifie que chacun a bien le dossier `~/atelier-git/entreprises_defense_marie` (créé par le kit). Sinon, fais relancer `bash kit.sh --force` pendant la pause.
+Pendant la pause : vérifie que chacun a bien le dossier `~/work/atelier-git/entreprises_defense_marie` (créé par le kit). Sinon, fais relancer `bash kit.sh --force` pendant la pause.
 :::
 
 # Vendredi, ça marchait {.intercalaire}
@@ -818,7 +818,7 @@ Pendant la pause : vérifie que chacun a bien le dossier `~/atelier-git/entrepr
 
 On change de dossier : tout le monde passe dans l'étude de Marie.
 
-`cd ~/atelier-git/entreprises_defense_marie`
+`cd ~/work/atelier-git/entreprises_defense_marie`
 :::
 
 ## Marie est absente {.probleme}
@@ -1216,7 +1216,7 @@ git commit -m "Ignore les données, les sorties et les fichiers d'environnement"
 ::: {.notes}
 **⏱ 1:35 → 1:36 (1 min)**
 
-On revient dans **son** dossier : `cd ~/atelier-git/entreprises_defense`.
+On revient dans **son** dossier : `cd ~/work/atelier-git/entreprises_defense`.
 
 Faites taper `git status` **avant** de créer le fichier (on voit `data/`), puis **après** : `data/` a disparu de la liste, `.gitignore` y apparaît. Le brouillon reste : on ne l'a pas ignoré, il reste simplement non suivi (on peut en discuter).
 
@@ -1244,7 +1244,7 @@ Pas pour les données.
 ::: {.notes}
 **⏱ 1:36 → 1:52** — Temps 5 : 16 minutes.
 
-Chacun reste dans `~/atelier-git/entreprises_defense`.
+Chacun reste dans `~/work/atelier-git/entreprises_defense`.
 :::
 
 ## Et si le service disparaît ? {.probleme}

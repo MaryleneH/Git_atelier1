@@ -131,6 +131,18 @@ for variante in R Python; do
 done
 
 echo
+echo "== Destination par défaut"
+# Lancé sans --dest, depuis un autre dossier : le kit va dans ~/work/atelier-git
+mkdir -p "$TMP/ailleurs"
+(cd "$TMP/ailleurs" && bash "$KIT" > "$TMP/sortie-defaut.txt")
+verifie "sans --dest, les deux dossiers sont dans ~/work/atelier-git" \
+  "[ -d '$HOME/work/atelier-git/entreprises_defense' ] && [ -d '$HOME/work/atelier-git/entreprises_defense_marie/.git' ]"
+verifie "rien n'est créé dans le dossier courant" \
+  "[ -z \"\$(ls -A '$TMP/ailleurs')\" ]"
+verifie "le message final indique ce chemin" \
+  "grep -q 'Pour commencer : cd $HOME/work/atelier-git/entreprises_defense' '$TMP/sortie-defaut.txt'"
+
+echo
 if [ "$ECHECS" -eq 0 ]; then
   echo "Tout est vert."
 else
