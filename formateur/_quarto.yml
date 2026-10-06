@@ -39,3 +39,8 @@ format:
           )
           #show table.cell.where(y: 0): set text(weight: "bold", fill: rgb("#575046"))
           #show table: set text(size: 8.5pt)
+          #show quote.where(block: true): it => block(
+            width: 100%, fill: rgb("#e4f2f0"), radius: 3pt, above: 0.9em, below: 0.9em,
+            inset: (x: 10pt, y: 7pt), stroke: (left: 2.5pt + rgb("#0f766e")),
+            it.body,
+          )

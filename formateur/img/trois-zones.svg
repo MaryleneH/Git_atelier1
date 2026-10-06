@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" role="img" aria-labelledby="t d" font-family="'Public Sans', 'Segoe UI', system-ui, sans-serif">
+  <title id="t">Les trois zones de Git</title>
+  <desc id="d">Le répertoire de travail, la zone de sélection et le dépôt. git add copie un fichier du répertoire de travail vers la zone de sélection ; git commit enregistre la sélection dans le dépôt ; git restore remet dans le répertoire de travail la version connue de Git.</desc>
+  <defs>
+    <marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 10 5 0 10z" fill="#211d18"/>
+    </marker>
+    <marker id="fl-corail" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 10 5 0 10z" fill="#b3372e"/>
+    </marker>
+  </defs>
+
+  <!-- Zone 1 : répertoire de travail -->
+  <rect x="20" y="60" width="320" height="300" rx="18" fill="#ffffff" stroke="#e6e1d6" stroke-width="3"/>
+  <text x="180" y="40" text-anchor="middle" font-size="26" font-weight="700" fill="#211d18">Répertoire de travail</text>
+  <text x="180" y="100" text-anchor="middle" font-size="19" fill="#575046">vos fichiers, tels que</text>
+  <text x="180" y="124" text-anchor="middle" font-size="19" fill="#575046">vous les voyez dans VS Code</text>
+  <g font-family="'JetBrains Mono', ui-monospace, monospace" font-size="18">
+    <rect x="70" y="160" width="220" height="40" rx="8" fill="#fdf3e3" stroke="#f59e0b" stroke-width="2"/>
+    <text x="180" y="186" text-anchor="middle" fill="#b45309">02_nettoyage.R</text>
+    <rect x="70" y="215" width="220" height="40" rx="8" fill="#ffffff" stroke="#e6e1d6" stroke-width="2"/>
+    <text x="180" y="241" text-anchor="middle" fill="#575046">rapport.qmd</text>
+    <rect x="70" y="270" width="220" height="40" rx="8" fill="#ffffff" stroke="#e6e1d6" stroke-width="2" stroke-dasharray="6 5"/>
+    <text x="180" y="296" text-anchor="middle" fill="#8a8377">brouillon_test.R</text>
+  </g>
+
+  <!-- Zone 2 : zone de sélection -->
+  <rect x="440" y="60" width="320" height="300" rx="18" fill="#e4f2f0" stroke="#0f766e" stroke-width="3"/>
+  <text x="600" y="40" text-anchor="middle" font-size="26" font-weight="700" fill="#211d18">Zone de sélection</text>
+  <text x="600" y="100" text-anchor="middle" font-size="19" fill="#0b5952">ce qui entrera</text>
+  <text x="600" y="124" text-anchor="middle" font-size="19" fill="#0b5952">dans la prochaine photo</text>
+  <g font-family="'JetBrains Mono', ui-monospace, monospace" font-size="18">
+    <rect x="490" y="160" width="220" height="40" rx="8" fill="#ffffff" stroke="#0f766e" stroke-width="2"/>
+    <text x="600" y="186" text-anchor="middle" fill="#0b5952">02_nettoyage.R</text>
+  </g>
+  <text x="600" y="330" text-anchor="middle" font-size="17" fill="#575046" font-style="italic">une copie du contenu,</text>
+  <text x="600" y="352" text-anchor="middle" font-size="17" fill="#575046" font-style="italic">figée au moment du add</text>
+
+  <!-- Zone 3 : dépôt -->
+  <rect x="860" y="60" width="320" height="300" rx="18" fill="#1a1723"/>
+  <text x="1020" y="40" text-anchor="middle" font-size="26" font-weight="700" fill="#211d18">Dépôt (.git/)</text>
+  <text x="1020" y="100" text-anchor="middle" font-size="19" fill="#c9c4da">l'album : toutes les photos</text>
+  <g font-family="'JetBrains Mono', ui-monospace, monospace" font-size="17">
+    <rect x="905" y="140" width="230" height="46" rx="8" fill="#262231" stroke="#7ee2b8" stroke-width="2"/>
+    <text x="1020" y="169" text-anchor="middle" fill="#7ee2b8">aeb8f7c Abaisse le…</text>
+    <line x1="1020" y1="186" x2="1020" y2="206" stroke="#aca6c2" stroke-width="2"/>
+    <rect x="905" y="206" width="230" height="46" rx="8" fill="#262231" stroke="#3a3448" stroke-width="2"/>
+    <text x="1020" y="235" text-anchor="middle" fill="#c9c4da">ce80dfb Initialise…</text>
+  </g>
+
+  <!-- Flèches -->
+  <line x1="345" y1="180" x2="432" y2="180" stroke="#211d18" stroke-width="3" marker-end="url(#fl)"/>
+  <text x="390" y="165" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="20" font-weight="600" fill="#0b5952">add</text>
+
+  <line x1="765" y1="180" x2="852" y2="180" stroke="#211d18" stroke-width="3" marker-end="url(#fl)"/>
+  <text x="808" y="165" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="20" font-weight="600" fill="#0b5952">commit</text>
+
+  <path d="M1020 365 C1020 440, 180 440, 180 368" fill="none" stroke="#b3372e" stroke-width="3" stroke-dasharray="9 7" marker-end="url(#fl-corail)"/>
+  <text x="600" y="472" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="20" font-weight="600" fill="#b3372e">restore</text>
+  <text x="600" y="502" text-anchor="middle" font-size="17" fill="#575046">remet dans vos fichiers une version connue de Git</text>
+</svg>
