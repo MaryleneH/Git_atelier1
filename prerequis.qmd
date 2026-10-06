@@ -48,14 +48,15 @@ Si `user.name` ou `user.email` manquent, vérifiez l'étape 1 et relancez un ser
 
 ## 4. Créer le kit d'exercices
 
-Le kit crée deux dossiers d'exercice dans `~/atelier-git` : l'étude `entreprises_defense` (sans historique) et l'étude de Marie (avec son historique). Votre service n'a pas forcément accès à internet : on copie donc le script depuis cette page.
+Le kit crée deux dossiers d'exercice dans `~/work/atelier-git`, c'est-à-dire dans le dossier `work` que vous voyez dans l'explorateur de VS Code : l'étude `entreprises_defense` (sans historique) et l'étude de Marie (avec son historique). Votre service n'a pas forcément accès à internet : on copie donc le script depuis cette page.
 
 ::: {.try}
-1. Dans VS Code, créez un nouveau fichier (**Fichier → Nouveau fichier texte**), et enregistrez-le sous le nom **`kit.sh`** dans votre dossier personnel.
+1. Dans VS Code, créez un nouveau fichier (**Fichier → Nouveau fichier texte**), et enregistrez-le sous le nom **`kit.sh`** dans le dossier **`work`** (celui que montre l'explorateur de VS Code).
 2. Dépliez le script ci-dessous, cliquez sur l'icône **copier** (en haut à droite du bloc), et collez tout dans `kit.sh`. Enregistrez.
-3. Dans le terminal :
+3. Dans le terminal, placez-vous dans `work`, puis lancez le kit :
 
 ```bash
+cd ~/work
 bash kit.sh
 ```
 
@@ -74,6 +75,7 @@ Si vous travaillez en Python : `bash kit.sh --python`.
 Si votre service a accès à internet, vous pouvez aussi télécharger le fichier directement :
 
 ```bash
+cd ~/work
 curl -O {{< var site_url >}}kit/kit.sh
 bash kit.sh
 ```
@@ -83,9 +85,9 @@ Le kit se termine ainsi. Les sept premiers caractères de chaque ligne de l'hist
 ```text
 Kit prêt (variante R).
 
-  /home/onyxia/atelier-git/entreprises_defense
+  /home/onyxia/work/atelier-git/entreprises_defense
       l'étude, sans historique : c'est vous qui ferez git init
-  /home/onyxia/atelier-git/entreprises_defense_marie
+  /home/onyxia/work/atelier-git/entreprises_defense_marie
       l'étude de Marie, avec son historique :
 
       24e5e4a Met à jour le rapport avec les résultats 2024
@@ -97,8 +99,19 @@ Kit prêt (variante R).
       3d6a872 Ajoute l'import de l'extrait entreprises_defense_2024
       81bd623 Initialise l'étude des entreprises liées à la défense
 
-Pour commencer : cd /home/onyxia/atelier-git/entreprises_defense
+Pour commencer : cd /home/onyxia/work/atelier-git/entreprises_defense
 ```
+
+Dans l'explorateur de VS Code (à gauche), dépliez `work` : les deux dossiers sont là. Si vous ne les voyez pas tout de suite, cliquez sur l'icône *Actualiser* en haut de l'explorateur.
+
+```text
+work
+└── atelier-git
+    ├── entreprises_defense
+    └── entreprises_defense_marie
+```
+
+Le kit les range toujours à cet endroit, quel que soit le dossier où se trouve le terminal quand vous tapez `bash kit.sh`.
 
 [Variante Python : les empreintes sont différentes, mais tout aussi identiques d'un poste à l'autre.]{.eyebrow}
 

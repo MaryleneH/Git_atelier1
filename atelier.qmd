@@ -78,7 +78,7 @@ Un commit = une photo complète + un message + un lien vers la précédente.
 Placez-vous dans le dossier de l'étude :
 
 ```bash
-cd ~/atelier-git/entreprises_defense
+cd ~/work/atelier-git/entreprises_defense
 ```
 
 ::: {.concept}
@@ -116,7 +116,7 @@ git init
 ```
 
 ```text
-Initialized empty Git repository in /home/onyxia/atelier-git/entreprises_defense/.git/
+Initialized empty Git repository in /home/onyxia/work/atelier-git/entreprises_defense/.git/
 ```
 :::
 
@@ -340,7 +340,7 @@ Regarder, choisir, enregistrer. Et `git status` ne casse jamais rien.
 Marie est absente. Le graphique est passé en pourcentages, personne ne sait pourquoi. Et depuis lundi, `03_analyse.R` ne tourne plus. On travaille dans l'étude de Marie :
 
 ```bash
-cd ~/atelier-git/entreprises_defense_marie
+cd ~/work/atelier-git/entreprises_defense_marie
 ```
 
 ::: {.concept}
@@ -613,7 +613,7 @@ L'architecture cible : le code et la documentation dans Git ; les données sur
 Revenez dans **votre** étude :
 
 ```bash
-cd ~/atelier-git/entreprises_defense
+cd ~/work/atelier-git/entreprises_defense
 ```
 
 Tapez `git status` pour voir la situation. Puis, dans VS Code, créez à la racine du dossier un fichier nommé `.gitignore` (le point au début compte), contenant :

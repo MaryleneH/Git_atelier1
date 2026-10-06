@@ -7,7 +7,7 @@
 #   entreprises_defense_marie/  la même étude, avec l'historique de Marie
 #
 # Utilisation :
-#   bash kit.sh                  variante R, dans ~/atelier-git
+#   bash kit.sh                  variante R, dans ~/work/atelier-git
 #   bash kit.sh --python         variante Python (pandas)
 #   bash kit.sh --force          recrée les dossiers s'ils existent déjà
 #   bash kit.sh --dest <dossier> crée les dossiers ailleurs
@@ -30,7 +30,7 @@ set -euo pipefail
 
 LANGAGE="R"
 FORCE=0
-DEST="${HOME}/atelier-git"
+DEST="${HOME}/work/atelier-git"
 
 aide() {
   sed -n '2,19p' "$0" | sed 's/^# \{0,1\}//'

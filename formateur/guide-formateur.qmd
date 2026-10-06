@@ -178,7 +178,7 @@ Les notes de réunion laissées chez Marie (`notes_reunion_chef_de_bureau.md`) c
 | `:` ou `(END)` en bas de l'écran après `git log` ou `git show` | Le lecteur de texte de Git (la sortie dépasse l'écran) | Flèches pour défiler, `q` pour quitter |
 | `no changes added to commit` | Commit sans `add` | `git add <fichier>`, puis `git commit` |
 | `nothing added to commit but untracked files present` | Rien n'est sélectionné ; il reste des fichiers non suivis | Normal s'ils sont volontairement laissés dehors |
-| `fatal: not a git repository` | On n'est pas dans le bon dossier | `cd ~/atelier-git/entreprises_defense` (ou `…_marie`) |
+| `fatal: not a git repository` | On n'est pas dans le bon dossier | `cd ~/work/atelier-git/entreprises_defense` (ou `…_marie`) |
 | `hint: Using 'master' as the name for the initial branch` | Le kit n'a pas été lancé avant `git init` | Pousser avec `git push -u origin master`, ou relancer le kit sur un service neuf |
 | `! [rejected] … (fetch first)` | Projet GitLab créé avec un README | Supprimer et recréer le projet sans README |
 | Une demande de *Username* / *Password* au push | Jeton absent ou expiré | Vérifier *Mon compte* sur Onyxia, relancer un service ; sinon plan B |
