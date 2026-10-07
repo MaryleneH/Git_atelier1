@@ -1544,7 +1544,7 @@ Le bac à sable fonctionne dans le navigateur, sans Onyxia : pratique pour s'en
 
 ## Remerciements {.remerciements}
 
-[Ce support a été construit avec l'aide de]{.etape}
+[Merci pour leur aide à valider la cohérence de l'atelier]{.etape}
 
 ::: {.noms}
 Maxence Lagalle
