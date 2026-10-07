@@ -12,7 +12,7 @@ Le site contient :
 | `prerequis.qmd` | Le pré-travail, le modèle de mail J-3, la checklist J-7 |
 | `bac-a-sable.qmd` | L'étude dans le navigateur : explorateur, éditeur, terminal Git, trois zones ; prise en main, 4 missions, un défi |
 | `memo.qmd` | Le tableau problème → commande |
-| `materiel/` | Le mémo A4 et les 12 cartes de tri, en PDF (Typst) |
+| `materiel/` | Le mémo A4 et les cartes de tri (jeu de base, deux séries supplémentaires, formules selon le temps et corrigés), en PDF (Typst) |
 | `kit/kit.sh` | Le script qui crée les dossiers d'exercice sur Onyxia |
 
 Toute l'étude `entreprises_defense` est **fictive** : aucune donnée réelle, aucun nom d'entreprise réel.

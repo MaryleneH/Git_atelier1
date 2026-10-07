@@ -1233,6 +1233,8 @@ Trois piles : **à versionner** · **à ignorer** · **jamais**
 ::: {.notes}
 **⏱ 1:29 → 1:33 (4 min)** — Groupes de 2 ou 3, les 12 cartes imprimées (`materiel/cartes-tri.pdf`).
 
+**Plus ou moins de temps ?** Le PDF contient deux séries supplémentaires de 12 cartes (environnements R et Python, cas limites) et, en dernière page, des formules de 2 à 10 minutes avec leurs corrigés.
+
 Les cartes portent des précisions : le CSV est un extrait synthétique de 40 lignes ; le parquet fait 600 Mo (le fichier du kit ne fait que 2 Mo) ; `.Renviron` contient un jeton ; le xlsx contient des données individuelles d'entreprises.
 
 **Débrief** (slide suivante) : fais émerger les critères à partir des désaccords, pas avant. Trois cartes sont volontairement discutables :
