@@ -13,45 +13,165 @@ format:
 ---
 
 ```{=typst}
-// 12 cartes à découper le long des pointillés : un jeu par groupe de 2 ou 3.
-// Trois piles : à versionner · à ignorer · jamais.
+// Cartes à découper le long des pointillés : un jeu par groupe de 2 ou 3.
+// Trois piles : à versionner · à ignorer · jamais.
+//
+// Page 1 : le jeu de base (12 cartes), celui du déroulé standard (4 min).
+// Page 2 : série 2, environnements R et Python (12 cartes).
+// Page 3 : série 3, cas limites (12 cartes).
+// Page 4 : pour la formatrice : choisir selon le temps, et le corrigé.
+// Chaque carte porte sa série en petit, pour reformer les jeux après l'atelier.
 #set text(lang: "fr", fill: rgb("#211d18"), hyphenate: false)
+#set par(justify: false)
 #set page(numbering: none)
 
-// Les noms longs peuvent se couper après « / » et « _ »
-#let coupe(nom) = nom.replace("/", "/\u{200b}").replace("_", "_\u{200b}")
+#let encre = rgb("#211d18")
+#let doux = rgb("#575046")
+#let pale = rgb("#8a8377")
+#let teal = rgb("#0b5952")
+#let filet = rgb("#e6e1d6")
 
-#let carte(fichier, detail) = box(
+// Les noms longs peuvent se couper après « / », « _ » et « . »
+#let coupe(nom) = nom.replace("/", "/\u{200b}").replace("_", "_\u{200b}").replace(".", ".\u{200b}")
+
+#let carte(serie, fichier, detail) = box(
   width: 100%,
   height: 66mm,
-  stroke: (paint: rgb("#8a8377"), thickness: 0.6pt, dash: "dashed"),
+  stroke: (paint: pale, thickness: 0.6pt, dash: "dashed"),
   inset: 7mm,
 )[
+  #place(top + left, dx: -3mm, dy: -3mm)[#text(size: 6.5pt, fill: pale, tracking: 0.08em, upper(serie))]
   #align(center + horizon)[
-    #text(font: "JetBrains Mono", weight: "bold", size: 13pt, fill: rgb("#0b5952"), coupe(fichier))
+    #text(font: "JetBrains Mono", weight: "bold", size: 13pt, fill: teal, coupe(fichier))
     #if detail != none [
       #v(4mm)
-      #text(size: 9.5pt, fill: rgb("#575046"), detail)
+      #text(size: 9.5pt, fill: doux, detail)
     ]
   ]
 ]
 
-#place(top + right, dy: -6mm)[#text(size: 7pt, fill: rgb("#8a8377"))[Atelier 1 · tri de cartes · à versionner / à ignorer / jamais]]
+#let entete(titre) = place(top + right, dy: -6mm)[#text(size: 7pt, fill: pale)[Atelier 1 · tri de cartes · #titre · à versionner / à ignorer / jamais]]
 
-#grid(
-  columns: (1fr, 1fr, 1fr),
-  gutter: 0pt,
-  carte("scripts/02_nettoyage.R", none),
-  carte("rapport.qmd", none),
-  carte("README.md", none),
-  carte(".gitignore", none),
-  carte("data/entreprises_defense_2024.csv", [extrait synthétique de 40 lignes]),
-  carte("data/bitd_2024.parquet", [600 Mo]),
-  carte("rapport.html", none),
-  carte("figures/effectifs_par_taille.png", none),
-  carte(".Rhistory", none),
-  carte(".Renviron", [contient un jeton]),
-  carte("donnees_entreprises_confidentiel.xlsx", [données individuelles d'entreprises]),
-  carte("notes_reunion_chef_de_bureau.md", none),
+#let planche(..cartes) = grid(columns: (1fr, 1fr, 1fr), gutter: 0pt, ..cartes)
+
+// --- Page 1 : le jeu de base ---------------------------------
+#entete[jeu de base]
+#planche(
+  carte("base", "scripts/02_nettoyage.R", none),
+  carte("base", "rapport.qmd", none),
+  carte("base", "README.md", none),
+  carte("base", ".gitignore", none),
+  carte("base", "data/entreprises_defense_2024.csv", [extrait synthétique de 40 lignes]),
+  carte("base", "data/bitd_2024.parquet", [600 Mo]),
+  carte("base", "rapport.html", none),
+  carte("base", "figures/effectifs_par_taille.png", none),
+  carte("base", ".Rhistory", none),
+  carte("base", ".Renviron", [contient un jeton]),
+  carte("base", "donnees_entreprises_confidentiel.xlsx", [données individuelles d'entreprises]),
+  carte("base", "notes_reunion_chef_de_bureau.md", none),
+)
+
+// --- Page 2 : série 2, environnements R et Python ------------
+#pagebreak()
+#entete[série 2 · environnements R et Python]
+#planche(
+  carte("série 2", "scripts/02_nettoyage.py", none),
+  carte("série 2", "renv.lock", [liste des versions des packages R]),
+  carte("série 2", "requirements.txt", [liste des versions des packages Python]),
+  carte("série 2", "_quarto.yml", [configuration du rapport]),
+  carte("série 2", "renv/library/", [packages R installés, 300 Mo]),
+  carte("série 2", ".venv/", [environnement Python installé]),
+  carte("série 2", "__pycache__/", [fichiers créés par Python à l'exécution]),
+  carte("série 2", ".Rproj.user/", [réglages personnels de RStudio]),
+  carte("série 2", ".ipynb_checkpoints/", [sauvegardes automatiques de Jupyter]),
+  carte("série 2", "entreprises_defense.Rproj", [fichier de projet RStudio]),
+  carte("série 2", "analyse_exploratoire.ipynb", [notebook : les sorties et les graphiques sont enregistrés dedans]),
+  carte("série 2", ".vscode/settings.json", [réglages de VS Code]),
+)
+
+// --- Page 3 : série 3, cas limites ---------------------------
+#pagebreak()
+#entete[série 3 · cas limites]
+#planche(
+  carte("série 3", "tests/test_nettoyage.R", none),
+  carte("série 3", "run_all.sh", [relance toute la chaîne de traitement]),
+  carte("série 3", "config.yml", [chemins S3 et paramètres de l'étude, aucun secret]),
+  carte("série 3", "data/README.md", [décrit la source et le millésime des données]),
+  carte("série 3", "cache/", [résultats intermédiaires, recalculables]),
+  carte("série 3", "logs/execution_2024-10-07.log", none),
+  carte("série 3", ".env", [contient le mot de passe d'une base de données]),
+  carte("série 3", "credentials.json", [clé d'accès au stockage S3]),
+  carte("série 3", "export_individus.sas7bdat", [fichier SAS, données individuelles]),
+  carte("série 3", "data/nomenclature_naf.csv", [nomenclature publique, 30 Ko]),
+  carte("série 3", "note_synthese_v3_relue.docx", [note envoyée au chef de bureau]),
+  carte("série 3", "figures/schema_methode.svg", [schéma dessiné à la main, 12 Ko]),
+)
+
+// --- Page 4 : pour la formatrice -----------------------------
+#pagebreak()
+#set page(margin: (x: 16mm, y: 14mm))
+#set par(leading: 0.55em)
+#show table: set text(size: 8pt)
+#set table(
+  stroke: (x, y) => if y == 0 { (bottom: 0.8pt + encre) } else { (bottom: 0.4pt + filet) },
+  inset: (x: 4pt, y: 3.2pt),
+)
+#show table.cell.where(y: 0): set text(weight: "bold", fill: doux)
+
+#text(size: 7pt, fill: pale, tracking: 0.12em)[POUR LA FORMATRICE · À NE PAS DISTRIBUER]
+#v(1mm)
+#text(font: "Fraunces", weight: "semibold", size: 17pt)[Le tri de cartes, selon le temps dont tu disposes]
+#v(2mm)
+
+#table(
+  columns: (16%, 84%),
+  table.header[Temps][Formule],
+  [*2 min*], [Tri collectif à main levée, sans papier, sur six cartes du jeu de base : `02_nettoyage.R`, `rapport.html`, `.Renviron`, `…confidentiel.xlsx`, `bitd_2024.parquet`, le CSV synthétique.],
+  [*4 min*], [Le déroulé standard : le jeu de base, en groupes de 2 ou 3.],
+  [*6 à 8 min*], [Le jeu de base, plus une série par groupe : la série 2 si la salle travaille surtout en Python ou avec des notebooks, la série 3 pour un public déjà à l'aise. Au débrief, chaque groupe présente sa carte la plus discutée.],
+  [*10 min et plus*], [Les trois jeux. Chaque groupe trie le jeu de base puis une série différente ; débrief croisé : un groupe défend son tri, un autre le conteste. Termine en écrivant ensemble le `.gitignore` qui en découle.],
+)
+
+#v(1mm)
+#text(size: 8.5pt, fill: doux)[Les quatre critères du débrief valent pour toutes les séries : *texte ou binaire ? régénérable ou non ? secret ? secret statistique ?* Fais-les émerger des désaccords, pas avant. Le corrigé du jeu de base est dans le guide d'animation.]
+
+#v(3mm)
+#text(font: "Fraunces", weight: "semibold", size: 12pt)[Corrigé de la série 2 · environnements R et Python]
+#v(1mm)
+#table(
+  columns: (33%, 13%, 54%),
+  table.header[Carte][Pile][Pourquoi],
+  [`scripts/02_nettoyage.py`], [à versionner], [Du code : le même rôle que `02_nettoyage.R`],
+  [`renv.lock`], [à versionner], [Petit, texte : il permet à un collègue de réinstaller exactement les mêmes packages],
+  [`requirements.txt`], [à versionner], [Même rôle que `renv.lock`, pour Python],
+  [`_quarto.yml`], [à versionner], [Configuration du rapport, du texte],
+  [`renv/library/`], [à ignorer], [Les packages eux-mêmes : volumineux, réinstallables depuis `renv.lock`],
+  [`.venv/`], [à ignorer], [Même chose côté Python : réinstallable depuis `requirements.txt`],
+  [`__pycache__/`], [à ignorer], [Régénéré à chaque exécution],
+  [`.Rproj.user/`], [à ignorer], [Propre à chaque poste, comme `.Rhistory`],
+  [`.ipynb_checkpoints/`], [à ignorer], [Sauvegardes automatiques, régénérables],
+  [`entreprises_defense.Rproj`], [*discutable*], [Petit, texte : versionnable si l'équipe utilise RStudio ; inutile sous VS Code],
+  [`analyse_exploratoire.ipynb`], [*discutable*], [Du code, mais les sorties enregistrées dedans gonflent les diffs et peuvent contenir des données : vider les sorties avant le commit, ou préférer un script ou un `.qmd`],
+  [`.vscode/settings.json`], [*discutable*], [Versionnable si ce sont des réglages communs à l'équipe ; à ignorer si ce sont des goûts personnels],
+)
+
+#v(3mm)
+#text(font: "Fraunces", weight: "semibold", size: 12pt)[Corrigé de la série 3 · cas limites]
+#v(1mm)
+#table(
+  columns: (33%, 13%, 54%),
+  table.header[Carte][Pile][Pourquoi],
+  [`tests/test_nettoyage.R`], [à versionner], [Du code, qui protège l'étude des régressions],
+  [`run_all.sh`], [à versionner], [Il documente l'ordre d'exécution : du code],
+  [`config.yml`], [à versionner], [Paramètres et chemins, sans secret : ils font partie de l'étude],
+  [`data/README.md`], [à versionner], [La documentation des données se versionne, même si les données ne le sont pas],
+  [`cache/`], [à ignorer], [Recalculable],
+  [`logs/execution_2024-10-07.log`], [à ignorer], [Régénéré à chaque exécution, propre à un poste],
+  [`.env`], [*jamais*], [Un secret : comme `.Renviron`, il reste dans l'historique s'il est commité],
+  [`credentials.json`], [*jamais*], [Un secret : révoquer la clé aussitôt si elle a été commitée],
+  [`export_individus.sas7bdat`], [*jamais*], [Données individuelles (secret statistique), et binaire],
+  [`data/nomenclature_naf.csv`], [*discutable*], [Petit, texte, public : versionnable. La règle générale reste : les données hors de Git],
+  [`note_synthese_v3_relue.docx`], [*discutable*], [Binaire, sans diff lisible : sa place est plutôt dans l'espace documentaire ; sauf pièce livrée à garder à une date donnée],
+  [`figures/schema_methode.svg`], [*discutable*], [Une figure, mais non régénérable et en texte (SVG) : versionnable, contrairement aux figures produites par les scripts],
 )
 ```
