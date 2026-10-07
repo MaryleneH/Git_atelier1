@@ -14,6 +14,7 @@
 //   .retenir    À retenir — la phrase à garder (ambre, centré)
 //   .vote .quiz Question à l'assemblée        (violet)
 //   .intercalaire  ouverture d'un temps       (# Titre {.intercalaire})
+//   .activite   consigne d'activité (ouverture) : étape, question, consigne
 // ============================================================
 
 // --- Palette (identique au site) -----------------------------
@@ -675,5 +676,167 @@ $icon-gear: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'
   .reprise {
     font-weight: 700;
     color: $teal-deep;
+  }
+}
+
+// ============================================================
+// Ouverture « Pourquoi Git ? » : slides d'activité, sobres.
+// Une seule couleur d'accent (teal), beaucoup de blanc, aucun encadré.
+// ============================================================
+
+// Petite étiquette au-dessus du titre : qui travaille, combien de temps
+.reveal .etape {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7em;
+  font-family: $font-family-sans-serif;
+  font-size: 0.56em;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $teal;
+
+  &::before {
+    content: "";
+    width: 2.4em;
+    height: 3px;
+    border-radius: 2px;
+    background: $teal;
+  }
+}
+
+// Activité : une consigne, très lisible de loin
+.reveal .slides section.activite {
+  padding-top: 210px;
+
+  > h2 {
+    font-size: 2.5em;
+    font-weight: 600;
+    line-height: 1.08;
+    max-width: 21ch;
+    margin: 0 0 0.45em;
+  }
+
+  .etape {
+    display: flex;
+    position: absolute;
+    top: 130px;
+  }
+
+  .consigne {
+    display: block;
+    font-size: 1.15em;
+    color: $ink-soft;
+    max-width: 46ch;
+  }
+
+  .insecable { white-space: nowrap; }
+}
+
+// Vos fichiers : l'escalier des copies, puis la question
+.reveal .slides section.noms-fichiers {
+  padding-top: 90px;
+
+  > h2 {
+    font-family: $font-family-sans-serif;
+    font-size: 0.56em;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: $teal;
+    margin-bottom: 1.4em;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0 0 1.3em;
+    padding: 0;
+  }
+
+  li {
+    margin: 0.18em 0;
+
+    code {
+      font-size: 0.95em;
+      background: none;
+      border: 0;
+      padding: 0;
+      color: $ink-faint;
+    }
+
+    @for $i from 2 through 6 {
+      &:nth-child(#{$i}) { padding-left: ($i - 1) * 1.6em; }
+    }
+
+    &:last-child code { color: $ink; font-weight: 600; }
+  }
+
+  .question {
+    display: block;
+    font-family: $presentation-heading-font;
+    font-size: 1.45em;
+    font-weight: 600;
+    line-height: 1.2;
+    max-width: 26ch;
+    text-wrap: balance;
+  }
+
+  .reponse-emergente {
+    display: block;
+    margin-top: 0.7em;
+    padding-left: 0.8em;
+    border-left: 3px solid $teal;
+    font-family: $presentation-heading-font;
+    font-style: italic;
+    font-size: 1.15em;
+    color: $teal-deep;
+  }
+}
+
+// Trois besoins : trois mots, rien d'autre
+.reveal .slides section.trois-besoins {
+  padding-top: 170px;
+
+  // Le titre reste dans la page (navigation, lecteurs d'écran) sans s'afficher
+  > h2 {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .besoins {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0 70px;
+    margin-top: 1.6em;
+
+    p {
+      margin: 0;
+      padding-top: 0.9em;
+      border-top: 3px solid $teal;
+    }
+
+  }
+
+  .num {
+    display: block;
+    font-family: $font-family-monospace;
+    font-size: 0.6em;
+    font-weight: 600;
+    color: $teal;
+    margin-bottom: 0.4em;
+  }
+
+  .mot {
+    display: block;
+    font-family: $presentation-heading-font;
+    font-size: 2.35em;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.015em;
+    color: $ink;
   }
 }
