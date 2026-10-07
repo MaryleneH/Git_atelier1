@@ -16,10 +16,12 @@ format:
 // Cartes à découper le long des pointillés : un jeu par groupe de 2 ou 3.
 // Trois piles : à versionner · à ignorer · jamais.
 //
-// Page 1 : le jeu de base (12 cartes), celui du déroulé standard (4 min).
-// Page 2 : série 2, environnements R et Python (12 cartes).
-// Page 3 : série 3, cas limites (12 cartes).
-// Page 4 : pour la formatrice : choisir selon le temps, et le corrigé.
+// Page 1 : le jeu de base, version R (12 cartes) : le déroulé standard (4 min).
+// Page 2 : le jeu de base, version Python (12 cartes, mêmes rôles).
+// Page 3 : série 2, environnement R (12 cartes).
+// Page 4 : série 2, environnement Python (12 cartes).
+// Page 5 : série 3, cas limites, communs à R et Python (12 cartes).
+// Pages 6 et 7 : pour la formatrice : choisir selon le temps, et les corrigés.
 // Chaque carte porte sa série en petit, pour reformer les jeux après l'atelier.
 #set text(lang: "fr", fill: rgb("#211d18"), hyphenate: false)
 #set par(justify: false)
@@ -55,51 +57,87 @@ format:
 #let planche(..cartes) = grid(columns: (1fr, 1fr, 1fr), gutter: 0pt, ..cartes)
 
 // --- Page 1 : le jeu de base ---------------------------------
-#entete[jeu de base]
+#entete[jeu de base · R]
 #planche(
-  carte("base", "scripts/02_nettoyage.R", none),
-  carte("base", "rapport.qmd", none),
-  carte("base", "README.md", none),
-  carte("base", ".gitignore", none),
-  carte("base", "data/entreprises_defense_2024.csv", [extrait synthétique de 40 lignes]),
-  carte("base", "data/bitd_2024.parquet", [600 Mo]),
-  carte("base", "rapport.html", none),
-  carte("base", "figures/effectifs_par_taille.png", none),
-  carte("base", ".Rhistory", none),
-  carte("base", ".Renviron", [contient un jeton]),
-  carte("base", "donnees_entreprises_confidentiel.xlsx", [données individuelles d'entreprises]),
-  carte("base", "notes_reunion_chef_de_bureau.md", none),
+  carte("base · R", "scripts/02_nettoyage.R", none),
+  carte("base · R", "rapport.qmd", none),
+  carte("base · R", "README.md", none),
+  carte("base · R", ".gitignore", none),
+  carte("base · R", "data/entreprises_defense_2024.csv", [extrait synthétique de 40 lignes]),
+  carte("base · R", "data/bitd_2024.parquet", [600 Mo]),
+  carte("base · R", "rapport.html", none),
+  carte("base · R", "figures/effectifs_par_taille.png", none),
+  carte("base · R", ".Rhistory", none),
+  carte("base · R", ".Renviron", [contient un jeton]),
+  carte("base · R", "donnees_entreprises_confidentiel.xlsx", [données individuelles d'entreprises]),
+  carte("base · R", "notes_reunion_chef_de_bureau.md", none),
 )
 
-// --- Page 2 : série 2, environnements R et Python ------------
+// --- Page 2 : le jeu de base, version Python -----------------
 #pagebreak()
-#entete[série 2 · environnements R et Python]
+#entete[jeu de base · Python]
 #planche(
-  carte("série 2", "scripts/02_nettoyage.py", none),
-  carte("série 2", "renv.lock", [liste des versions des packages R]),
-  carte("série 2", "requirements.txt", [liste des versions des packages Python]),
-  carte("série 2", "_quarto.yml", [configuration du rapport]),
-  carte("série 2", "renv/library/", [packages R installés, 300 Mo]),
-  carte("série 2", ".venv/", [environnement Python installé]),
-  carte("série 2", "__pycache__/", [fichiers créés par Python à l'exécution]),
-  carte("série 2", ".Rproj.user/", [réglages personnels de RStudio]),
-  carte("série 2", ".ipynb_checkpoints/", [sauvegardes automatiques de Jupyter]),
-  carte("série 2", "entreprises_defense.Rproj", [fichier de projet RStudio]),
-  carte("série 2", "analyse_exploratoire.ipynb", [notebook : les sorties et les graphiques sont enregistrés dedans]),
-  carte("série 2", ".vscode/settings.json", [réglages de VS Code]),
+  carte("base · Python", "scripts/02_nettoyage.py", none),
+  carte("base · Python", "rapport.qmd", none),
+  carte("base · Python", "README.md", none),
+  carte("base · Python", ".gitignore", none),
+  carte("base · Python", "data/entreprises_defense_2024.csv", [extrait synthétique de 40 lignes]),
+  carte("base · Python", "data/bitd_2024.parquet", [600 Mo]),
+  carte("base · Python", "rapport.html", none),
+  carte("base · Python", "figures/effectifs_par_taille.png", none),
+  carte("base · Python", "__pycache__/", [fichiers créés par Python à l'exécution]),
+  carte("base · Python", ".env", [contient un jeton]),
+  carte("base · Python", "donnees_entreprises_confidentiel.xlsx", [données individuelles d'entreprises]),
+  carte("base · Python", "notes_reunion_chef_de_bureau.md", none),
 )
 
-// --- Page 3 : série 3, cas limites ---------------------------
+// --- Page 3 : série 2, environnement R ------------------------
 #pagebreak()
-#entete[série 3 · cas limites]
+#entete[série 2 · environnement R]
 #planche(
-  carte("série 3", "tests/test_nettoyage.R", none),
+  carte("série 2 · R", "renv.lock", [liste des versions des packages R]),
+  carte("série 2 · R", "renv/activate.R", [script qui active l'environnement renv]),
+  carte("série 2 · R", "DESCRIPTION", [dépendances du projet]),
+  carte("série 2 · R", "_quarto.yml", [configuration du rapport]),
+  carte("série 2 · R", "renv/library/", [packages R installés, 300 Mo]),
+  carte("série 2 · R", ".Rproj.user/", [réglages personnels de RStudio]),
+  carte("série 2 · R", ".RData", [espace de travail sauvegardé, 80 Mo]),
+  carte("série 2 · R", "rapport_files/", [dossier créé par quarto render]),
+  carte("série 2 · R", "analyse_exploratoire.nb.html", [aperçu d'un notebook R Markdown]),
+  carte("série 2 · R", "entreprises_defense.Rproj", [fichier de projet RStudio]),
+  carte("série 2 · R", ".Rprofile", [code R lancé au démarrage de la session]),
+  carte("série 2 · R", ".vscode/settings.json", [réglages de VS Code]),
+)
+
+// --- Page 4 : série 2, environnement Python -------------------
+#pagebreak()
+#entete[série 2 · environnement Python]
+#planche(
+  carte("série 2 · Python", "pyproject.toml", [description du projet et de ses dépendances]),
+  carte("série 2 · Python", "requirements.txt", [liste des versions des packages Python]),
+  carte("série 2 · Python", "uv.lock", [versions exactes de tous les packages]),
+  carte("série 2 · Python", ".python-version", [version de Python du projet]),
+  carte("série 2 · Python", "tests/test_nettoyage.py", none),
+  carte("série 2 · Python", ".venv/", [environnement Python installé]),
+  carte("série 2 · Python", ".pytest_cache/", [créé par pytest à chaque lancement des tests]),
+  carte("série 2 · Python", ".ipynb_checkpoints/", [sauvegardes automatiques de Jupyter]),
+  carte("série 2 · Python", "dist/", [paquet construit par python -m build]),
+  carte("série 2 · Python", "analyse_exploratoire.ipynb", [notebook : les sorties et les graphiques sont enregistrés dedans]),
+  carte("série 2 · Python", "tests/donnees/echantillon.csv", [10 lignes inventées pour les tests]),
+  carte("série 2 · Python", ".vscode/settings.json", [réglages de VS Code]),
+)
+
+// --- Page 5 : série 3, cas limites (R et Python) ---------------
+#pagebreak()
+#entete[série 3 · cas limites · R et Python]
+#planche(
+  carte("série 3", "tests/", [tests automatiques du nettoyage]),
   carte("série 3", "run_all.sh", [relance toute la chaîne de traitement]),
   carte("série 3", "config.yml", [chemins S3 et paramètres de l'étude, aucun secret]),
   carte("série 3", "data/README.md", [décrit la source et le millésime des données]),
   carte("série 3", "cache/", [résultats intermédiaires, recalculables]),
   carte("série 3", "logs/execution_2024-10-07.log", none),
-  carte("série 3", ".env", [contient le mot de passe d'une base de données]),
+  carte("série 3", ".secrets.toml", [contient le mot de passe d'une base de données]),
   carte("série 3", "credentials.json", [clé d'accès au stockage S3]),
   carte("série 3", "export_individus.sas7bdat", [fichier SAS, données individuelles]),
   carte("série 3", "data/nomenclature_naf.csv", [nomenclature publique, 30 Ko]),
@@ -107,7 +145,7 @@ format:
   carte("série 3", "figures/schema_methode.svg", [schéma dessiné à la main, 12 Ko]),
 )
 
-// --- Page 4 : pour la formatrice -----------------------------
+// --- Pages 6 et 7 : pour la formatrice -----------------------------
 #pagebreak()
 #set page(margin: (x: 16mm, y: 14mm))
 #set par(leading: 0.55em)
@@ -127,47 +165,69 @@ format:
   columns: (16%, 84%),
   table.header[Temps][Formule],
   [*2 min*], [Tri collectif à main levée, sans papier, sur six cartes du jeu de base : `02_nettoyage.R`, `rapport.html`, `.Renviron`, `…confidentiel.xlsx`, `bitd_2024.parquet`, le CSV synthétique.],
-  [*4 min*], [Le déroulé standard : le jeu de base, en groupes de 2 ou 3.],
-  [*6 à 8 min*], [Le jeu de base, plus une série par groupe : la série 2 si la salle travaille surtout en Python ou avec des notebooks, la série 3 pour un public déjà à l'aise. Au débrief, chaque groupe présente sa carte la plus discutée.],
+  [*4 min*], [Le déroulé standard : le jeu de base, en groupes de 2 ou 3. Donne la version R ou Python selon le langage de chaque groupe ; les deux se corrigent de la même façon.],
+  [*6 à 8 min*], [Le jeu de base, plus une série par groupe : la série 2 dans le langage du groupe (R ou Python), ou la série 3 pour un public déjà à l'aise. Au débrief, chaque groupe présente sa carte la plus discutée.],
   [*10 min et plus*], [Les trois jeux. Chaque groupe trie le jeu de base puis une série différente ; débrief croisé : un groupe défend son tri, un autre le conteste. Termine en écrivant ensemble le `.gitignore` qui en découle.],
 )
 
 #v(1mm)
-#text(size: 8.5pt, fill: doux)[Les quatre critères du débrief valent pour toutes les séries : *texte ou binaire ? régénérable ou non ? secret ? secret statistique ?* Fais-les émerger des désaccords, pas avant. Le corrigé du jeu de base est dans le guide d'animation.]
+#text(size: 8.5pt, fill: doux)[Les quatre critères du débrief valent pour toutes les séries : *texte ou binaire ? régénérable ou non ? secret ? secret statistique ?* Fais-les émerger des désaccords, pas avant. Le corrigé du jeu de base est dans le guide d'animation ; la version Python se corrige pareil : `02_nettoyage.py` comme `02_nettoyage.R`, `__pycache__/` comme `.Rhistory` (à ignorer), `.env` comme `.Renviron` (jamais).]
 
 #v(3mm)
-#text(font: "Fraunces", weight: "semibold", size: 12pt)[Corrigé de la série 2 · environnements R et Python]
+#text(font: "Fraunces", weight: "semibold", size: 12pt)[Corrigé de la série 2 · environnement R]
 #v(1mm)
 #table(
   columns: (33%, 13%, 54%),
   table.header[Carte][Pile][Pourquoi],
-  [`scripts/02_nettoyage.py`], [à versionner], [Du code : le même rôle que `02_nettoyage.R`],
   [`renv.lock`], [à versionner], [Petit, texte : il permet à un collègue de réinstaller exactement les mêmes packages],
-  [`requirements.txt`], [à versionner], [Même rôle que `renv.lock`, pour Python],
+  [`renv/activate.R`], [à versionner], [Créé par renv, nécessaire pour que le projet active son environnement],
+  [`DESCRIPTION`], [à versionner], [Liste les dépendances : du texte, utile à toute l'équipe],
   [`_quarto.yml`], [à versionner], [Configuration du rapport, du texte],
   [`renv/library/`], [à ignorer], [Les packages eux-mêmes : volumineux, réinstallables depuis `renv.lock`],
-  [`.venv/`], [à ignorer], [Même chose côté Python : réinstallable depuis `requirements.txt`],
-  [`__pycache__/`], [à ignorer], [Régénéré à chaque exécution],
   [`.Rproj.user/`], [à ignorer], [Propre à chaque poste, comme `.Rhistory`],
-  [`.ipynb_checkpoints/`], [à ignorer], [Sauvegardes automatiques, régénérables],
+  [`.RData`], [à ignorer], [Binaire, volumineux, et il peut contenir des données : on relance les scripts plutôt],
+  [`rapport_files/`], [à ignorer], [Régénéré par `quarto render`],
+  [`analyse_exploratoire.nb.html`], [à ignorer], [Une sortie, régénérable],
   [`entreprises_defense.Rproj`], [*discutable*], [Petit, texte : versionnable si l'équipe utilise RStudio ; inutile sous VS Code],
+  [`.Rprofile`], [*discutable*], [Versionnable s'il sert au projet (renv l'utilise) ; à ignorer s'il contient des réglages personnels],
+  [`.vscode/settings.json`], [*discutable*], [Versionnable si ce sont des réglages communs à l'équipe ; à ignorer si ce sont des goûts personnels],
+)
+
+#pagebreak()
+#text(size: 7pt, fill: pale, tracking: 0.12em)[POUR LA FORMATRICE · À NE PAS DISTRIBUER]
+#v(2mm)
+#text(font: "Fraunces", weight: "semibold", size: 12pt)[Corrigé de la série 2 · environnement Python]
+#v(1mm)
+#table(
+  columns: (33%, 13%, 54%),
+  table.header[Carte][Pile][Pourquoi],
+  [`pyproject.toml`], [à versionner], [Décrit le projet et ses dépendances : du texte, utile à toute l'équipe],
+  [`requirements.txt`], [à versionner], [Petit, texte : il permet à un collègue de réinstaller les mêmes packages],
+  [`uv.lock`], [à versionner], [Fige les versions exactes : c'est lui qui garantit qu'on retrouve le même résultat],
+  [`.python-version`], [à versionner], [Une ligne, utile pour que tout le monde utilise la même version de Python],
+  [`tests/test_nettoyage.py`], [à versionner], [Du code, qui protège l'étude des régressions],
+  [`.venv/`], [à ignorer], [Les packages installés : volumineux, réinstallables depuis `uv.lock` ou `requirements.txt`],
+  [`.pytest_cache/`], [à ignorer], [Régénéré à chaque lancement des tests],
+  [`.ipynb_checkpoints/`], [à ignorer], [Sauvegardes automatiques, régénérables],
+  [`dist/`], [à ignorer], [Un paquet construit : régénérable],
   [`analyse_exploratoire.ipynb`], [*discutable*], [Du code, mais les sorties enregistrées dedans gonflent les diffs et peuvent contenir des données : vider les sorties avant le commit, ou préférer un script ou un `.qmd`],
+  [`tests/donnees/echantillon.csv`], [*discutable*], [Des données, mais minuscules, inventées et indispensables aux tests : versionnables. Jamais un extrait de vraies données],
   [`.vscode/settings.json`], [*discutable*], [Versionnable si ce sont des réglages communs à l'équipe ; à ignorer si ce sont des goûts personnels],
 )
 
 #v(3mm)
-#text(font: "Fraunces", weight: "semibold", size: 12pt)[Corrigé de la série 3 · cas limites]
+#text(font: "Fraunces", weight: "semibold", size: 12pt)[Corrigé de la série 3 · cas limites (R et Python)]
 #v(1mm)
 #table(
   columns: (33%, 13%, 54%),
   table.header[Carte][Pile][Pourquoi],
-  [`tests/test_nettoyage.R`], [à versionner], [Du code, qui protège l'étude des régressions],
+  [`tests/`], [à versionner], [Du code (`testthat` en R, `pytest` en Python), qui protège l'étude des régressions],
   [`run_all.sh`], [à versionner], [Il documente l'ordre d'exécution : du code],
   [`config.yml`], [à versionner], [Paramètres et chemins, sans secret : ils font partie de l'étude],
   [`data/README.md`], [à versionner], [La documentation des données se versionne, même si les données ne le sont pas],
   [`cache/`], [à ignorer], [Recalculable],
   [`logs/execution_2024-10-07.log`], [à ignorer], [Régénéré à chaque exécution, propre à un poste],
-  [`.env`], [*jamais*], [Un secret : comme `.Renviron`, il reste dans l'historique s'il est commité],
+  [`.secrets.toml`], [*jamais*], [Un secret : comme `.Renviron` ou `.env`, il reste dans l'historique s'il est commité],
   [`credentials.json`], [*jamais*], [Un secret : révoquer la clé aussitôt si elle a été commitée],
   [`export_individus.sas7bdat`], [*jamais*], [Données individuelles (secret statistique), et binaire],
   [`data/nomenclature_naf.csv`], [*discutable*], [Petit, texte, public : versionnable. La règle générale reste : les données hors de Git],
