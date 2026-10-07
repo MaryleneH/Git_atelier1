@@ -25,7 +25,29 @@ toc: false
 # Notes formateur : touche S pour les afficher.
 # Gabarits de slide : {.probleme} {.limage} {.capot} {.avous}
 # {.piege} {.retenir} {.vote} {.quiz} {.demo}, et # Titre {.intercalaire}
+# Ouverture : {.activite} (consigne d'activité), {.noms-fichiers}, {.trois-besoins}
 ---
+
+# Pourquoi Git ? {.intercalaire}
+
+[Ouverture · 14 min]{.eyebrow}
+
+Quand nos fichiers ne suffisent plus
+
+::: {.notes}
+**Avant 0:00** — Accueil. La fiche « Le Nouveau » est posée sur chaque table, face cachée, avec un stylo. Rien à remplir pour l'instant.
+
+**Objectif de la séquence (14 min)** : chacun repère au moins une difficulté de versions dans son propre travail et la relie à un besoin : **enregistrer, retrouver, partager**. On fait émerger le *pourquoi*, pas le *comment* : aucune commande Git avant le Temps 1.
+
+**Le fil :** film → fiche seul → binôme → mise en commun → trois besoins → question sur la version.
+
+**Pour toi (Gardner, Thiagi)** :
+
+- Gardner, *entry points* : on ouvre plusieurs portes vers la même idée. Ici, le **récit** (le film), le **geste** (écrire sur la fiche), l'**échange** (le binôme), le **schéma** (les trois besoins). La **preuve** viendra au Temps 1. Ne présente jamais ça aux participants, et ne parle jamais de « styles d'apprentissage ».
+- Thiagi, *interactive storytelling* : une histoire, puis expérience → observation personnelle → échange → mise en commun → formalisation. Tu parles peu : ce sont eux qui nomment les problèmes.
+
+**Sécurité** : aucune mauvaise réponse ; personne n'est obligé de raconter une difficulté personnelle devant le groupe.
+:::
 
 ## Le Nouveau {.film-slide}
 
@@ -34,118 +56,160 @@ toc: false
 ```
 
 ::: {.notes}
-**⏱ 0:00 → 0:01 (1 min)** — Accueil, sur la slide de titre.
+**⏱ 0:00 → 0:08 (8 min)** — Le film, consigne comprise.
 
-Tu accueilles, tu vérifies que chacun a son service VS Code ouvert sur Onyxia (le pré-travail). Pas de tour de table ici : il vient après le film. Dis simplement : « Deux heures, une seule étude, et à la fin vous saurez retrouver n'importe quelle version de votre travail. On commence par un film. »
+**Objectif** : vivre une situation avant d'en parler.
 
-**⏱ 0:01 → 0:09 (8 min)** — Le film « Le Nouveau ».
+**Tu dis** (20 secondes, pas plus) :
 
-Lance la vidéo, et tais-toi : pas de commentaire pendant le film.
+« Je ne vais pas commencer par vous expliquer ce qu'est Git. Je vais commencer par vous montrer une situation. Pendant le film, repérez simplement un ou deux moments où vous vous dites : ça, je connais, ou ça pourrait m'arriver. Vous pourrez noter vos impressions après. »
 
-Si la salle n'a pas accès à YouTube : le fichier local `video/le-nouveau.mp4` (dossier ignoré par Git, à copier sur ton poste avant l'atelier). Ouvre-le dans le lecteur vidéo du poste, en plein écran.
+**Ils font** : ils regardent. **Ils n'écrivent pas** pendant le film.
 
-**Transition :** « Qui s'est reconnu ? »
+**Tu observes** : les sourires, les hochements de tête, les réactions. Repère deux ou trois scènes qui font réagir : elles te serviront à relancer la mise en commun.
+
+**Surtout pas** : commenter pendant le film, ni avant (« vous allez voir, c'est exactement le problème de… »).
+
+**Secours** : sans YouTube, le fichier `video/le-nouveau.mp4` (à copier sur ton poste avant l'atelier), en plein écran dans le lecteur vidéo du poste.
+
+**Transition** : « Retournez votre fiche. »
 :::
 
-## Qui s'est reconnu ? {.vote}
+## Et vous, [qu'avez-vous]{.insecable} reconnu ? {.activite}
 
-::: {.grand}
-Dans quelle scène ?
+[En solo · 2 min]{.etape}
+
+[Prenez 2 minutes pour compléter votre fiche.]{.consigne}
+
+::: {.notes}
+**⏱ 0:08 → 0:10 (2 min)** — Réflexion individuelle.
+
+**Objectif** : que chacun relie le film à sa propre pratique, à son rythme, sans le regard du groupe.
+
+**Tu dis** : « Je vous laisse deux minutes. Pas besoin de faire des phrases. Notez simplement ce qui vous semble important. »
+
+**Ils font** : ils remplissent la fiche (quatre questions : le moment qui m'a parlé, ce qui pose problème, ce que j'aimerais pouvoir faire, une situation similaire dans mon travail).
+
+**Tu observes** : qui écrit, qui bloque. Silence total. Si quelqu'un sèche après une minute, à voix basse : « Une seule question suffit. »
+
+**Surtout pas** : expliquer, reformuler les questions à voix haute, donner des exemples. Le silence fait partie de l'exercice.
+
+**Transition** : « Gardez votre fiche sous les yeux. »
+:::
+
+## Partagez un élément avec votre voisin. {.activite}
+
+[En binôme · 1 min]{.etape}
+
+[Un moment, un problème ou une situation familière.]{.consigne}
+
+::: {.notes}
+**⏱ 0:10 → 0:11 (1 min)** — Échange en binôme.
+
+**Objectif** : que chacun mette des mots sur son observation, dans un cadre peu intimidant.
+
+**Tu dis** : « Maintenant, avec votre voisin, choisissez chacun un seul élément de votre fiche que vous souhaitez partager. »
+
+**Ils font** : 30 secondes chacun. Nombre impair : un trio.
+
+**Tu observes** : tu circules et tu écoutes, sans intervenir. Note deux ou trois formulations justes : tu pourras les citer à la mise en commun (« j'ai entendu… »).
+
+**Surtout pas** : en faire un tour de table, ni demander à quelqu'un de répéter devant tout le groupe ce qu'il a confié à son voisin.
+
+**Transition** (au bout d'une minute) : « Je vous arrête. »
+:::
+
+## Au fond, quel est le problème ? {.activite}
+
+[Ensemble · 2 min]{.etape}
+
+[Qu'est-ce qui revient dans vos fiches ?]{.consigne}
+
+::: {.notes}
+**⏱ 0:11 → 0:12:30** — Mise en commun (avec la slide suivante : 2 min en tout).
+
+**Objectif** : passer des histoires individuelles aux difficultés communes. Ce sont **eux** qui les nomment.
+
+**Tu dis** : « Qu'est-ce qui revient dans vos fiches ? »
+
+**Ils font** : quelques volontaires répondent. Personne n'est désigné.
+
+**Réponses possibles** : retrouver la bonne version · savoir ce qui a changé · comprendre pourquoi un fichier a été modifié · revenir à ce qui fonctionnait · éviter les copies multiples · transmettre son travail.
+
+**Tu fais** : tu reformules en une phrase et tu regroupes (« donc : retrouver la bonne version, et savoir pourquoi elle a changé »). Si la salle se tait, relance avec une scène repérée pendant le film, ou avec ce que tu as entendu en binôme.
+
+**Surtout pas** : parler de commit, de Git ou de commandes. Ne corrige aucune réponse : aucune n'est fausse.
+
+**Débrief Thiagi** : on part de ce qu'ils ont vécu (le film, leurs fiches), on ne plaque pas une théorie.
+
+**Transition** : « Ça vous rappelle peut-être ceci. »
+:::
+
+## Vos fichiers {.noms-fichiers}
+
+- `analyse_finale.R`
+- `analyse_finale_V2.R`
+- `analyse_finale_V2_OK.R`
+- `analyse_finale_V2_OK_definitif.R`
+
+[Au fond, qu'est-ce qu'on essaie de faire quand on crée tous ces fichiers ?]{.question}
+
+::: {.fragment}
+[On fabrique soi-même un système de gestion des versions.]{.reponse-emergente}
 :::
 
 ::: {.notes}
-**⏱ 0:09 → 0:11 (2 min)** — Tour de table express.
+**⏱ 0:12:30 → 0:13 (30 s)** — Illustration de la mise en commun. **Facultative** : si tu manques de temps, passe directement à la slide suivante.
 
-Un mot par personne, pas plus. Tu ne commentes pas, tu notes au tableau les scènes citées : elles te serviront de crochets pendant l'atelier (« vous vous souvenez de la scène où… »).
+**Objectif** : faire sourire, puis faire formuler l'idée centrale.
 
-Si personne ne se lance : commence par toi, avec une vraie histoire courte.
+**Avant l'atelier** : tu peux remplacer ces quatre noms par des noms envoyés par les participants (étape 5 de la page *Avant l'atelier*), anonymisés.
 
-**Transition :** « Et vos fichiers, ils s'appellent comment ? »
+**Tu dis** : « Au fond, qu'est-ce qu'on essaie de faire quand on crée tous ces fichiers ? »
+
+**Ils font** : rire, puis une ou deux réponses.
+
+**Réponse recherchée** : « On essaie de fabriquer nous-mêmes un système de gestion des versions. » Attends qu'elle émerge ; reformule-la si besoin. **N'affiche la phrase (flèche droite) qu'une fois qu'elle a été dite**, ou pour conclure.
+
+**Surtout pas** : moquer ces noms. Tout le monde en a.
+
+**Transition** : « Ce système, on peut le confier à un outil. Il répond à trois besoins. »
 :::
 
-## Vos pires noms de fichiers {.probleme}
+## Trois besoins {.trois-besoins}
 
-::: {.incremental}
-- `rapport_final_v2_corrige_final.docx`
-- `analyse_BITD_2024_OK_new.R`
-- `donnees_nettoyees_VRAIMENT_propres.csv`
-- `note_synthese_relue_Franck_v3 (2).docx`
-- `programme_ok_ne_pas_toucher.R`
-:::
+[Pendant deux heures]{.etape}
 
-::: {.notes}
-**⏱ 0:11 → 0:11:30 (30 s)**
+::: {.besoins}
+[01]{.num} [Enregistrer]{.mot}
 
-À compléter avant l'atelier avec les noms envoyés par les participants (étape 5 du pré-travail). Garde ces cinq exemples si tu en reçois peu.
+[02]{.num} [Retrouver]{.mot}
 
-Fais-les apparaître un par un (flèche droite) et laisse rire. Pas d'explication : l'image se suffit.
-
-**Transition :** « Ce soir, on remplace tout ça par une seule chose. »
-:::
-
-## Ce soir, vous saurez
-
-::: {.incremental}
-1. **Photographier** l'état exact de votre étude, avec le pourquoi
-2. **Retrouver** la version de vendredi
-3. **Partager** sur GitLab
+[03]{.num} [Partager]{.mot}
 :::
 
 ::: {.notes}
-**⏱ 0:11:30 → 0:12 (30 s)**
+**⏱ 0:13 → 0:14 (1 min)** — Synthèse et transition.
 
-Trois objectifs, et seulement trois. Tu peux les annoncer comme un contrat : « À 18 h, chacun de vous aura fait ces trois choses sur son propre poste. »
+**Objectif** : relier ce qu'ils ont dit aux trois besoins, et annoncer le programme.
 
-**Transition :** « Il y a plusieurs façons d'y arriver. »
-:::
+**Tu dis** : « Pendant deux heures, on va apprendre à résoudre ces trois problèmes. Enregistrer précisément l'état de son étude. Retrouver ce qui s'est passé. Et en conserver un exemplaire sur GitLab. »
 
-## Cinq portes d'entrée
+Si possible, rattache un mot entendu tout à l'heure à chaque besoin (« les copies multiples, c'est enregistrer ; savoir pourquoi ça a changé, c'est retrouver »).
 
-Cet atelier ne suppose pas que chacun apprend « à sa façon » : il ouvre plusieurs portes vers la même idée — **un récit, un geste, un schéma, une preuve, un échange**. Prenez celle qui vous parle, et repassez par les autres.
+**Puis tu demandes** : « Imaginons que vendredi votre analyse fonctionnait, mais que lundi matin elle ne fonctionne plus. Qu'aimeriez-vous pouvoir retrouver ? » Une ou deux réponses très rapides, si le temps le permet.
 
-::: {.notes}
-**⏱ 0:12 (15 s)** — Lis le texte, sans le paraphraser.
+**Surtout pas** : définir les mots, montrer une commande.
 
-Référence pour toi : les « portes d'entrée » (*entry points*) de Howard Gardner, *The Disciplined Mind* (1999) — aborder un même concept par plusieurs chemins (narratif, logique, expérientiel, esthétique, interpersonnel). Ici : le film et Marie (récit), la simulation sur papier (geste), les schémas des trois zones (schéma), « Sous le capot » (preuve), les binômes (échange).
-
-Ne présente jamais cela comme des « styles d'apprentissage » ou des « intelligences multiples » à diagnostiquer : l'hypothèse des styles d'apprentissage n'est pas soutenue par la recherche, et Gardner lui-même s'en démarque. L'idée est l'inverse : **tout le monde passe par toutes les portes**.
-
-**Transition :** « Et pour passer ces portes, nous suivrons une seule étude. »
-:::
-
-## Le fil rouge : l'étude `entreprises_defense`
-
-```{.text .sortie}
-entreprises_defense/
-├── README.md
-├── rapport.qmd
-├── brouillon_test.R
-├── data/
-│   └── entreprises_defense_2024.csv
-└── scripts/
-    ├── 01_import.R
-    ├── 02_nettoyage.R
-    └── 03_analyse.R
-```
-
-[Marie, statisticienne, autrice de l'étude · Franck, son collègue · des données entièrement fictives]{.discret}
-
-::: {.notes}
-**⏱ 0:12 (15 s)** — Fin de l'ouverture.
-
-Présente Marie et Franck : on les retrouvera dans l'historique. L'étude porte sur les entreprises liées à la défense, mais **tout est synthétique** : 40 entreprises inventées, SIREN commençant par 000.
-
-Variante Python : les scripts sont en `.py` (kit lancé avec `bash kit.sh --python`). Les commandes Git sont identiques.
-
-**Transition :** « Premier temps : une version, c'est quoi exactement ? »
+**Transition** : « C'est exactement par là qu'on va commencer. Mais avant de revenir à vendredi, il faut répondre à une question plus simple : qu'est-ce qu'une version ? »
 :::
 
 # Une version, c'est quoi ? {.intercalaire}
 
-[Temps 1 · 15 min]{.eyebrow}
+[Temps 1 · 13 min]{.eyebrow}
 
 ::: {.notes}
-**⏱ 0:12 → 0:27** — Temps 1 : 15 minutes.
+**⏱ 0:14 → 0:27** — Temps 1 : 13 minutes.
 
 Objectif : que chacun sache ce qu'il y a dans un commit, avant de taper la moindre commande.
 :::
@@ -160,9 +224,9 @@ Ce qu'il faudrait :
 :::
 
 ::: {.notes}
-**⏱ 0:12 → 0:14 (2 min)**
+**⏱ 0:14 → 0:16 (2 min)**
 
-Laisse la phrase seule à l'écran quelques secondes. Demande : « Qu'est-ce qu'il vous faudrait, là, tout de suite ? » Recueille deux ou trois réponses, puis fais apparaître le fragment.
+Laisse la phrase seule à l'écran quelques secondes. **Ne repose pas la question** : ils viennent d'y répondre à la fin de l'ouverture (« qu'aimeriez-vous pouvoir retrouver ? »). Rappelle en une phrase une ou deux réponses entendues (« tout à l'heure, vous avez dit : retrouver la version qui marchait, savoir ce qui a changé… »), puis fais apparaître le fragment : c'est leur réponse, mise au propre.
 
 Insiste sur le « pourquoi » : un état exact sans explication ne suffit pas pour reprendre le travail de quelqu'un.
 
@@ -182,12 +246,12 @@ Insiste sur le « pourquoi » : un état exact sans explication ne suffit pas
 :::
 
 ::: {.notes}
-**⏱ 0:14 → 0:18 (4 min)** — Vote en *peer instruction*.
+**⏱ 0:16 → 0:18 (2 min)** — Vote en *peer instruction*, version courte.
 
-1. Vote à main levée, sans discussion (compte les mains pour a, b, c).
-2. « Convainquez votre voisin » : 1 minute en binôme.
-3. Revote.
-4. Seulement alors : fragment de la réponse.
+1. Vote à main levée, sans discussion (20 s ; compte les mains pour a, b, c).
+2. « Convainquez votre voisin » : 40 secondes en binôme (ce sont les mêmes binômes qu'à l'ouverture).
+3. Revote (20 s).
+4. Seulement alors : fragment de la réponse (20 s, sans explication : l'explication vient avec « Sous le capot »).
 
 La plupart votent (a) ou (c) : c'est normal, c'est intuitif. Ne corrige pas tout de suite : la slide « Sous le capot » s'en charge.
 
@@ -276,6 +340,8 @@ Cette empreinte-là (`155ae9a…`) est un vrai commit de Marie : on la retrouve
 **⏱ 0:23 → 0:25 (2 min pour les trois étapes)**
 
 Premier commit de Marie : pas de parent, c'est le début de l'album.
+
+Marie n'a pas encore été présentée : une phrase suffit (« Marie, une statisticienne, autrice de l'étude qu'on ouvrira tout à l'heure »).
 :::
 
 ## La chaîne {auto-animate="true"}
@@ -361,6 +427,33 @@ Fais répéter la phrase par un participant, avec ses mots. Laisse deux minutes 
 Chacun doit avoir le terminal intégré de VS Code ouvert (*Terminal → Nouveau terminal*) et être placé dans le dossier de l'étude :
 
 `cd ~/work/atelier-git/entreprises_defense`
+:::
+
+## Le fil rouge : l'étude `entreprises_defense`
+
+```{.text .sortie}
+entreprises_defense/
+├── README.md
+├── rapport.qmd
+├── brouillon_test.R
+├── data/
+│   └── entreprises_defense_2024.csv
+└── scripts/
+    ├── 01_import.R
+    ├── 02_nettoyage.R
+    └── 03_analyse.R
+```
+
+[Marie, statisticienne, autrice de l'étude · Franck, son collègue · des données entièrement fictives]{.discret}
+
+::: {.notes}
+**⏱ 0:27 (15 s, pris sur la démonstration qui suit)** — Le fil rouge, au moment où ils ouvrent le dossier.
+
+Présente l'étude qu'ils vont ouvrir dans leur terminal, et Marie et Franck (Marie est déjà apparue dans la chaîne du Temps 1). L'étude porte sur les entreprises liées à la défense, mais **tout est synthétique** : 40 entreprises inventées, SIREN commençant par 000.
+
+Variante Python : les scripts sont en `.py` (kit lancé avec `bash kit.sh --python`). Les commandes Git sont identiques.
+
+**Transition :** « Ouvrons-la, et demandons à Git ce qu'il voit. »
 :::
 
 ## Qu'est-ce que je photographie ? {.probleme}

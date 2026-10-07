@@ -32,8 +32,8 @@ Une seule idée à garder en tête : un commit est une **photo complète** de v
 
 | Séquence | Durée | Ce que l'on fait |
 |---|---:|---|
-| Ouverture | 12 min | Le film « Le Nouveau », vos pires noms de fichiers, le fil rouge |
-| Temps 1 — Une version, c'est quoi ? | 15 min | La photo de l'album, et ce qu'il y a vraiment dans un commit |
+| Ouverture — Pourquoi Git ? | 14 min | Le film « Le Nouveau », ce qu'il dit de nos façons de travailler, trois besoins |
+| Temps 1 — Une version, c'est quoi ? | 13 min | La photo de l'album, et ce qu'il y a vraiment dans un commit |
 | Temps 2 — Le geste | 28 min | `git status`, `git add`, `git commit` : regarder, choisir, enregistrer |
 | Quiz éclair et pause | 8 min | Quatre questions de raisonnement, puis cinq minutes de pause |
 | Temps 3 — Vendredi, ça marchait | 25 min | Enquêter dans l'historique de Marie, revenir à une version |
