@@ -1541,3 +1541,25 @@ L'atelier 2 portera sur le travail à plusieurs : cloner, tirer, se synchronise
 
 Le bac à sable fonctionne dans le navigateur, sans Onyxia : pratique pour s'entraîner entre deux ateliers.
 :::
+
+## Remerciements {.remerciements}
+
+[Merci pour leur aide à valider la cohérence de l'atelier]{.etape}
+
+::: {.noms}
+Maxence Lagalle
+
+Romain Lesur
+
+Nathan Randriamanana
+:::
+
+::: {.inspiration}
+Merci aussi à la [formation Git de l'Insee](https://inseefrlab.github.io/formation-bonnes-pratiques-git-R/). Elle n'a pas servi à construire ces supports : elle a inspiré cet atelier, pensé pour être complémentaire et cohérent avec elle.
+:::
+
+::: {.notes}
+**⏱ 2:00** — À laisser affichée pendant que les participants partent.
+
+Les noms sont classés par ordre alphabétique de nom de famille. Le lien vers la formation Insee mène à sa page, où figurent ses crédits.
+:::

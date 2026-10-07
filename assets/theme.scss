@@ -840,3 +840,39 @@ $icon-gear: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'
     color: $ink;
   }
 }
+
+// Remerciements : les noms en grand, l'inspiration en petit
+.reveal .slides section.remerciements {
+  padding-top: 130px;
+
+  > h2 {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .noms {
+    margin: 1em 0 1.4em;
+
+    p {
+      margin: 0.1em 0;
+      font-family: $presentation-heading-font;
+      font-size: 1.9em;
+      font-weight: 600;
+      line-height: 1.15;
+      color: $ink;
+    }
+  }
+
+  .inspiration p {
+    max-width: 52ch;
+    padding-top: 0.9em;
+    border-top: 1px solid $line;
+    font-size: 0.72em;
+    line-height: 1.5;
+    color: $ink-soft;
+  }
+}
