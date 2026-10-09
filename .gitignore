@@ -18,3 +18,5 @@ Thumbs.db
 __pycache__/
 .vscode/
 .idea/
+
+**/*.quarto_ipynb

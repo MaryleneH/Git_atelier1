@@ -17,7 +17,7 @@ film_url: "https://www.youtube.com/watch?v=5xRJVeW23C4"
 organisme: "le bureau des études économiques"
 
 # Date et horaire de l'atelier, tels qu'ils s'affichent
-atelier_date: "date à préciser"
+atelier_date: "09 Octobre 2026"
 
 # Adresse publique du site (GitHub Pages), avec la barre finale.
 # L'ancre &site_url permet à Quarto de réutiliser cette même valeur
