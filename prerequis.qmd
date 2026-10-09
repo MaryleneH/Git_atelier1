@@ -19,26 +19,6 @@ Ces cinq étapes garantissent que, le jour de l'atelier, tout le monde peut tape
 
 [Pour la formatrice]{.eyebrow}
 
-## Le mail à envoyer à J-3
-
-::: {.mail}
-**Objet :** Atelier Git du {{< var atelier_date >}} — 20 minutes de préparation
-
-Bonjour à toutes et à tous,
-
-L'atelier « Je regarde, je choisis, j'enregistre » a lieu le {{< var atelier_date >}}. Pour que nous puissions commencer directement par la pratique, merci de prendre vingt minutes d'ici là pour préparer votre poste :
-
-{{< var site_url >}}prerequis.html
-
-Les cinq étapes : renseigner votre compte Onyxia (nom, email, jeton GitLab), lancer un service VS Code, vérifier Git, créer le kit d'exercices, et faire cinq minutes de bac à sable.
-
-Et une petite demande : répondez à ce mail avec **votre pire nom de fichier**, celui qui vous fait sourire (ou grincer des dents). Ils ouvriront l'atelier, anonymement.
-
-Si une étape bloque, écrivez-moi : mieux vaut régler cela avant que pendant.
-
-À très vite,
-:::
-
 ## La checklist J-7
 
 ::: {.checklist}

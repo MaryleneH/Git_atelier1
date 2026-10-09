@@ -9,7 +9,9 @@ Le site contient :
 | `index.qmd` | Accueil : programme, prérequis, liens |
 | `slides.qmd` | Le diaporama complet (Reveal.js), notes formateur incluses (touche `S`) |
 | `atelier.qmd` | Le guide participant, pas à pas |
-| `prerequis.qmd` | Le pré-travail, le modèle de mail J-3, la checklist J-7 |
+| `setup.qmd` | Préparer son poste : Onyxia, VS Code, Git, le kit (étapes 1 à 4) |
+| `prerequis.qmd` | Le pré-travail (étapes 1 à 5), la checklist J-7 |
+| `_preparation-poste.qmd` | Les étapes 1 à 4, source commune incluse dans les deux pages précédentes |
 | `bac-a-sable.qmd` | L'étude dans le navigateur : explorateur, éditeur, terminal Git, trois zones ; prise en main, 4 missions, un défi |
 | `memo.qmd` | Le tableau problème → commande |
 | `materiel/` | Le mémo A4 et les cartes de tri (jeu de base et séries supplémentaires, en versions R et Python, formules selon le temps et corrigés), en PDF (Typst) |
