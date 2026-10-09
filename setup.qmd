@@ -1,0 +1,7 @@
+---
+title: "Préparer son poste"
+subtitle: "Configurer Onyxia, VS Code et Git avant de commencer"
+engine: markdown
+---
+
+{{< include _preparation-poste.qmd >}}

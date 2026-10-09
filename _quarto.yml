@@ -38,6 +38,8 @@ website:
     left:
       - href: index.qmd
         text: Accueil
+      - href: setup.qmd
+        text: Préparer son poste
       - href: prerequis.qmd
         text: Avant l'atelier
       - href: atelier.qmd
