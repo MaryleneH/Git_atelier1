@@ -22,7 +22,7 @@ atelier_date: "09 Octobre 2026"
 # Adresse publique du site (GitHub Pages), avec la barre finale.
 # L'ancre &site_url permet à Quarto de réutiliser cette même valeur
 # comme adresse du site (sitemap, liens canoniques) : ne la saisir qu'ici.
-site_url: &site_url "https://maryleneh.github.io/Git_atelier1/"
+site_url: &site_url "https://maryleneh.github.io/Git_atelier/"
 
 # --- Ne pas modifier : reprise automatique de site_url -------
 website:
