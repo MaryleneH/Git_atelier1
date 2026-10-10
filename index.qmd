@@ -1,11 +1,11 @@
 ---
-pagetitle: "Atelier 1 · Je regarde, je choisis, j'enregistre — Git sans douleur"
+pagetitle: "Atelier · Je regarde, je choisis, j'enregistre — Git sans douleur"
 toc: false
 ---
 
 ```{=html}
 <section class="home-hero">
-  <span class="home-hero__eyebrow">Atelier Git &amp; GitLab · Atelier 1 · 2 h</span>
+  <span class="home-hero__eyebrow">Atelier Git &amp; GitLab · 2 h</span>
   <h1>Je regarde, je choisis, <em>j'enregistre</em></h1>
   <p class="home-hero__lede">
     Retrouver n'importe quelle version de son étude — et savoir, pour chacune,

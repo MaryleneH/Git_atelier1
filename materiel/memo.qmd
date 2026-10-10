@@ -25,7 +25,7 @@ format:
 
 ```{=typst}
 #v(-6mm)
-#text(size: 8pt, weight: "bold", tracking: 1.5pt, fill: rgb("#0f766e"))[ATELIER 1 · JE REGARDE, JE CHOISIS, J'ENREGISTRE]
+#text(size: 8pt, weight: "bold", tracking: 1.5pt, fill: rgb("#0f766e"))[ATELIER · JE REGARDE, JE CHOISIS, J'ENREGISTRE]
 #v(-2mm)
 ```
 

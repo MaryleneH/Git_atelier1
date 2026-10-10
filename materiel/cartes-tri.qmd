@@ -52,7 +52,7 @@ format:
   ]
 ]
 
-#let entete(titre) = place(top + right, dy: -6mm)[#text(size: 7pt, fill: pale)[Atelier 1 · tri de cartes · #titre · à versionner / à ignorer / jamais]]
+#let entete(titre) = place(top + right, dy: -6mm)[#text(size: 7pt, fill: pale)[Atelier · tri de cartes · #titre · à versionner / à ignorer / jamais]]
 
 #let planche(..cartes) = grid(columns: (1fr, 1fr, 1fr), gutter: 0pt, ..cartes)
 

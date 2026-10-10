@@ -1,7 +1,7 @@
 # Sources du bac à sable
 
 Fork local de [quarto-git-sandbox](https://github.com/ryjohnson09/quarto-git-sandbox)
-(Ryan Johnson, licence MIT, version 1.1.0), adapté pour le bac à sable de l'atelier 1.
+(Ryan Johnson, licence MIT, version 1.1.0), adapté pour le bac à sable de l'atelier.
 
 | Chemin | Rôle |
 |---|---|

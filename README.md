@@ -1,6 +1,6 @@
-# Atelier 1 · Je regarde, je choisis, j'enregistre
+# Atelier · Je regarde, je choisis, j'enregistre
 
-Supports du premier atelier Git/GitLab « Git sans douleur » : deux heures pour apprendre à **retrouver n'importe quelle version de son étude**. Le public : des statisticiens et data scientists qui travaillent en R ou en Python dans VS Code, sur une instance Onyxia interne, avec un GitLab interne.
+Supports de l'atelier Git/GitLab « Git sans douleur » : deux heures pour apprendre à **retrouver n'importe quelle version de son étude**. Le public : des statisticiens et data scientists qui travaillent en R ou en Python dans VS Code, sur une instance Onyxia interne, avec un GitLab interne.
 
 Le site contient :
 

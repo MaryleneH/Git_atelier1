@@ -1,6 +1,6 @@
 ---
 title: "Guide d'animation"
-subtitle: "Atelier 1 · Je regarde, je choisis, j'enregistre — document réservé à la formatrice"
+subtitle: "Atelier · Je regarde, je choisis, j'enregistre — document réservé à la formatrice"
 ---
 
 # Avant de lire
@@ -48,7 +48,7 @@ Il suit l'ordre de la soirée :
 2. **retrouver** une version passée (`git log`, `git show`, `git restore`) ;
 3. **partager** son travail sur GitLab (`git push`).
 
-**Ce que l'atelier ne fait pas** : les branches, la fusion, le travail à plusieurs (`pull`, `clone`, *merge requests*). C'est l'atelier 2.
+**Ce que l'atelier ne fait pas** : les branches, la fusion, le travail à plusieurs (`pull`, `clone`, *merge requests*). Ce n'est pas l'objet de cet atelier.
 
 ## La méthode, en trois règles
 
@@ -588,9 +588,9 @@ git commit -m "Ignore les données, les sorties et les fichiers d'environnement"
 
 **⏱ 1:36 → 1:37 · « Et si le service disparaît ? ».** Le dossier `.git/` est dans le service : l'album disparaît avec lui. C'est la réponse complète à la question 3 du quiz.
 
-**⏱ 1:37 · « L'exemplaire déposé au bureau ».** L'image, et sa limite : ce n'est pas une photocopie figée, les deux albums se mettent à jour (on ajoute des pages avec `push` ; on récupérera celles des autres à l'atelier 2).
+**⏱ 1:37 · « L'exemplaire déposé au bureau ».** L'image, et sa limite : ce n'est pas une photocopie figée, les deux albums se mettent à jour (on ajoute des pages avec `push`).
 
-**⏱ 1:37 → 1:39 · « Git ≠ GitLab ».** GitLab affiche l'historique, les diffs, le README mis en forme ; plus tard, les *merge requests* et les *issues* (atelier 2). Les empreintes sont les mêmes des deux côtés.
+**⏱ 1:37 → 1:39 · « Git ≠ GitLab ».** GitLab affiche l'historique, les diffs, le README mis en forme. Les empreintes sont les mêmes des deux côtés.
 
 **⏱ 1:39 → 1:40 · « `origin`, `push`, `-u` ».** `origin` n'est qu'un surnom pour l'adresse (c'est la convention). `-u` ne sert qu'au premier envoi : ensuite, `git push` suffit, et `git status` dit si on est à jour avec GitLab.
 
@@ -630,13 +630,11 @@ Puis, dans GitLab : rafraîchir la page du projet ; ouvrir *Code → Commits* (o
 
 **⏱ 1:52 → 1:54 · « Problème → commande ».** Distribue le mémo imprimé. Parcours le tableau de haut en bas : chaque ligne est un moment de la soirée.
 
-**⏱ 1:54 → 1:56 · « Ticket de sortie ».** Papier, anonyme, ramassé à la sortie : une chose que je sais faire, une chose encore floue, la commande que je taperai demain. Garde-les : tu ouvriras l'atelier 2 avec les « flous » les plus fréquents.
+**⏱ 1:54 → 1:56 · « Ticket de sortie ».** Papier, anonyme, ramassé à la sortie : une chose que je sais faire, une chose encore floue, la commande que je taperai demain. Garde-les : ils te disent quels « flous » reviennent le plus, pour y revenir avec le groupe après l'atelier si besoin.
 
 **⏱ 1:56 → 1:58 · « Le défi de la semaine ».** Mettre **une vraie étude** sous Git : trois commits avec de vrais messages, un push sur le GitLab interne. Propose-leur de t'envoyer le lien du projet.
 
-> « L'atelier 2 s'ouvrira sur : “Franck reprend votre étude.” »
-
-**⏱ 1:58 → 2:00 · « Merci ».** Rappelle que le bac à sable fonctionne dans le navigateur, sans Onyxia : pratique pour s'entraîner entre deux ateliers.
+**⏱ 1:58 → 2:00 · « Merci ».** Rappelle que le bac à sable fonctionne dans le navigateur, sans Onyxia : pratique pour continuer à s'entraîner après l'atelier.
 
 {{< pagebreak >}}
 
