@@ -23,7 +23,7 @@ execute:
   enabled: false
 
 website:
-  title: "Atelier 1 · Je regarde, je choisis, j'enregistre"
+  title: "Atelier · Je regarde, je choisis, j'enregistre"
   description: "Premier atelier Git/GitLab pour statisticiens et data scientists : retrouver n'importe quelle version de son étude."
   favicon: assets/img/favicon.svg
   page-navigation: false
@@ -32,7 +32,7 @@ website:
 
   navbar:
     logo: assets/img/logo.svg
-    logo-alt: "Git sans douleur — accueil de l'atelier 1"
+    logo-alt: "Git sans douleur — accueil de l'atelier"
     title: false
     pinned: true
     left:
@@ -52,7 +52,7 @@ website:
         text: Mémo
 
   page-footer:
-    left: "Git sans douleur — Atelier 1 · Je regarde, je choisis, j'enregistre"
+    left: "Git sans douleur — Atelier · Je regarde, je choisis, j'enregistre"
     right: "Construit avec [Quarto](https://quarto.org)"
 
 format:

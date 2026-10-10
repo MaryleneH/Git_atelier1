@@ -1,4 +1,4 @@
-/* Tests du moteur pour le bac à sable de l'atelier 1.
+/* Tests du moteur pour le bac à sable de l'atelier.
    Run: node tests/test-atelier.js
 
    Ils utilisent le vrai projet du site (assets/js/bac-a-sable.js) et

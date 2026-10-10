@@ -731,5 +731,5 @@ Le tableau de la soirée, à garder sous la main (aussi en [page mémo](memo.qmd
 {{< include _memo-tableau.qmd >}}
 
 ::: {.try}
-**Le défi de la semaine.** Mettez une vraie étude en cours sous Git : **trois commits, un push**. L'atelier 2 s'ouvrira sur : « Franck reprend votre étude ».
+**Le défi de la semaine.** Mettez une vraie étude en cours sous Git : **trois commits, un push**.
 :::

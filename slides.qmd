@@ -1,5 +1,5 @@
 ---
-title: "Atelier 1 · Je regarde, je choisis, j'enregistre"
+title: "Atelier · Je regarde, je choisis, j'enregistre"
 subtitle: "Retrouver n'importe quelle version de son étude"
 author: "Pour {{< var organisme >}}"
 institute: "{{< var atelier_date >}}"
@@ -18,7 +18,7 @@ format:
     center: false
     hash-type: number
     logo: assets/img/favicon.svg
-    footer: "Atelier 1 · Je regarde, je choisis, j'enregistre"
+    footer: "Atelier · Je regarde, je choisis, j'enregistre"
     preview-links: false
     include-after-body: assets/partials/slides.html
 toc: false
@@ -1365,7 +1365,7 @@ L'album reste chez vous. GitLab, c'est **l'exemplaire déposé au bureau**, que 
 ::: {.notes}
 **⏱ 1:37 (30 s)** — L'image.
 
-Limite de l'image, à dire tout de suite : ce n'est pas une photocopie figée. Les deux albums se mettent à jour : on y ajoute des pages avec `push` (et on récupérera celles des autres à l'atelier 2).
+Limite de l'image, à dire tout de suite : ce n'est pas une photocopie figée. Les deux albums se mettent à jour : on y ajoute des pages avec `push`.
 :::
 
 ## Git ≠ GitLab {.capot}
@@ -1377,7 +1377,7 @@ GitLab héberge **une copie du dépôt** — mêmes commits, mêmes empreintes �
 ::: {.notes}
 **⏱ 1:37 → 1:39 (2 min)**
 
-Git est l'outil, sur votre poste. GitLab est un service qui héberge des dépôts Git et ajoute une interface web : l'historique, les diffs, le README affiché proprement ; plus tard, les *merge requests* et les *issues* (atelier 2).
+Git est l'outil, sur votre poste. GitLab est un service qui héberge des dépôts Git et ajoute une interface web : l'historique, les diffs, le README affiché proprement.
 
 Les empreintes sont les mêmes des deux côtés : c'est la même chaîne de photos.
 :::
@@ -1465,7 +1465,7 @@ error: failed to push some refs to '{{< var gitlab_url >}}/camille/entreprises-d
 ::: {.notes}
 **⏱ 1:50 → 1:51 (1 min)**
 
-1. **README initialisé** : GitLab a un commit que vous n'avez pas, Git refuse (sortie ci-dessus, extrait). On ne dépanne pas ce soir (cela demande `git pull`, atelier 2) : on supprime le projet GitLab, on le recrée sans README avec le même nom, et on relance `git push -u origin main` : l'adresse n'a pas changé.
+1. **README initialisé** : GitLab a un commit que vous n'avez pas, Git refuse (sortie ci-dessus, extrait). On ne dépanne pas ce soir (cela demande `git pull`, hors du périmètre de l'atelier) : on supprime le projet GitLab, on le recrée sans README avec le même nom, et on relance `git push -u origin main` : l'adresse n'a pas changé.
 2. **`master`/`main`** : le kit a posé `init.defaultBranch=main`. Si quelqu'un a lancé `git init` avant le kit, sa branche s'appelle `master` : `git push -u origin master` fonctionne aussi.
 3. **Jeton** : vérifier *Mon compte* sur Onyxia, recréer le service. **Plan B** : tu montres à l'écran ton projet `entreprises_defense_marie` déjà poussé sur le GitLab interne (préparé à J-7), et la personne suit sur ton écran.
 :::
@@ -1511,7 +1511,7 @@ Sur un papier, trois lignes :
 ::: {.notes}
 **⏱ 1:54 → 1:56 (2 min)** — Papier, anonyme, ramassé à la sortie.
 
-Tu t'en sers pour ouvrir l'atelier 2 (reprendre les « flous » les plus fréquents).
+Tu t'en sers pour repérer les « flous » les plus fréquents, et y revenir avec le groupe après l'atelier si besoin.
 :::
 
 ## Le défi de la semaine
@@ -1520,14 +1520,10 @@ Mettez **une vraie étude en cours** sous Git :
 
 **trois commits**, **un push**.
 
-
-
 ::: {.notes}
 **⏱ 1:56 → 1:58 (2 min)**
 
 Une vraie étude, pas l'exercice. Trois commits avec de vrais messages, un push sur le GitLab interne. Propose-leur de t'envoyer le lien du projet.
-
-Pas d'atelier 2.
 :::
 
 ## Merci
@@ -1539,7 +1535,7 @@ Pas d'atelier 2.
 ::: {.notes}
 **⏱ 1:58 → 2:00** — Merci.
 
-Le bac à sable fonctionne dans le navigateur, sans Onyxia : pratique pour s'entraîner entre deux ateliers.
+Le bac à sable fonctionne dans le navigateur, sans Onyxia : pratique pour continuer à s'entraîner après l'atelier.
 :::
 
 ## Remerciements {.remerciements}

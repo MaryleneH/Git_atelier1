@@ -1,5 +1,5 @@
 /* =====================================================================
-   bac-a-sable.js — le projet et les missions du bac à sable de l'atelier 1.
+   bac-a-sable.js — le projet et les missions du bac à sable de l'atelier.
 
    Le projet entreprises_defense est celui du kit Onyxia (kit/kit.sh) :
    mêmes fichiers, mêmes scripts, même seuil de 20 %, mêmes messages de

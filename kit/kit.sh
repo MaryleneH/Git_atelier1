@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ============================================================
-# kit.sh — Atelier 1 · Je regarde, je choisis, j'enregistre
+# kit.sh — Atelier · Je regarde, je choisis, j'enregistre
 #
 # Crée les deux dossiers d'exercice de l'atelier :
 #   entreprises_defense/        l'étude, sans historique (pas de .git)
