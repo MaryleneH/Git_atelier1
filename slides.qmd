@@ -1520,16 +1520,14 @@ Mettez **une vraie étude en cours** sous Git :
 
 **trois commits**, **un push**.
 
-::: {.fragment}
-L'atelier 2 s'ouvrira sur : **« Franck reprend votre étude. »**
-:::
+
 
 ::: {.notes}
 **⏱ 1:56 → 1:58 (2 min)**
 
 Une vraie étude, pas l'exercice. Trois commits avec de vrais messages, un push sur le GitLab interne. Propose-leur de t'envoyer le lien du projet.
 
-L'atelier 2 portera sur le travail à plusieurs : cloner, tirer, se synchroniser.
+Pas d'atelier 2.
 :::
 
 ## Merci
